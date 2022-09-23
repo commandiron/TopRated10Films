@@ -5,10 +5,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme = darkColorScheme()
+private val DarkColorScheme = darkColorScheme(
+    background = Gunmetal,
+    primary = RedSalsa,
+    onPrimary = Color.White
+)
 
-private val LightColorScheme = lightColorScheme()
+private val LightColorScheme = lightColorScheme(
+    background = Gunmetal,
+    primary = RedSalsa,
+    onPrimary = Color.White
+)
 
 @Composable
 fun TopRated10FilmsTheme(
