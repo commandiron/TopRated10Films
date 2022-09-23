@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.navigation.compose.rememberNavController
 import com.commandiron.toprated10films.ui.navigation.BottomNavigation
@@ -27,7 +28,8 @@ class MainActivity : ComponentActivity() {
                             currentRoute = navController.currentRoute(),
                             onNavItemClick = { route -> navController.bottomNavigate(route) }
                         )
-                    }
+                    },
+                    containerColor = MaterialTheme.colorScheme.background
                 ) {
                     RootNavGraph(navController = navController)
                 }
