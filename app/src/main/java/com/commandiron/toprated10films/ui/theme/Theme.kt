@@ -9,14 +9,14 @@ import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
     background = Gunmetal,
-    primary = Saffron,
-    onPrimary = Color.Black
+    primary = RedSalsa,
+    onPrimary = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
     background = Gunmetal,
-    primary = Saffron,
-    onPrimary = Color.Black
+    primary = RedSalsa,
+    onPrimary = Color.White
 )
 
 @Composable

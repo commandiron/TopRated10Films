@@ -3,16 +3,18 @@ package com.commandiron.toprated10films.ui.navigation
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Image
+import androidx.compose.material.icons.filled.Timer10Select
 import androidx.compose.material.icons.filled.Tv
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -20,6 +22,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.commandiron.toprated10films.ui.navigation.nav_graph.GraphItem
 
@@ -44,66 +48,98 @@ fun BottomNavigation(
     ) {
         Row(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(8.dp)
                 .fillMaxWidth()
                 .height(80.dp)
                 .clip(RoundedCornerShape(20.dp))
                 .background(Color.LightGray.copy(0.1f)),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(
-                modifier = Modifier
+            NavigationItem(
+                modifier =Modifier
                     .weight(1f)
                     .fillMaxHeight()
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null
                     ) { onNavItemClick(GraphItem.TopTenGraph.route) },
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Image,
-                    contentDescription = null,
-                    tint = if(currentRoute != NavigationItem.WatchListScreen.route) {
-                        MaterialTheme.colorScheme.primary
-                    }else Color.White
-                )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = "Topten",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = if(currentRoute != NavigationItem.WatchListScreen.route) {
-                        MaterialTheme.colorScheme.primary
-                    }else Color.White
-                )
-            }
-            Column(
-                modifier = Modifier
+                enabled = currentRoute != NavigationItem.WatchListScreen.route,
+                iconVector = Icons.Default.Timer10Select,
+                iconTint = Color.LightGray,
+                title = "Top",
+                isIconFrontOfText = false
+            )
+            NavigationItem(
+                modifier =Modifier
                     .weight(1f)
                     .fillMaxHeight()
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null
                     ) { onNavItemClick(NavigationItem.WatchListScreen.route) },
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                enabled = currentRoute == NavigationItem.WatchListScreen.route,
+                iconVector = Icons.Default.Tv,
+                iconTint = Color.White,
+                title = "Watchlist"
+            )
+        }
+    }
+}
+
+@Composable
+fun NavigationItem(
+    modifier: Modifier = Modifier,
+    enabled: Boolean,
+    iconVector: ImageVector,
+    iconTint: Color,
+    title: String,
+    isIconFrontOfText: Boolean = true
+) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Surface(
+            modifier = Modifier
+                .fillMaxHeight(0.65f)
+                .fillMaxWidth(0.75f),
+            shape = RoundedCornerShape(32.dp),
+            color = if(enabled) {
+                MaterialTheme.colorScheme.primary
+            }else MaterialTheme.colorScheme.background,
+            border = if(!enabled) {
+                BorderStroke(
+                    width = 1.dp,
+                    color = Color.Gray
+                )
+            }else null
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    imageVector = Icons.Default.Tv,
-                    contentDescription = null,
-                    tint = if(currentRoute == NavigationItem.WatchListScreen.route) {
-                        MaterialTheme.colorScheme.primary
-                    }else Color.White
-                )
-                Spacer(modifier = Modifier.height(2.dp))
+                if(isIconFrontOfText){
+                    Icon(
+                        imageVector = iconVector,
+                        contentDescription = null,
+                        tint = iconTint
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                }
                 Text(
-                    text = "Watchlist",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = if(currentRoute == NavigationItem.WatchListScreen.route) {
-                        MaterialTheme.colorScheme.primary
-                    }else Color.White
+                    text = title,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
+                if(!isIconFrontOfText){
+                    Icon(
+                        imageVector = iconVector,
+                        contentDescription = null,
+                        tint = iconTint
+                    )
+                }
             }
         }
     }
