@@ -49,6 +49,7 @@ dependencies {
 
     implementation(Compose.ui)
     implementation(Compose.uiToolingPreview)
+    implementation(Compose.navigation)
     debugImplementation(Compose.uiTooling)
     debugImplementation(Compose.uiTestManifest)
 
