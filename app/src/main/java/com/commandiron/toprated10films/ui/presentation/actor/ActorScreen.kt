@@ -1,4 +1,4 @@
-package com.commandiron.toprated10films.ui.presentation.top_ten
+package com.commandiron.toprated10films.ui.presentation.actor
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,8 +8,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun TopTenScreen() {
+fun ActorScreen() {
     Box(Modifier.fillMaxSize(), Alignment.Center) {
-        Text(text = "Top Ten Screen")
+        Text(text = "Actor Screen")
     }
 }

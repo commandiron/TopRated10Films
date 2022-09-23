@@ -6,10 +6,28 @@ sealed class NavigationItem(
     object SplashScreen: NavigationItem(
         route = "splash"
     )
-    object TopTenScreen: NavigationItem(
-        route = "topTen"
-    )
     object WatchListScreen: NavigationItem(
         route = "watchList"
+    )
+    object SelectionScreen: NavigationItem(
+        route = "selection"
+    )
+    object ActorScreen: NavigationItem(
+        route = "actor"
+    )
+    object GenreScreen: NavigationItem(
+        route = "genre"
+    )
+    object YearScreen: NavigationItem(
+        route = "year"
+    )
+    object ShowResultScreen: NavigationItem(
+        route = "showResult"
+    )
+    object RootGraph: NavigationItem(
+        route = "root"
+    )
+    object TopTenGraph: NavigationItem(
+        route = "topTen"
     )
 }
