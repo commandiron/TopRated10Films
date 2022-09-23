@@ -69,8 +69,10 @@ fun BottomNavigation(
                         MaterialTheme.colorScheme.primary
                     }else Color.White
                 )
+                Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = "Topten",
+                    style = MaterialTheme.typography.bodySmall,
                     color = if(currentRoute != NavigationItem.WatchListScreen.route) {
                         MaterialTheme.colorScheme.primary
                     }else Color.White
@@ -94,8 +96,10 @@ fun BottomNavigation(
                         MaterialTheme.colorScheme.primary
                     }else Color.White
                 )
+                Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = "Watchlist",
+                    style = MaterialTheme.typography.bodySmall,
                     color = if(currentRoute == NavigationItem.WatchListScreen.route) {
                         MaterialTheme.colorScheme.primary
                     }else Color.White
