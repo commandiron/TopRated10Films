@@ -10,7 +10,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Timer10Select
 import androidx.compose.material.icons.filled.Tv
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.commandiron.toprated10films.ui.navigation.nav_graph.GraphItem
@@ -56,7 +56,7 @@ fun BottomNavigation(
             verticalAlignment = Alignment.CenterVertically
         ) {
             NavigationItem(
-                modifier =Modifier
+                modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
                     .clickable(
@@ -64,13 +64,12 @@ fun BottomNavigation(
                         indication = null
                     ) { onNavItemClick(GraphItem.TopTenGraph.route) },
                 enabled = currentRoute != NavigationItem.WatchListScreen.route,
-                iconVector = Icons.Default.Timer10Select,
                 iconTint = Color.LightGray,
                 title = "Top",
                 isIconFrontOfText = false
             )
             NavigationItem(
-                modifier =Modifier
+                modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
                     .clickable(
@@ -78,7 +77,6 @@ fun BottomNavigation(
                         indication = null
                     ) { onNavItemClick(NavigationItem.WatchListScreen.route) },
                 enabled = currentRoute == NavigationItem.WatchListScreen.route,
-                iconVector = Icons.Default.Tv,
                 iconTint = Color.White,
                 title = "Watchlist"
             )
@@ -90,7 +88,8 @@ fun BottomNavigation(
 fun NavigationItem(
     modifier: Modifier = Modifier,
     enabled: Boolean,
-    iconVector: ImageVector,
+    resourceId: Int = com.commandiron.toprated10films.R.drawable.top_rated_ten_films_icon,
+    iconVector: ImageVector = Icons.Default.Tv,
     iconTint: Color,
     title: String,
     isIconFrontOfText: Boolean = true
@@ -135,9 +134,10 @@ fun NavigationItem(
                 )
                 if(!isIconFrontOfText){
                     Icon(
-                        imageVector = iconVector,
+                        modifier = Modifier.fillMaxHeight(0.75f),
+                        painter = painterResource(id = resourceId),
                         contentDescription = null,
-                        tint = iconTint
+                        tint = Color.Unspecified
                     )
                 }
             }
