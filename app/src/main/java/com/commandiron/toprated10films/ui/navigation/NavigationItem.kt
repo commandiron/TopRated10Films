@@ -1,33 +1,35 @@
 package com.commandiron.toprated10films.ui.navigation
 
 sealed class NavigationItem(
-    val route: String
+    val route: String,
+    val isBottomBarVisible: Boolean
 ) {
     object SplashScreen: NavigationItem(
-        route = "splash"
+        route = "splash",
+        isBottomBarVisible = false,
     )
     object WatchListScreen: NavigationItem(
-        route = "watchList"
+        route = "watchList",
+        isBottomBarVisible = true
     )
     object SelectionScreen: NavigationItem(
-        route = "selection"
+        route = "selection",
+        isBottomBarVisible = true
     )
     object ActorScreen: NavigationItem(
-        route = "actor"
+        route = "actor",
+        isBottomBarVisible = true
     )
     object GenreScreen: NavigationItem(
-        route = "genre"
+        route = "genre",
+        isBottomBarVisible = true
     )
     object YearScreen: NavigationItem(
-        route = "year"
+        route = "year",
+        isBottomBarVisible = true
     )
     object ShowResultScreen: NavigationItem(
-        route = "showResult"
-    )
-    object RootGraph: NavigationItem(
-        route = "root"
-    )
-    object TopTenGraph: NavigationItem(
-        route = "topTen"
+        route = "showResult",
+        isBottomBarVisible = true
     )
 }
