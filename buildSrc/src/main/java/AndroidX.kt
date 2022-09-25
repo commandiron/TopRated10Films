@@ -7,4 +7,6 @@ object AndroidX {
     const val materialIconsCore = "androidx.compose.material:material-icons-core:$materialIconsCoreVersion"
     private const val materialIconsExtendedVersion = "1.1.1"
     const val materialIconsExtended = "androidx.compose.material:material-icons-extended:$materialIconsExtendedVersion"
+    private const val coreSplashScreenVersion = "1.0.0-beta01"
+    const val coreSplashScreen = "androidx.core:core-splashscreen:$coreSplashScreenVersion"
 }

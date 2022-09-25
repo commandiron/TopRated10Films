@@ -66,8 +66,8 @@ fun BottomNavigation(
                     ) { onNavItemClick(GraphItem.TopTenGraph.route) },
                 enabled = currentRoute != NavigationItem.WatchListScreen.route,
                 resourceId = if(currentRoute != NavigationItem.WatchListScreen.route) {
-                    R.drawable.film_icon
-                }else R.drawable.film_icon,
+                    R.drawable.app_logo_film
+                }else R.drawable.app_logo_film,
                 iconTint = Color.LightGray,
                 title = "Topten"
             )
