@@ -1,5 +1,6 @@
 package com.commandiron.toprated10films.ui.theme
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
@@ -22,7 +23,7 @@ data class Spacing(
 
 val LocalSpacing = compositionLocalOf { Spacing() }
 
-val spacing: Spacing
+val MaterialTheme.spacing: Spacing
     @Composable
     @ReadOnlyComposable
     get() = LocalSpacing.current
