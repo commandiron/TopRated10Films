@@ -1,4 +1,4 @@
-package com.commandiron.toprated10films.ui.navigation
+package com.commandiron.toprated10films.navigation
 
 sealed class NavigationItem(
     val route: String,

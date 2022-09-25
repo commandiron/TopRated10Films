@@ -1,4 +1,4 @@
-package com.commandiron.toprated10films.ui.navigation
+package com.commandiron.toprated10films.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

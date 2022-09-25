@@ -1,4 +1,4 @@
-package com.commandiron.toprated10films.ui.navigation.nav_graph
+package com.commandiron.toprated10films.navigation.nav_graph
 
 sealed class GraphItem(
     val route: String

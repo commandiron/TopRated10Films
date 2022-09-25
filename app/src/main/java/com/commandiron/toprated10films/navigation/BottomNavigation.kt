@@ -1,4 +1,4 @@
-package com.commandiron.toprated10films.ui.navigation
+package com.commandiron.toprated10films.navigation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -25,7 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.commandiron.toprated10films.R
-import com.commandiron.toprated10films.ui.navigation.nav_graph.GraphItem
+import com.commandiron.toprated10films.navigation.nav_graph.GraphItem
 import com.commandiron.toprated10films.ui.theme.spacing
 
 @Composable
