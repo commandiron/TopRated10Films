@@ -7,7 +7,7 @@
         <item name="android:statusBarColor">@color/gun_metal</item>
         <item name="android:navigationBarColor">@color/gun_metal</item>
         <item name="windowSplashScreenBackground">@color/gun_metal</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/app_logo</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="windowSplashScreenAnimationDuration">600</item>
         <item name="postSplashScreenTheme">@style/Theme.TopRated10Films</item>
     </style>
