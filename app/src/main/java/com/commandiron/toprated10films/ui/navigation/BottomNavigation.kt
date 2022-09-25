@@ -8,7 +8,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Tv
 import androidx.compose.material3.Icon
@@ -27,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.navigation.nav_graph.GraphItem
+import com.commandiron.toprated10films.ui.theme.spacing
 
 @Composable
 fun BottomNavigation(
@@ -49,10 +49,10 @@ fun BottomNavigation(
     ) {
         Row(
             modifier = Modifier
-                .padding(8.dp)
+                .padding(MaterialTheme.spacing.spaceSmall)
                 .fillMaxWidth()
-                .height(80.dp)
-                .clip(RoundedCornerShape(20.dp))
+                .height(MaterialTheme.spacing.bottomNavHeight)
+                .clip(MaterialTheme.shapes.medium)
                 .background(Color.LightGray.copy(0.1f)),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -106,7 +106,7 @@ fun NavigationItem(
             modifier = Modifier
                 .fillMaxHeight(0.65f)
                 .fillMaxWidth(0.75f),
-            shape = RoundedCornerShape(32.dp),
+            shape = MaterialTheme.shapes.extraLarge,
             color = if(enabled) {
                 MaterialTheme.colorScheme.primary
             }else MaterialTheme.colorScheme.background,
@@ -138,7 +138,7 @@ fun NavigationItem(
                         tint = iconTint
                     )
                 }
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(MaterialTheme.spacing.spaceSmall))
                 Text(
                     text = title,
                     style = MaterialTheme.typography.bodyMedium,
