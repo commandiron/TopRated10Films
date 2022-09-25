@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.navigation.nav_graph.GraphItem
 
 @Composable
@@ -64,9 +65,11 @@ fun BottomNavigation(
                         indication = null
                     ) { onNavItemClick(GraphItem.TopTenGraph.route) },
                 enabled = currentRoute != NavigationItem.WatchListScreen.route,
+                resourceId = if(currentRoute != NavigationItem.WatchListScreen.route) {
+                    R.drawable.film_icon
+                }else R.drawable.film_icon,
                 iconTint = Color.LightGray,
-                title = "Top",
-                isIconFrontOfText = false
+                title = "Topten"
             )
             NavigationItem(
                 modifier = Modifier
@@ -77,6 +80,7 @@ fun BottomNavigation(
                         indication = null
                     ) { onNavItemClick(NavigationItem.WatchListScreen.route) },
                 enabled = currentRoute == NavigationItem.WatchListScreen.route,
+                iconVector = Icons.Default.Tv,
                 iconTint = Color.White,
                 title = "Watchlist"
             )
@@ -88,11 +92,10 @@ fun BottomNavigation(
 fun NavigationItem(
     modifier: Modifier = Modifier,
     enabled: Boolean,
-    resourceId: Int = com.commandiron.toprated10films.R.drawable.top_rated_ten_films_icon,
-    iconVector: ImageVector = Icons.Default.Tv,
+    resourceId: Int? = null,
+    iconVector: ImageVector? = null,
     iconTint: Color,
     title: String,
-    isIconFrontOfText: Boolean = true
 ) {
     Column(
         modifier = modifier,
@@ -118,28 +121,30 @@ fun NavigationItem(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if(isIconFrontOfText){
+                resourceId?.let {
                     Icon(
-                        imageVector = iconVector,
+                        modifier = Modifier.fillMaxHeight(0.45f),
+                        painter = painterResource(id = it),
+                        contentDescription = null,
+                        tint = Color.Unspecified
+                    )
+
+                }
+                iconVector?.let {
+                    Icon(
+                        modifier = Modifier.fillMaxHeight(0.45f),
+                        imageVector = it,
                         contentDescription = null,
                         tint = iconTint
                     )
-                    Spacer(modifier = Modifier.width(8.dp))
                 }
+                Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = title,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
                 )
-                if(!isIconFrontOfText){
-                    Icon(
-                        modifier = Modifier.fillMaxHeight(0.75f),
-                        painter = painterResource(id = resourceId),
-                        contentDescription = null,
-                        tint = Color.Unspecified
-                    )
-                }
             }
         }
     }
