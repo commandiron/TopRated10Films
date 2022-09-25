@@ -48,6 +48,7 @@ dependencies {
     implementation(AndroidX.activityCompose)
     implementation(AndroidX.materialIconsCore)
     implementation(AndroidX.materialIconsExtended)
+    implementation(AndroidX.coreSplashScreen)
 
     implementation(Compose.ui)
     implementation(Compose.uiToolingPreview)
