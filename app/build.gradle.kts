@@ -56,6 +56,7 @@ dependencies {
     implementation(Compose.uiToolingPreview)
     implementation(Compose.navigation)
     implementation(Compose.material3)
+    implementation(Compose.hiltNavigation)
     debugImplementation(Compose.uiTooling)
     debugImplementation(Compose.uiTestManifest)
 

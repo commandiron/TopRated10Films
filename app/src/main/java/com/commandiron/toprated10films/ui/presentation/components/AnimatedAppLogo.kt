@@ -21,7 +21,8 @@ import kotlinx.coroutines.launch
 fun AnimatedAppLogo(
     modifier: Modifier = Modifier,
     durationMillis: Int = 10000,
-    delayMillis: Int = 0
+    delayMillis: Int = 0,
+    onFinish: () -> Unit
 ) {
     val rotation = remember {
         Animatable(0f)
@@ -43,6 +44,7 @@ fun AnimatedAppLogo(
                     easing = LinearEasing
                 )
             )
+            onFinish()
         }
         launch {
             repeat(durationMillis / 200) {
