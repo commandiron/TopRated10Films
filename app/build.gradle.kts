@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -53,8 +55,10 @@ dependencies {
     implementation(Compose.ui)
     implementation(Compose.uiToolingPreview)
     implementation(Compose.navigation)
+    implementation(Compose.material3)
     debugImplementation(Compose.uiTooling)
     debugImplementation(Compose.uiTestManifest)
 
-    implementation(Compose.material3)
+    kapt(DaggerHilt.hiltCompiler)
+    implementation(DaggerHilt.hiltAndroid)
 }

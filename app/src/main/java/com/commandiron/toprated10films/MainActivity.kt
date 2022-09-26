@@ -13,7 +13,9 @@ import com.commandiron.toprated10films.navigation.nav_graph.RootNavGraph
 import com.commandiron.toprated10films.navigation.bottomNavigate
 import com.commandiron.toprated10films.navigation.currentRoute
 import com.commandiron.toprated10films.ui.theme.TopRated10FilmsTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)

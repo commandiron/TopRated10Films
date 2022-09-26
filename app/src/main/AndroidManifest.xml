@@ -4,6 +4,7 @@
     package="com.commandiron.toprated10films">
 
     <application
+        android:name=".TopRatedTenFilmsApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
