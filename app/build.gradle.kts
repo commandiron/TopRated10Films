@@ -61,6 +61,9 @@ dependencies {
     debugImplementation(Compose.uiTestManifest)
 
     implementation(Accompanist.navigationAnimation)
+    implementation(Accompanist.pager)
+
+    implementation(Coil.coilCompose)
 
     kapt(DaggerHilt.hiltCompiler)
     implementation(DaggerHilt.hiltAndroid)
