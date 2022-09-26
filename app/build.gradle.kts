@@ -60,6 +60,8 @@ dependencies {
     debugImplementation(Compose.uiTooling)
     debugImplementation(Compose.uiTestManifest)
 
+    implementation(Accompanist.navigationAnimation)
+
     kapt(DaggerHilt.hiltCompiler)
     implementation(DaggerHilt.hiltAndroid)
 }

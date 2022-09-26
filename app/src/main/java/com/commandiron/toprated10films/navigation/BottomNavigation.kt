@@ -1,6 +1,7 @@
 package com.commandiron.toprated10films.navigation
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
@@ -31,6 +32,7 @@ import com.commandiron.toprated10films.ui.theme.spacing
 @Composable
 fun BottomNavigation(
     currentRoute: String?,
+    shouldShowSplash: Boolean,
     onNavItemClick:(String) -> Unit
 ) {
     val navigationItems = listOf(
@@ -44,7 +46,14 @@ fun BottomNavigation(
     )
     AnimatedVisibility(
         visible = navigationItems.find { it.route == currentRoute }?.isBottomBarVisible ?: false,
-        enter = fadeIn(),
+        enter = if(shouldShowSplash) {
+            fadeIn(
+                tween(
+                    durationMillis = 1000,
+                    delayMillis = 3000
+                )
+            )
+        } else fadeIn(),
         exit = fadeOut()
     ) {
         Row(

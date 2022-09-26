@@ -17,13 +17,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.theme.NoRippleTheme
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
 fun AnimatedAppLogo(
     modifier: Modifier = Modifier,
-    durationMillis: Int = 10000,
+    durationMillis: Int = 12000,
     delayMillis: Int = 0,
+    onFinishOffsetMillis: Int = -3000,
     onFinish: () -> Unit
 ) {
     val rotation = remember {
@@ -35,6 +37,10 @@ fun AnimatedAppLogo(
     val scope = rememberCoroutineScope()
     LaunchedEffect(key1 = Unit){
         launch {
+            delay(durationMillis + onFinishOffsetMillis.toLong())
+            onFinish()
+        }
+        launch {
             rotation.animateTo(
                 targetValue = 360f * durationMillis / 2000,
                 animationSpec = tween(
@@ -43,10 +49,9 @@ fun AnimatedAppLogo(
                     easing = LinearEasing
                 )
             )
-            onFinish()
         }
         launch {
-            repeat(durationMillis / 200) {
+            repeat((durationMillis / (1000 / 24))) {
                 appLogoBobbinAlpha.animateTo(
                     targetValue = 0f,
                     animationSpec = tween(
