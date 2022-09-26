@@ -1,20 +1,20 @@
 package com.commandiron.toprated10films.data
 
 import android.content.SharedPreferences
-import com.commandiron.toprated10films.domain.preferences.MyPreferences
+import com.commandiron.toprated10films.domain.preferences.AppPreferences
 
 class DefaultPreferences(
     private val sharedPref: SharedPreferences
-): MyPreferences {
+): AppPreferences {
     override fun saveShouldShowSplash(shouldShow: Boolean) {
         sharedPref.edit()
-            .putBoolean(MyPreferences.KEY_SHOULD_SHOW_SPLASH, shouldShow)
+            .putBoolean(AppPreferences.KEY_SHOULD_SHOW_SPLASH, shouldShow)
             .apply()
     }
 
     override fun loadShouldShowSplash(): Boolean {
         return sharedPref.getBoolean(
-            MyPreferences.KEY_SHOULD_SHOW_SPLASH,
+            AppPreferences.KEY_SHOULD_SHOW_SPLASH,
             true
         )
     }

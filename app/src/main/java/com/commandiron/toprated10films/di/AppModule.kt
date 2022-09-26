@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.commandiron.toprated10films.data.DefaultPreferences
-import com.commandiron.toprated10films.domain.preferences.MyPreferences
+import com.commandiron.toprated10films.domain.preferences.AppPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +25,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePreferences(sharedPreferences: SharedPreferences): MyPreferences {
+    fun providePreferences(sharedPreferences: SharedPreferences): AppPreferences {
         return DefaultPreferences(sharedPreferences)
     }
 }

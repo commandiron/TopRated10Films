@@ -8,7 +8,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.navigation.compose.rememberNavController
-import com.commandiron.toprated10films.domain.preferences.MyPreferences
+import com.commandiron.toprated10films.domain.preferences.AppPreferences
 import com.commandiron.toprated10films.navigation.BottomNavigation
 import com.commandiron.toprated10films.navigation.nav_graph.RootNavGraph
 import com.commandiron.toprated10films.navigation.bottomNavigate
@@ -21,7 +21,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var preferences: MyPreferences
+    lateinit var preferences: AppPreferences
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)

@@ -1,6 +1,6 @@
 package com.commandiron.toprated10films.domain.preferences
 
-interface MyPreferences {
+interface AppPreferences {
     fun saveShouldShowSplash(shouldShow: Boolean)
     fun loadShouldShowSplash(): Boolean
 
