@@ -9,11 +9,16 @@ import com.commandiron.toprated10films.ui.presentation.splash.SplashScreen
 import com.commandiron.toprated10films.ui.presentation.watch_list.WatchListScreen
 
 @Composable
-fun RootNavGraph(navController: NavHostController) {
+fun RootNavGraph(
+    navController: NavHostController,
+    shouldShowSplash: Boolean
+) {
     NavHost(
         navController = navController,
         route = GraphItem.RootGraph.route,
-        startDestination = NavigationItem.SplashScreen.route,
+        startDestination = if(shouldShowSplash) {
+            NavigationItem.SplashScreen.route
+        } else GraphItem.TopTenGraph.route
     ){
         composable(NavigationItem.SplashScreen.route){
             SplashScreen{

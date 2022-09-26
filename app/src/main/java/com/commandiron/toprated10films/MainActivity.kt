@@ -8,19 +8,26 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.navigation.compose.rememberNavController
+import com.commandiron.toprated10films.domain.preferences.MyPreferences
 import com.commandiron.toprated10films.navigation.BottomNavigation
 import com.commandiron.toprated10films.navigation.nav_graph.RootNavGraph
 import com.commandiron.toprated10films.navigation.bottomNavigate
 import com.commandiron.toprated10films.navigation.currentRoute
 import com.commandiron.toprated10films.ui.theme.TopRated10FilmsTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var preferences: MyPreferences
+
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val shouldShowSplash = preferences.loadShouldShowSplash()
         setContent {
             TopRated10FilmsTheme {
                 val navController = rememberNavController()
@@ -33,7 +40,10 @@ class MainActivity : ComponentActivity() {
                     },
                     containerColor = MaterialTheme.colorScheme.background
                 ) {
-                    RootNavGraph(navController = navController)
+                    RootNavGraph(
+                        navController = navController,
+                        shouldShowSplash = shouldShowSplash
+                    )
                 }
             }
         }

@@ -15,7 +15,7 @@ class SplashViewModel@Inject constructor(
     private val _splashDelay = MutableStateFlow(10000)
     val splashDelay = _splashDelay.asStateFlow()
 
-    fun setShouldShowSplashScreenFalse(){
+    fun setShouldShowSplashFalse(){
         preferences.saveShouldShowSplash(false)
     }
 }

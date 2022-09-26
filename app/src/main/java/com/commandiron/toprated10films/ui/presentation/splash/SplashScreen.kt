@@ -25,7 +25,7 @@ fun SplashScreen(
         AnimatedAppLogo(
             durationMillis = viewModel.splashDelay.collectAsState().value,
             onFinish = {
-                viewModel.setShouldShowSplashScreenFalse()
+                viewModel.setShouldShowSplashFalse()
                 onFinish()
             }
         )
