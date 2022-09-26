@@ -68,8 +68,8 @@ fun BottomNavigation(
                         modifier = Modifier.fillMaxHeight(0.45f),
                         painter = painterResource(
                             id = if(currentRoute != NavigationItem.WatchListScreen.route) {
-                                R.drawable.app_logo_film
-                            }else R.drawable.app_logo_film,
+                                R.drawable.app_logo_bobbin
+                            }else R.drawable.app_logo_bobbin,
                         ),
                         contentDescription = null,
                         tint = Color.Unspecified
