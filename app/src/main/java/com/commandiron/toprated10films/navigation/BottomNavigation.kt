@@ -84,12 +84,23 @@ fun BottomNavigation(
                         tint = Color.Unspecified
                     )
                     Spacer(modifier = Modifier.width(MaterialTheme.spacing.spaceSmall))
-                    Text(
-                        text = "Top 10",
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
+                    Row() {
+                        Text(
+                            text = "Top",
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                        Text(
+                            text = "10",
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = if(currentRoute != NavigationItem.WatchListScreen.route) {
+                                Color.White
+                            } else MaterialTheme.colorScheme.primary
+                        )
+                    }
+
                 }
                 NavigationItem(
                     modifier = Modifier

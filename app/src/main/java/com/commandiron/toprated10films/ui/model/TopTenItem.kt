@@ -21,7 +21,7 @@ data class TopTenItem(
                 category = Category.ByActor
             ),
             TopTenItem(
-                title = "1972",
+                title = "1989",
                 imageUrl = "https://bestsimilar.com/img/tag/thumb/ea/8390.jpg",
                 films = listOf(),
                 category = Category.ByYear
@@ -33,7 +33,7 @@ data class TopTenItem(
                 category = Category.ByActor
             ),
             TopTenItem(
-                title = "1972",
+                title = "1999",
                 imageUrl = "https://bestsimilar.com/img/tag/thumb/ea/8390.jpg",
                 films = listOf(),
                 category = Category.ByYear
