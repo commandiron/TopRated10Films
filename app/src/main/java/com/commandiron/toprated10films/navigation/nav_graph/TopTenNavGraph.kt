@@ -47,15 +47,18 @@ fun NavGraphBuilder.topTenNavGraph(
             }
         ) {
             SelectionScreen(
-                onClick1 = {
+                onActorClick = {
                     navController.navigate(NavigationItem.ActorScreen.route)
                 },
-                onClick2 = {
+                onGenreClick = {
                     navController.navigate(NavigationItem.GenreScreen.route)
                 },
-                onClick3 = {
+                onYearClick = {
                     navController.navigate(NavigationItem.YearScreen.route)
                 },
+                onPopularItemClick = {
+                    navController.navigate(NavigationItem.ShowResultScreen.route)
+                }
             )
         }
         composable(
