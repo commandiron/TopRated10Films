@@ -125,7 +125,7 @@ fun SelectionScreen(
             Row {
                 Spacer(modifier = Modifier.width(MaterialTheme.spacing.spaceMedium))
                 Text(
-                    text = "Popular",
+                    text = "Popular lists",
                     style = MaterialTheme.typography.titleLarge
                 )
             }

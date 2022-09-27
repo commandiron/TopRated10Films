@@ -85,7 +85,7 @@ fun BottomNavigation(
                     )
                     Spacer(modifier = Modifier.width(MaterialTheme.spacing.spaceSmall))
                     Text(
-                        text = "Topten",
+                        text = "Top 10",
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Bold,
                         color = Color.White
