@@ -93,6 +93,10 @@ fun SelectionScreen(
                 )
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.spaceMedium))
                 Text(
+                    modifier = Modifier
+                        .padding(
+                            horizontal = MaterialTheme.spacing.spaceExtraLarge
+                        ),
                     text = "Choose the category you want to create the top 10 movies.",
                     style = MaterialTheme.typography.bodySmall,
                     color = Color.LightGray,
