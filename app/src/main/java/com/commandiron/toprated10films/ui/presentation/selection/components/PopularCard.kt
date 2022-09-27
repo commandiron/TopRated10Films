@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.commandiron.toprated10films.R
@@ -38,6 +39,7 @@ fun PopularCard(
                         vertical = MaterialTheme.spacing.spaceMedium
                     )
                     .clip(MaterialTheme.shapes.medium)
+                    .heightIn(max = 80.dp)
                     .aspectRatio(1f)
                     .clickable { onClick() },
                 title = topTenItem.title
@@ -50,6 +52,7 @@ fun PopularCard(
                         vertical = MaterialTheme.spacing.spaceMedium
                     )
                     .clip(MaterialTheme.shapes.medium)
+                    .heightIn(max = 80.dp)
                     .aspectRatio(1f)
                     .clickable { onClick() },
                 colors = CardDefaults.cardColors(

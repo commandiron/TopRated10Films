@@ -2,6 +2,8 @@ package com.commandiron.toprated10films.ui.presentation.selection.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.Card
@@ -52,10 +54,12 @@ fun CategoryCard(
                         fraction = 1f - pageOffset.coerceIn(0f, 1f)
                     )
                 }
+                .aspectRatio(0.75f)
                 .clickable { onClick() }
         ) {
             Box() {
                 AsyncImage(
+                    modifier = Modifier.fillMaxSize(),
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(category.imageUrl)
                         .crossfade(true)
