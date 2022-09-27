@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.commandiron.toprated10films">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".TopRatedTenFilmsApp"
         android:allowBackup="true"

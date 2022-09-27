@@ -1,6 +1,5 @@
 package com.commandiron.toprated10films.navigation.nav_graph
 
-import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -38,23 +37,11 @@ fun NavGraphBuilder.topTenNavGraph(
             route = NavigationItem.SelectionScreen.route,
             enterTransition = {
                 when(initialState.destination.route) {
-                    NavigationItem.ActorScreen.route,
-                    NavigationItem.GenreScreen.route,
-                    NavigationItem.YearScreen.route -> slideIntoContainer(
-                        towards = AnimatedContentScope.SlideDirection.Right,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             },
             exitTransition = {
                 when(targetState.destination.route) {
-                    NavigationItem.ActorScreen.route,
-                    NavigationItem.GenreScreen.route,
-                    NavigationItem.YearScreen.route -> slideOutOfContainer(
-                        towards = AnimatedContentScope.SlideDirection.Left,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             }
@@ -75,27 +62,11 @@ fun NavGraphBuilder.topTenNavGraph(
             route = NavigationItem.ActorScreen.route,
             enterTransition = {
                 when(initialState.destination.route) {
-                    NavigationItem.SelectionScreen.route -> slideIntoContainer(
-                        towards = AnimatedContentScope.SlideDirection.Left,
-                        animationSpec = tween(700)
-                    )
-                    NavigationItem.ShowResultScreen.route -> slideIntoContainer(
-                        towards = AnimatedContentScope.SlideDirection.Right,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             },
             exitTransition = {
                 when(targetState.destination.route) {
-                    NavigationItem.SelectionScreen.route -> slideOutOfContainer(
-                        towards = AnimatedContentScope.SlideDirection.Right,
-                        animationSpec = tween(700)
-                    )
-                    NavigationItem.ShowResultScreen.route -> slideOutOfContainer(
-                        towards = AnimatedContentScope.SlideDirection.Left,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             }
@@ -108,27 +79,11 @@ fun NavGraphBuilder.topTenNavGraph(
             route = NavigationItem.GenreScreen.route,
             enterTransition = {
                 when(initialState.destination.route) {
-                    NavigationItem.SelectionScreen.route -> slideIntoContainer(
-                        towards = AnimatedContentScope.SlideDirection.Left,
-                        animationSpec = tween(700)
-                    )
-                    NavigationItem.ShowResultScreen.route -> slideIntoContainer(
-                        towards = AnimatedContentScope.SlideDirection.Right,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             },
             exitTransition = {
                 when(targetState.destination.route) {
-                    NavigationItem.SelectionScreen.route -> slideOutOfContainer(
-                        towards = AnimatedContentScope.SlideDirection.Right,
-                        animationSpec = tween(700)
-                    )
-                    NavigationItem.ShowResultScreen.route -> slideOutOfContainer(
-                        towards = AnimatedContentScope.SlideDirection.Left,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             }
@@ -141,27 +96,11 @@ fun NavGraphBuilder.topTenNavGraph(
             route = NavigationItem.YearScreen.route,
             enterTransition = {
                 when(initialState.destination.route) {
-                    NavigationItem.SelectionScreen.route -> slideIntoContainer(
-                        towards = AnimatedContentScope.SlideDirection.Left,
-                        animationSpec = tween(700)
-                    )
-                    NavigationItem.ShowResultScreen.route -> slideIntoContainer(
-                        towards = AnimatedContentScope.SlideDirection.Right,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             },
             exitTransition = {
                 when(targetState.destination.route) {
-                    NavigationItem.SelectionScreen.route -> slideOutOfContainer(
-                        towards = AnimatedContentScope.SlideDirection.Right,
-                        animationSpec = tween(700)
-                    )
-                    NavigationItem.ShowResultScreen.route -> slideOutOfContainer(
-                        towards = AnimatedContentScope.SlideDirection.Left,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             }
@@ -174,23 +113,11 @@ fun NavGraphBuilder.topTenNavGraph(
             route = NavigationItem.ShowResultScreen.route,
             enterTransition = {
                 when(initialState.destination.route) {
-                    NavigationItem.ActorScreen.route,
-                    NavigationItem.GenreScreen.route,
-                    NavigationItem.YearScreen.route -> slideIntoContainer(
-                        towards = AnimatedContentScope.SlideDirection.Left,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             },
             exitTransition = {
                 when(targetState.destination.route) {
-                    NavigationItem.ActorScreen.route,
-                    NavigationItem.GenreScreen.route,
-                    NavigationItem.YearScreen.route -> slideOutOfContainer(
-                        towards = AnimatedContentScope.SlideDirection.Right,
-                        animationSpec = tween(700)
-                    )
                     else -> null
                 }
             }

@@ -53,6 +53,7 @@ dependencies {
     implementation(AndroidX.coreSplashScreen)
 
     implementation(Compose.ui)
+    implementation(Compose.uiUtil)
     implementation(Compose.uiToolingPreview)
     implementation(Compose.navigation)
     implementation(Compose.material3)

@@ -3,6 +3,7 @@ object Compose {
     
     private const val uiVersion = "1.2.1"
     const val ui = "androidx.compose.ui:ui:$uiVersion"
+    const val uiUtil = "androidx.compose.ui:ui-util:$uiVersion"
     const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$uiVersion"
     const val uiTooling = "androidx.compose.ui:ui-tooling:$uiVersion"
     const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$uiVersion"

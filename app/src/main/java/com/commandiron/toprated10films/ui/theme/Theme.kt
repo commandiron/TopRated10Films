@@ -12,12 +12,14 @@ import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
     background = Gunmetal,
+    onBackground = Color.White,
     primary = RedSalsa,
     onPrimary = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
     background = Gunmetal,
+    onBackground = Color.White,
     primary = RedSalsa,
     onPrimary = Color.White
 )
