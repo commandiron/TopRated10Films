@@ -1,6 +1,5 @@
 package com.commandiron.toprated10films.ui.presentation.selection.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.*
@@ -8,14 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.commandiron.toprated10films.R
@@ -27,34 +24,18 @@ import com.commandiron.toprated10films.ui.theme.spacing
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PopularCard(
-    topTenItem: TopTenItem,
-    onClick: () -> Unit
+    modifier: Modifier = Modifier,
+    topTenItem: TopTenItem
 ) {
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
         if(topTenItem.category == Category.ByYear){
             YearCard(
-                modifier = Modifier
-                    .padding(
-                        horizontal = MaterialTheme.spacing.spaceExtraSmall,
-                        vertical = MaterialTheme.spacing.spaceMedium
-                    )
-                    .clip(MaterialTheme.shapes.medium)
-                    .heightIn(max = 80.dp)
-                    .aspectRatio(1f)
-                    .clickable { onClick() },
+                modifier = modifier,
                 title = topTenItem.title
             )
         }else {
             Card(
-                modifier = Modifier
-                    .padding(
-                        horizontal = MaterialTheme.spacing.spaceExtraSmall,
-                        vertical = MaterialTheme.spacing.spaceMedium
-                    )
-                    .clip(MaterialTheme.shapes.medium)
-                    .heightIn(max = 80.dp)
-                    .aspectRatio(1f)
-                    .clickable { onClick() },
+                modifier = modifier,
                 colors = CardDefaults.cardColors(
                     containerColor = Color.Transparent
                 )
@@ -104,7 +85,9 @@ fun PopularCard(
                             .align(Alignment.BottomCenter)
                             .fillMaxWidth(),
                         colors = CardDefaults.cardColors(
-                            containerColor = Color.Black
+                            containerColor = Color.Black.copy(
+                                alpha = 0.6f
+                            )
                         )
                     ) {
                         Text(

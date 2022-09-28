@@ -61,8 +61,8 @@ fun BottomNavigation(
                 .padding(MaterialTheme.spacing.spaceSmall)
                 .fillMaxWidth()
                 .height(MaterialTheme.spacing.bottomNavHeight)
-                .clip(MaterialTheme.shapes.medium)
-                .background(Color.LightGray.copy(0.1f)),
+                .clip(MaterialTheme.shapes.large)
+                .background(Color(0xFF47525E).copy(0.90f)),
             verticalAlignment = Alignment.CenterVertically
         ) {
             CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {

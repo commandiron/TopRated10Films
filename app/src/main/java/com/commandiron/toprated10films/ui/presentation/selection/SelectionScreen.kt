@@ -1,8 +1,10 @@
 package com.commandiron.toprated10films.ui.presentation.selection
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -10,14 +12,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.lerp
 import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.model.Category
-import com.commandiron.toprated10films.ui.model.TopTenItem
+import com.commandiron.toprated10films.ui.model.TopTenItem.Companion.popularTopTenItems
 import com.commandiron.toprated10films.ui.presentation.selection.components.CategoryCard
+import com.commandiron.toprated10films.ui.presentation.selection.components.SelectionBodyText
 import com.commandiron.toprated10films.ui.presentation.selection.components.PopularCard
 import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -38,91 +43,94 @@ fun SelectionScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(
-                bottom = MaterialTheme.spacing.bottomNavHeight
-                        + MaterialTheme.spacing.spaceSmall
+                bottom = MaterialTheme.spacing.bottomNavHeight + MaterialTheme.spacing.spaceExtraSmall
             ),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(120.dp)
-            ) {
+            Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
+            Row(Modifier.fillMaxWidth()) {
+                Spacer(Modifier.width(MaterialTheme.spacing.spaceLarge))
                 Icon(
-                    modifier = Modifier.padding(MaterialTheme.spacing.spaceLarge),
+                    modifier = Modifier.height(56.dp),
                     painter = painterResource(id = R.drawable.app_logo),
                     contentDescription = null,
                     tint = Color.Unspecified
                 )
             }
+            Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
             HorizontalPager(
                 count = 4,
                 contentPadding = PaddingValues(horizontal = 80.dp),
             ) { page ->
                 CategoryCard(
+                    modifier = Modifier
+                        .graphicsLayer {
+                            val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
+                            lerp(
+                                start = 0.85f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            ).also { scale ->
+                                scaleX = scale
+                                scaleY = scale
+                            }
+
+                            alpha = lerp(
+                                start = 0.5f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            )
+                        }
+                        .aspectRatio(0.75f)
+                        .clickable {
+                            when (page) {
+                                0 -> onAllTimeClick()
+                                1 -> onActorClick()
+                                2 -> onGenreClick()
+                                3 -> onYearClick()
+                            }
+                        },
                     category = when(page) {
                         0 -> Category.AllTime
                         1 -> Category.ByActor
                         2 -> Category.ByGenre
                         3 -> Category.ByYear
                         else -> Category.AllTime
-                    },
-                    pageOffset = calculateCurrentOffsetForPage(page).absoluteValue,
-                    onClick = {
-                        when(page) {
-                            0 -> onAllTimeClick()
-                            1 -> onActorClick()
-                            2 -> onGenreClick()
-                            3 -> onYearClick()
-                        }
                     }
                 )
             }
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.spaceMedium))
-            Column(
-                modifier = Modifier
-                    .padding(
-                        horizontal = MaterialTheme.spacing.spaceLarge
-                    ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Choose category.",
-                    style = MaterialTheme.typography.titleLarge,
-                    textAlign = TextAlign.Center
+            Spacer(Modifier.height(MaterialTheme.spacing.spaceMedium))
+            SelectionBodyText(
+                modifier = Modifier.padding(
+                    horizontal = MaterialTheme.spacing.spaceLarge
                 )
-                Spacer(modifier = Modifier.height(MaterialTheme.spacing.spaceMedium))
-                Text(
-                    modifier = Modifier
-                        .padding(
-                            horizontal = MaterialTheme.spacing.spaceExtraLarge
-                        ),
-                    text = "Choose the category you want to create the top 10 movies.",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = Color.LightGray,
-                    textAlign = TextAlign.Center
-                )
-            }
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Spacer(modifier = Modifier.height(MaterialTheme.spacing.spaceLarge))
+            )
+            Column(Modifier.fillMaxWidth()) {
+                Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
                 Row {
-                    Spacer(modifier = Modifier.width(MaterialTheme.spacing.spaceMedium))
+                    Spacer(Modifier.width(MaterialTheme.spacing.spaceMedium))
                     Text(
                         text = "Popular lists",
                         style = MaterialTheme.typography.titleLarge
                     )
                 }
                 LazyRow {
-                    items(TopTenItem.popularTopTenItems.size) { index ->
+                    items(popularTopTenItems) { popularTopTenItem ->
                         PopularCard(
-                            topTenItem = TopTenItem.popularTopTenItems[index],
-                            onClick = onPopularItemClick
+                            modifier = Modifier
+                                .padding(
+                                    horizontal = MaterialTheme.spacing.spaceExtraSmall,
+                                    vertical = MaterialTheme.spacing.spaceMedium
+                                )
+                                .clip(MaterialTheme.shapes.medium)
+                                .heightIn(max = 86.dp)
+                                .aspectRatio(1f)
+                                .clickable {
+                                    onPopularItemClick()
+                                },
+                            topTenItem = popularTopTenItem
                         )
                     }
                 }
