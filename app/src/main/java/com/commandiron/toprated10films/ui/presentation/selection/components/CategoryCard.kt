@@ -1,15 +1,10 @@
 package com.commandiron.toprated10films.ui.presentation.selection.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.ripple.LocalRippleTheme
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -55,7 +50,10 @@ fun CategoryCard(
                     )
                 }
                 .aspectRatio(0.75f)
-                .clickable { onClick() }
+                .clickable { onClick() },
+            colors = CardDefaults.cardColors(
+                containerColor = Color.Transparent
+            )
         ) {
             Box() {
                 AsyncImage(
@@ -68,14 +66,25 @@ fun CategoryCard(
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                 )
-                Text(
+                Box(
                     modifier = Modifier
                         .align(Alignment.BottomStart)
-                        .padding(MaterialTheme.spacing.spaceMedium),
-                    text = category.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.White
-                )
+                        .fillMaxWidth()
+                        .background(
+                            color = Color.Black.copy(alpha = 0.6f),
+                        )
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .padding(
+                                horizontal = MaterialTheme.spacing.spaceMedium,
+                                vertical = MaterialTheme.spacing.spaceSmall
+                            ),
+                        text = category.title,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White
+                    )
+                }
             }
         }
     }

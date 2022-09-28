@@ -28,6 +28,7 @@ import kotlin.math.absoluteValue
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun SelectionScreen(
+    onAllTimeClick: () -> Unit,
     onActorClick: () -> Unit,
     onGenreClick: () -> Unit,
     onYearClick: () -> Unit,
@@ -57,22 +58,24 @@ fun SelectionScreen(
                 )
             }
             HorizontalPager(
-                count = 3,
+                count = 4,
                 contentPadding = PaddingValues(horizontal = 80.dp),
             ) { page ->
                 CategoryCard(
                     category = when(page) {
-                        0 -> Category.ByActor
-                        1 -> Category.ByGenre
-                        2 -> Category.ByYear
-                        else -> Category.ByActor
+                        0 -> Category.AllTime
+                        1 -> Category.ByActor
+                        2 -> Category.ByGenre
+                        3 -> Category.ByYear
+                        else -> Category.AllTime
                     },
                     pageOffset = calculateCurrentOffsetForPage(page).absoluteValue,
                     onClick = {
                         when(page) {
-                            0 -> onActorClick()
-                            1 -> onGenreClick()
-                            2 -> onYearClick()
+                            0 -> onAllTimeClick()
+                            1 -> onActorClick()
+                            2 -> onGenreClick()
+                            3 -> onYearClick()
                         }
                     }
                 )

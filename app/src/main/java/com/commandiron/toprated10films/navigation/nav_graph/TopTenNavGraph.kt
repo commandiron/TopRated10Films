@@ -47,6 +47,9 @@ fun NavGraphBuilder.topTenNavGraph(
             }
         ) {
             SelectionScreen(
+                onAllTimeClick = {
+                    navController.navigate(NavigationItem.ShowResultScreen.route)
+                },
                 onActorClick = {
                     navController.navigate(NavigationItem.ActorScreen.route)
                 },
