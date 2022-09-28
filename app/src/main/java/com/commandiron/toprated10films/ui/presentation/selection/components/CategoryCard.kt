@@ -37,7 +37,8 @@ fun CategoryCard(
         ) {
             Box() {
                 AsyncImage(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize(),
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(category.imageUrl)
                         .crossfade(true)

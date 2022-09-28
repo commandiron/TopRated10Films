@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.model.Category
-import com.commandiron.toprated10films.ui.model.TopTenItem.Companion.popularTopTenItems
+import com.commandiron.toprated10films.ui.model.Popular.Companion.popularList
 import com.commandiron.toprated10films.ui.presentation.selection.components.CategoryCard
 import com.commandiron.toprated10films.ui.presentation.selection.components.SelectionBodyText
 import com.commandiron.toprated10films.ui.presentation.selection.components.PopularCard
@@ -117,7 +117,7 @@ fun SelectionScreen(
                     )
                 }
                 LazyRow {
-                    items(popularTopTenItems) { popularTopTenItem ->
+                    items(popularList) { popular ->
                         PopularCard(
                             modifier = Modifier
                                 .padding(
@@ -130,7 +130,7 @@ fun SelectionScreen(
                                 .clickable {
                                     onPopularItemClick()
                                 },
-                            topTenItem = popularTopTenItem
+                            popular = popular
                         )
                     }
                 }

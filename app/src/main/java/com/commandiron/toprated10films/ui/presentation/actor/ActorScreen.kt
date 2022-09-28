@@ -1,5 +1,6 @@
 package com.commandiron.toprated10films.ui.presentation.actor
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -13,10 +14,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextAlign
-import com.commandiron.toprated10films.ui.model.Actor.Companion.actors
+import com.commandiron.toprated10films.ui.model.Actor.Companion.actorList
 import com.commandiron.toprated10films.ui.presentation.actor.components.ActorCard
 import com.commandiron.toprated10films.ui.presentation.components.SearchTextField
 import com.commandiron.toprated10films.ui.theme.spacing
@@ -79,10 +81,14 @@ fun ActorScreen(
                         horizontal = MaterialTheme.spacing.spaceMedium
                     )
                 ){
-                    items(actors) { actor ->
+                    items(actorList) { actor ->
                         ActorCard(
-                            actor = actor,
-                            onClick = onClick
+                            modifier = Modifier
+                                .padding(MaterialTheme.spacing.spaceExtraSmall)
+                                .clip(MaterialTheme.shapes.medium)
+                                .aspectRatio(0.75f)
+                                .clickable { onClick() },
+                            actor = actor
                         )
                     }
                 }

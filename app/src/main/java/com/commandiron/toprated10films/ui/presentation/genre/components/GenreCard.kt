@@ -1,4 +1,4 @@
-package com.commandiron.toprated10films.ui.presentation.actor.components
+package com.commandiron.toprated10films.ui.presentation.genre.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -18,34 +18,38 @@ import androidx.compose.ui.text.style.TextOverflow
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.commandiron.toprated10films.R
-import com.commandiron.toprated10films.ui.model.Actor
+import com.commandiron.toprated10films.ui.model.Genre
 import com.commandiron.toprated10films.ui.presentation.components.TopTenSticker
 import com.commandiron.toprated10films.ui.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ActorCard(
+fun GenreCard(
     modifier: Modifier = Modifier,
     textStyle: TextStyle = MaterialTheme.typography.titleSmall,
-    actor: Actor
+    genre: Genre
 ) {
+    Box(
+        modifier = modifier,
+    ) {
+        AsyncImage(
+            modifier = Modifier.fillMaxSize(),
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(genre.imageUrl)
+                .crossfade(true)
+                .build(),
+            placeholder = painterResource(R.drawable.app_logo_bobbin),
+            contentDescription = null,
+            contentScale = ContentScale.Crop
+        )
+    }
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         )
     ) {
-        Box() {
-            AsyncImage(
-                modifier = Modifier.fillMaxSize(),
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(actor.imageUrl)
-                    .crossfade(true)
-                    .build(),
-                placeholder = painterResource(R.drawable.app_logo_bobbin),
-                contentDescription = null,
-                contentScale = ContentScale.Crop
-            )
+        Box(Modifier.fillMaxSize()) {
             TopTenSticker(
                 modifier = Modifier
                     .align(Alignment.TopStart)
@@ -56,11 +60,9 @@ fun ActorCard(
             )
             Box(
                 modifier = Modifier
-                    .align(Alignment.BottomStart)
+                    .align(Alignment.BottomCenter)
                     .fillMaxWidth()
-                    .background(
-                        color = Color.Black.copy(alpha = 0.6f),
-                    ),
+                    .background(Color.Black.copy(alpha = 0.8f)),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -69,7 +71,7 @@ fun ActorCard(
                             horizontal = MaterialTheme.spacing.spaceMedium,
                             vertical = MaterialTheme.spacing.spaceExtraSmall
                         ),
-                    text = actor.name,
+                    text = genre.name,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = textStyle
