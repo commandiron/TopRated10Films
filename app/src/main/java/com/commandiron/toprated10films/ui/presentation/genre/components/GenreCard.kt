@@ -26,7 +26,7 @@ import com.commandiron.toprated10films.ui.theme.spacing
 @Composable
 fun GenreCard(
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = MaterialTheme.typography.titleSmall,
+    textStyle: TextStyle = LocalTextStyle.current,
     genre: Genre
 ) {
     Box(
@@ -43,40 +43,33 @@ fun GenreCard(
             contentScale = ContentScale.Crop
         )
     }
-    Card(
-        modifier = modifier,
-        colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent
-        )
-    ) {
-        Box(Modifier.fillMaxSize()) {
-            TopTenSticker(
-                modifier = Modifier
-                    .align(Alignment.TopStart)
-                    .padding(
-                        horizontal = MaterialTheme.spacing.spaceExtraSmall,
-                        vertical = MaterialTheme.spacing.spaceExtraSmall
-                    )
-            )
-            Box(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth()
-                    .background(Color.Black.copy(alpha = 0.8f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    modifier = Modifier
-                        .padding(
-                            horizontal = MaterialTheme.spacing.spaceMedium,
-                            vertical = MaterialTheme.spacing.spaceExtraSmall
-                        ),
-                    text = genre.name,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    style = textStyle
+    Box(modifier = modifier.fillMaxSize()) {
+        TopTenSticker(
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(
+                    horizontal = MaterialTheme.spacing.spaceExtraSmall,
+                    vertical = MaterialTheme.spacing.spaceExtraSmall
                 )
-            }
+        )
+        Box(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .background(Color.Black.copy(alpha = 0.8f)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(
+                        horizontal = MaterialTheme.spacing.spaceMedium,
+                        vertical = MaterialTheme.spacing.spaceExtraSmall
+                    ),
+                text = genre.name,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = textStyle
+            )
         }
     }
 }

@@ -1,18 +1,22 @@
 package com.commandiron.toprated10films.ui.presentation.selection.components
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.commandiron.toprated10films.ui.theme.spacing
 
 @Composable
 fun SelectionBodyText(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    textStyle: TextStyle =  LocalTextStyle.current
 ) {
     Column(
         modifier = modifier,
@@ -22,23 +26,27 @@ fun SelectionBodyText(
         Row() {
             Text(
                 text = "Choose ",
-                style = MaterialTheme.typography.titleLarge,
+                style = textStyle,
                 textAlign = TextAlign.Center
             )
             Text(
                 text = "Top",
-                style = MaterialTheme.typography.titleLarge,
+                style = textStyle.copy(
+                    fontWeight = FontWeight.Bold
+                ),
                 textAlign = TextAlign.Center
             )
             Text(
                 text = "10 ",
-                style = MaterialTheme.typography.titleLarge,
+                style = textStyle.copy(
+                    fontWeight = FontWeight.Bold
+                ),
                 color = MaterialTheme.colorScheme.primary,
                 textAlign = TextAlign.Center
             )
             Text(
                 text = "category.",
-                style = MaterialTheme.typography.titleLarge,
+                style = textStyle,
                 textAlign = TextAlign.Center
             )
         }

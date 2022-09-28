@@ -41,7 +41,8 @@ fun PopularCard(
                 Category.ByYear -> {
                     YearCard(
                         year = Year(
-                            name = popular.title
+                            name = popular.title,
+                            color = popular.color ?: 0
                         )
                     )
                 }

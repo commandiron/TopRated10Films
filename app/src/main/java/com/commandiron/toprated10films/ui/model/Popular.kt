@@ -1,8 +1,11 @@
 package com.commandiron.toprated10films.ui.model
 
+import kotlin.random.Random
+
 data class Popular(
     val title: String,
     val imageUrl: String? = null,
+    val color: Long? = null,
     val category: Category
 ) {
     companion object {
@@ -19,6 +22,7 @@ data class Popular(
             ),
             Popular(
                 title = "1989",
+                color = Random.nextLong(0xFFFFFFFF),
                 category = Category.ByYear
             ),
             Popular(
@@ -28,6 +32,7 @@ data class Popular(
             ),
             Popular(
                 title = "1989",
+                color = Random.nextLong(0xFFFFFFFF),
                 category = Category.ByYear
             ),
             Popular(

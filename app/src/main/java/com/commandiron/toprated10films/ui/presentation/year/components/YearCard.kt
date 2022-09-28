@@ -42,7 +42,7 @@ fun YearCard(
         modifier = modifier,
         colors = CardDefaults.cardColors(
             containerColor = Color(year.color).copy(
-                alpha = 0.85f
+                alpha = if(year.imageUrl != null ) 0.6f else 1f
             )
         )
     ) {
