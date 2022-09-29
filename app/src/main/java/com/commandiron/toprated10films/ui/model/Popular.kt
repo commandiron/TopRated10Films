@@ -9,7 +9,7 @@ data class Popular(
     val category: Category
 ) {
     companion object {
-        val popularList = listOf(
+        val defaultPopularList = listOf(
             Popular(
                 title = "Horror",
                 imageUrl = "https://sm.ign.com/t/ign_nl/gallery/t/the-25-bes/the-25-best-horror-movies_2smr.1080.jpg",

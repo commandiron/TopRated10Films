@@ -8,7 +8,7 @@ data class Genre(
     val imageUrl: String? = "https://images.indianexpress.com/2020/05/shutter-island-759.jpg"
 ) {
     companion object {
-        val genreList = listOf(
+        val defaultGenreList = listOf(
             Genre(
                 name = "Action",
                 imageUrl = "https://media.timeout.com/images/102512459/750/422/image.jpg"

@@ -47,6 +47,7 @@ android {
 
 dependencies {
     implementation(AndroidX.coreKtx)
+    implementation(AndroidX.appCompat)
     implementation(AndroidX.activityCompose)
     implementation(AndroidX.materialIconsCore)
     implementation(AndroidX.materialIconsExtended)

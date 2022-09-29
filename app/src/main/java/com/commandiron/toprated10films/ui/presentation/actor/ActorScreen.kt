@@ -1,6 +1,7 @@
 package com.commandiron.toprated10films.ui.presentation.actor
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -9,7 +10,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -18,30 +19,42 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextAlign
-import com.commandiron.toprated10films.ui.model.Actor.Companion.actorList
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.ui.presentation.actor.components.ActorCard
 import com.commandiron.toprated10films.ui.presentation.components.SearchTextField
 import com.commandiron.toprated10films.ui.theme.spacing
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalLayoutApi::class)
 @Composable
 fun ActorScreen(
+    viewModel: ActorViewModel = hiltViewModel(),
     onClick: () -> Unit
 ) {
-    val text = remember { mutableStateOf("") }
-    val isLoading = remember { mutableStateOf(false) }
+    val searchText = viewModel.searchText.collectAsState().value
+    val actors = viewModel.actors.collectAsState().value
+    val isLoading = viewModel.isLoading.collectAsState().value
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
+    val isImeVisible = WindowInsets.isImeVisible
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) {
+                focusManager.clearFocus()
+                keyboardController?.hide()
+                viewModel.search(searchText)
+            },
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(Modifier.fillMaxWidth()) {
             Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
             SearchTextField(
-                value = text.value,
-                onValueChange = { text.value = it},
+                value = searchText,
+                onValueChange = { viewModel.search(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = MaterialTheme.spacing.spaceMedium),
@@ -53,7 +66,7 @@ fun ActorScreen(
             )
             Spacer(Modifier.height(MaterialTheme.spacing.spaceSmall))
         }
-        if(isLoading.value) {
+        if(isLoading) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -81,13 +94,23 @@ fun ActorScreen(
                         horizontal = MaterialTheme.spacing.spaceMedium
                     )
                 ){
-                    items(actorList) { actor ->
+                    items(actors) { actor ->
                         ActorCard(
                             modifier = Modifier
                                 .padding(MaterialTheme.spacing.spaceExtraSmall)
                                 .clip(MaterialTheme.shapes.medium)
                                 .aspectRatio(0.75f)
-                                .clickable { onClick() },
+                                .clickable(
+                                    interactionSource = remember { MutableInteractionSource() },
+                                    indication = null
+                                ) {
+                                    if(isImeVisible) {
+                                        focusManager.clearFocus()
+                                        keyboardController?.hide()
+                                    } else {
+                                        onClick()
+                                    }
+                                },
                             actor = actor
                         )
                     }

@@ -3,8 +3,7 @@ package com.commandiron.toprated10films.ui.presentation.show_result
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -12,8 +11,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.R
-import com.commandiron.toprated10films.ui.model.Film.Companion.topTenFilms
 import com.commandiron.toprated10films.ui.presentation.show_result.components.FilmCard
 import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -23,8 +22,12 @@ import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun ShowResultScreen() {
-    val isLoading = remember { mutableStateOf(false) }
+fun ShowResultScreen(
+    viewModel: ShowResultViewModel = hiltViewModel(),
+) {
+    val title = viewModel.title.collectAsState().value
+    val topTenFilms = viewModel.topTenFilms.collectAsState().value
+    val isLoading = viewModel.isLoading.collectAsState().value
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -54,13 +57,13 @@ fun ShowResultScreen() {
                 contentAlignment = Alignment.BottomCenter
             ) {
                 Text(
-                    text = "Adventure",
+                    text = title,
                     style = MaterialTheme.typography.headlineSmall
                 )
             }
         }
         Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
-        if(isLoading.value) {
+        if(isLoading) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()

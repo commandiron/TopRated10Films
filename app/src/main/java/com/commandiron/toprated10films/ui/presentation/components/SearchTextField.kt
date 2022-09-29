@@ -25,6 +25,7 @@ fun SearchTextField(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = LocalTextStyle.current,
+    keyboardType: KeyboardType = KeyboardType.Text,
     hint: String,
     onSearch: (KeyboardActionScope.() -> Unit)? = null,
 ) {
@@ -34,7 +35,7 @@ fun SearchTextField(
         modifier = modifier,
         textStyle = textStyle,
         keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Text,
+            keyboardType = keyboardType,
             imeAction = ImeAction.Search
         ),
         keyboardActions = KeyboardActions(
