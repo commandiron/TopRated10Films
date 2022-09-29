@@ -8,7 +8,7 @@ data class Year(
     val imageUrl: String? = null
 ) {
     companion object {
-        val yearList = generateYears()
+        val defaultYearList = generateYears()
         private fun generateYears(): List<Year> {
             val years = mutableListOf<Year>()
             (0..122).forEach {

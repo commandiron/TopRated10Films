@@ -5,11 +5,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,27 +18,29 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.model.Category
-import com.commandiron.toprated10films.ui.model.Popular.Companion.popularList
 import com.commandiron.toprated10films.ui.presentation.selection.components.CategoryCard
-import com.commandiron.toprated10films.ui.presentation.selection.components.SelectionBodyText
 import com.commandiron.toprated10films.ui.presentation.selection.components.PopularCard
+import com.commandiron.toprated10films.ui.presentation.selection.components.SelectionBodyText
 import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import kotlin.math.absoluteValue
 
-@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun SelectionScreen(
+    viewModel: SelectionViewModel = hiltViewModel(),
     onAllTimeClick: () -> Unit,
     onActorClick: () -> Unit,
     onGenreClick: () -> Unit,
     onYearClick: () -> Unit,
     onPopularItemClick: () -> Unit
 ) {
+    val popularList = viewModel.populars.collectAsState().value
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashViewModel@Inject constructor(
+class SplashViewModel @Inject constructor(
     private val preferences: AppPreferences
 ): ViewModel() {
 
