@@ -53,7 +53,8 @@ fun NavGraphBuilder.topTenNavGraph(
                 onAllTimeClick = {
                     navController.navigate(
                         NavigationItem.ShowResultScreen.addArgs(
-                            categoryIdArg = Category.AllTime.id
+                            categoryIdArg = Category.AllTime.id,
+                            queryArg = Category.AllTime.title
                         )
                     )
                 },

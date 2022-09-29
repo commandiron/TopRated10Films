@@ -26,8 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.navigation.nav_graph.GraphItem
-import com.commandiron.toprated10films.ui.theme.NoRippleTheme
-import com.commandiron.toprated10films.ui.theme.spacing
+import com.commandiron.toprated10films.ui.theme.*
 
 @Composable
 fun BottomNavigation(
@@ -62,7 +61,7 @@ fun BottomNavigation(
                 .fillMaxWidth()
                 .height(MaterialTheme.spacing.bottomNavHeight)
                 .clip(MaterialTheme.shapes.large)
-                .background(Color(0xFF47525E).copy(0.90f)),
+                .background(Gunmetal.copy(0.85f)),
             verticalAlignment = Alignment.CenterVertically
         ) {
             CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
@@ -145,7 +144,7 @@ fun NavigationItem(
             shape = MaterialTheme.shapes.extraLarge,
             color = if(enabled) {
                 MaterialTheme.colorScheme.primary
-            }else MaterialTheme.colorScheme.background,
+            }else GunmetalDarker,
             border = if(!enabled) {
                 BorderStroke(
                     width = 1.dp,
