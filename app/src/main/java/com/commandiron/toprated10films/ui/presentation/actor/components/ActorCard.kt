@@ -3,7 +3,6 @@ package com.commandiron.toprated10films.ui.presentation.actor.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -11,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -41,14 +41,21 @@ fun ActorCard(
         Box(
             modifier = Modifier
                 .align(Alignment.BottomStart)
-                .fillMaxWidth()
+                .fillMaxSize()
                 .background(
-                    color = Color.Black.copy(alpha = 0.6f),
+                    brush = Brush.verticalGradient(
+                        listOf(
+                            Color.Transparent,
+                            Color.Transparent,
+                            Color.Black
+                        )
+                    )
                 ),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 modifier = Modifier
+                    .align(Alignment.BottomCenter)
                     .padding(
                         horizontal = MaterialTheme.spacing.spaceMedium,
                         vertical = MaterialTheme.spacing.spaceExtraSmall

@@ -3,7 +3,6 @@ package com.commandiron.toprated10films.ui.presentation.selection.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.*
@@ -11,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import com.commandiron.toprated10films.ui.model.Category
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
@@ -30,7 +30,7 @@ fun CategoryCard(
                 containerColor = Color.Transparent
             )
         ) {
-            Box() {
+            Box {
                 CustomAsyncImage(
                     modifier = Modifier.fillMaxSize(),
                     imageUrl = category.imageUrl
@@ -38,14 +38,21 @@ fun CategoryCard(
                 Box(
                     modifier = Modifier
                         .align(Alignment.BottomStart)
-                        .fillMaxWidth()
+                        .fillMaxSize()
                         .background(
-                            color = Color.Black.copy(alpha = 0.75f),
+                            brush = Brush.verticalGradient(
+                                colors = listOf(
+                                    Color.Transparent,
+                                    Color.Transparent,
+                                    Color.Black
+                                )
+                            ),
                         ),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         modifier = Modifier
+                            .align(Alignment.BottomCenter)
                             .padding(
                                 horizontal = MaterialTheme.spacing.spaceMedium,
                                 vertical = MaterialTheme.spacing.spaceSmall

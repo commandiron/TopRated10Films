@@ -26,6 +26,11 @@ data class Popular(
                 category = Category.ByYear
             ),
             Popular(
+                title = "Action",
+                imageUrl = "https://media.timeout.com/images/102512459/750/422/image.jpg",
+                category = Category.ByGenre
+            ),
+            Popular(
                 title = "Matt Damon",
                 imageUrl = "https://m.media-amazon.com/images/M/MV5BMTM0NzYzNDgxMl5BMl5BanBnXkFtZTcwMDg2MTMyMw@@._V1_UY264_CR9,0,178,264_AL_.jpg",
                 category = Category.ByActor
