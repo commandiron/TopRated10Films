@@ -42,7 +42,7 @@ fun PopularCard(
                     YearCard(
                         year = Year(
                             name = popular.title,
-                            color = popular.color ?: 0
+                            color = 0xFF000000
                         )
                     )
                 }
