@@ -1,5 +1,6 @@
 package com.commandiron.toprated10films.ui.presentation.show_result
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.commandiron.toprated10films.domain.use_cases.UseCases
 import com.commandiron.toprated10films.ui.model.Film.Companion.defaultTopTenFilms
@@ -10,10 +11,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShowResultViewModel @Inject constructor(
-    private val useCases: UseCases
+    private val useCases: UseCases,
+    savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
-    private val _title = MutableStateFlow("Adventure")
+    private val _title = MutableStateFlow("")
     val title = _title.asStateFlow()
 
     private val _topTenFilms = MutableStateFlow(defaultTopTenFilms)
@@ -21,4 +23,11 @@ class ShowResultViewModel @Inject constructor(
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
+
+    init {
+        val categoryId: Int? = savedStateHandle["categoryId"]
+        val query: String? = savedStateHandle["query"]
+
+        _title.value = query ?: ""
+    }
 }

@@ -26,7 +26,7 @@ import com.commandiron.toprated10films.ui.theme.spacing
 @Composable
 fun GenreScreen(
     viewModel: GenreViewModel = hiltViewModel(),
-    onClick: () -> Unit
+    onClick: (genreName: String) -> Unit
 ) {
     val searchText = viewModel.searchText.collectAsState().value
     val genres = viewModel.genres.collectAsState().value
@@ -94,7 +94,7 @@ fun GenreScreen(
                                     focusManager.clearFocus()
                                     keyboardController?.hide()
                                 } else {
-                                    onClick()
+                                    onClick(genre.name)
                                 }
                             },
                         genre = genre

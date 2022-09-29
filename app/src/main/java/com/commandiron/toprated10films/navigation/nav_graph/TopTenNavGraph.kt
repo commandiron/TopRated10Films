@@ -5,7 +5,10 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.commandiron.toprated10films.navigation.NavigationItem
+import com.commandiron.toprated10films.ui.model.Category
 import com.commandiron.toprated10films.ui.presentation.actor.ActorScreen
 import com.commandiron.toprated10films.ui.presentation.genre.GenreScreen
 import com.commandiron.toprated10films.ui.presentation.selection.SelectionScreen
@@ -48,7 +51,11 @@ fun NavGraphBuilder.topTenNavGraph(
         ) {
             SelectionScreen(
                 onAllTimeClick = {
-                    navController.navigate(NavigationItem.ShowResultScreen.route)
+                    navController.navigate(
+                        NavigationItem.ShowResultScreen.addArgs(
+                            categoryIdArg = Category.AllTime.id
+                        )
+                    )
                 },
                 onActorClick = {
                     navController.navigate(NavigationItem.ActorScreen.route)
@@ -77,8 +84,13 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            ActorScreen {
-                navController.navigate(NavigationItem.ShowResultScreen.route)
+            ActorScreen { actorName ->
+                navController.navigate(
+                    NavigationItem.ShowResultScreen.addArgs(
+                        categoryIdArg =Category.ByActor.id,
+                        queryArg = actorName
+                    )
+                )
             }
         }
         composable(
@@ -94,8 +106,13 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            GenreScreen {
-                navController.navigate(NavigationItem.ShowResultScreen.route)
+            GenreScreen { genreName ->
+                navController.navigate(
+                    NavigationItem.ShowResultScreen.addArgs(
+                        categoryIdArg = Category.ByGenre.id,
+                        queryArg = genreName
+                    )
+                )
             }
         }
         composable(
@@ -111,12 +128,28 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            YearScreen{
-                navController.navigate(NavigationItem.ShowResultScreen.route)
+            YearScreen { yearName ->
+                navController.navigate(
+                    NavigationItem.ShowResultScreen.addArgs(
+                        categoryIdArg = Category.ByYear.id,
+                        queryArg = yearName
+                    )
+                )
             }
         }
         composable(
-            route = NavigationItem.ShowResultScreen.route,
+            route = NavigationItem.ShowResultScreen.routeWithArgNames(),
+            arguments = listOf(
+                navArgument(NavigationItem.ShowResultScreen.argNames[0]) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(NavigationItem.ShowResultScreen.argNames[1]) {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
+                }
+            ),
             enterTransition = {
                 when(initialState.destination.route) {
                     else -> null
