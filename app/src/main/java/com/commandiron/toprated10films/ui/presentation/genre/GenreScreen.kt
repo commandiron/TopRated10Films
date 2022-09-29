@@ -28,8 +28,8 @@ fun GenreScreen(
     viewModel: GenreViewModel = hiltViewModel(),
     onClick: () -> Unit
 ) {
-    val text = viewModel.searchText.collectAsState().value
-    val genreList = viewModel.genres.collectAsState().value
+    val searchText = viewModel.searchText.collectAsState().value
+    val genres = viewModel.genres.collectAsState().value
     val isLoading = viewModel.isLoading.collectAsState().value
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
@@ -43,7 +43,7 @@ fun GenreScreen(
             ) {
                 focusManager.clearFocus()
                 keyboardController?.hide()
-                viewModel.search(text)
+                viewModel.search(searchText)
             },
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -51,7 +51,7 @@ fun GenreScreen(
         Column(Modifier.fillMaxWidth()) {
             Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
             SearchTextField(
-                value = text,
+                value = searchText,
                 onValueChange = { viewModel.search(it) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -80,7 +80,7 @@ fun GenreScreen(
                     horizontal = MaterialTheme.spacing.spaceMedium
                 )
             ){
-                items(genreList) { genre ->
+                items(genres) { genre ->
                     GenreCard(
                         modifier = Modifier
                             .padding(MaterialTheme.spacing.spaceExtraSmall)

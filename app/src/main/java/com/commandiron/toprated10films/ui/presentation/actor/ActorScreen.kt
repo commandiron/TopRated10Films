@@ -30,8 +30,8 @@ fun ActorScreen(
     viewModel: ActorViewModel = hiltViewModel(),
     onClick: () -> Unit
 ) {
-    val text = viewModel.searchText.collectAsState().value
-    val actorList = viewModel.actors.collectAsState().value
+    val searchText = viewModel.searchText.collectAsState().value
+    val actors = viewModel.actors.collectAsState().value
     val isLoading = viewModel.isLoading.collectAsState().value
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
@@ -45,7 +45,7 @@ fun ActorScreen(
             ) {
                 focusManager.clearFocus()
                 keyboardController?.hide()
-                viewModel.search(text)
+                viewModel.search(searchText)
             },
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -53,7 +53,7 @@ fun ActorScreen(
         Column(Modifier.fillMaxWidth()) {
             Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
             SearchTextField(
-                value = text,
+                value = searchText,
                 onValueChange = { viewModel.search(it) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -94,7 +94,7 @@ fun ActorScreen(
                         horizontal = MaterialTheme.spacing.spaceMedium
                     )
                 ){
-                    items(actorList) { actor ->
+                    items(actors) { actor ->
                         ActorCard(
                             modifier = Modifier
                                 .padding(MaterialTheme.spacing.spaceExtraSmall)

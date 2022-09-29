@@ -12,13 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.commandiron.toprated10films.ui.model.Actor
+import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.presentation.components.TopTenSticker
 import com.commandiron.toprated10films.ui.theme.spacing
 
@@ -29,14 +26,9 @@ fun ActorCard(
     actor: Actor
 ) {
     Box(modifier = modifier) {
-        AsyncImage(
+        CustomAsyncImage(
             modifier = Modifier.fillMaxSize(),
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(actor.imageUrl)
-                .crossfade(true)
-                .build(),
-            contentDescription = null,
-            contentScale = ContentScale.Crop
+            imageUrl = actor.imageUrl
         )
         TopTenSticker(
             modifier = Modifier

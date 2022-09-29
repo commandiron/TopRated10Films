@@ -1,3 +1,6 @@
 package com.commandiron.toprated10films.domain.use_cases
 
-class UseCases()
+class UseCases(
+    val filterGenres: FilterGenres,
+    val filterYears: FilterYears
+)

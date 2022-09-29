@@ -5,42 +5,32 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.*
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
-import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.model.Genre
+import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.presentation.components.TopTenSticker
 import com.commandiron.toprated10films.ui.theme.spacing
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GenreCard(
     modifier: Modifier = Modifier,
     textStyle: TextStyle = LocalTextStyle.current,
-    genre: Genre
+    genre: Genre,
 ) {
     Box(
         modifier = modifier,
     ) {
-        AsyncImage(
+        CustomAsyncImage(
             modifier = Modifier.fillMaxSize(),
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(genre.imageUrl)
-                .crossfade(true)
-                .build(),
-            placeholder = painterResource(R.drawable.app_logo_bobbin),
-            contentDescription = null,
-            contentScale = ContentScale.Crop
+            imageUrl = genre.imageUrl
         )
     }
     Box(modifier = modifier.fillMaxSize()) {

@@ -24,5 +24,9 @@ class GenreViewModel @Inject constructor(
 
     fun search(text: String) {
         _searchText.value = text
+        _genres.value = useCases.filterGenres(
+            text,
+            defaultGenreList
+        )
     }
 }

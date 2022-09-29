@@ -2,7 +2,6 @@ package com.commandiron.toprated10films.ui.presentation.year
 
 import androidx.lifecycle.ViewModel
 import com.commandiron.toprated10films.domain.use_cases.UseCases
-import com.commandiron.toprated10films.ui.model.Genre.Companion.defaultGenreList
 import com.commandiron.toprated10films.ui.model.Year.Companion.defaultYearList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,5 +24,9 @@ class YearViewModel @Inject constructor(
 
     fun search(text: String) {
         _searchText.value = text
+        _years.value = useCases.filterYears(
+            text,
+            defaultYearList
+        )
     }
 }

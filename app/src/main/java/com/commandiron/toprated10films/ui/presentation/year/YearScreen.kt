@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.ui.presentation.components.SearchTextField
 import com.commandiron.toprated10films.ui.presentation.year.components.YearCard
@@ -28,8 +29,8 @@ fun YearScreen(
     viewModel: YearViewModel = hiltViewModel(),
     onClick: () -> Unit
 ) {
-    val text = viewModel.searchText.collectAsState().value
-    val yearList = viewModel.years.collectAsState().value
+    val searchText = viewModel.searchText.collectAsState().value
+    val years = viewModel.years.collectAsState().value
     val isLoading = viewModel.isLoading.collectAsState().value
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
@@ -43,7 +44,7 @@ fun YearScreen(
             ) {
                 focusManager.clearFocus()
                 keyboardController?.hide()
-                viewModel.search(text)
+                viewModel.search(searchText)
             },
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -51,11 +52,12 @@ fun YearScreen(
         Column(Modifier.fillMaxWidth()) {
             Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
             SearchTextField(
-                value = text,
+                value = searchText,
                 onValueChange = { viewModel.search(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = MaterialTheme.spacing.spaceMedium),
+                keyboardType = KeyboardType.Number,
                 hint = "Search Year",
                 onSearch = {
                     keyboardController?.hide()
@@ -80,7 +82,7 @@ fun YearScreen(
                     horizontal = MaterialTheme.spacing.spaceMedium
                 )
             ){
-                items(yearList) { year ->
+                items(years) { year ->
                     YearCard(
                         modifier = Modifier
                             .padding(MaterialTheme.spacing.spaceExtraSmall)

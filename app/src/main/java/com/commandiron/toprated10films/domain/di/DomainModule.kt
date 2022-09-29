@@ -1,5 +1,7 @@
 package com.commandiron.toprated10films.domain.di
 
+import com.commandiron.toprated10films.domain.use_cases.FilterGenres
+import com.commandiron.toprated10films.domain.use_cases.FilterYears
 import com.commandiron.toprated10films.domain.use_cases.UseCases
 import dagger.Module
 import dagger.Provides
@@ -15,6 +17,9 @@ object DomainModule {
     @Provides
     fun provideUseCases(
     ): UseCases {
-        return UseCases()
+        return UseCases(
+            filterGenres = FilterGenres(),
+            filterYears = FilterYears()
+        )
     }
 }

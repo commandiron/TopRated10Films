@@ -40,7 +40,7 @@ fun SelectionScreen(
     onYearClick: () -> Unit,
     onPopularItemClick: () -> Unit
 ) {
-    val popularList = viewModel.populars.collectAsState().value
+    val populars = viewModel.populars.collectAsState().value
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -120,7 +120,7 @@ fun SelectionScreen(
                     )
                 }
                 LazyRow {
-                    items(popularList) { popular ->
+                    items(populars) { popular ->
                         PopularCard(
                             modifier = Modifier
                                 .padding(
