@@ -38,7 +38,7 @@ fun SelectionScreen(
     onActorClick: () -> Unit,
     onGenreClick: () -> Unit,
     onYearClick: () -> Unit,
-    onPopularItemClick: () -> Unit
+    onPopularItemClick: (categoryId: Int, query: String) -> Unit
 ) {
     val populars = viewModel.populars.collectAsState().value
     LazyColumn(
@@ -131,7 +131,10 @@ fun SelectionScreen(
                                 .heightIn(max = 86.dp)
                                 .aspectRatio(1f)
                                 .clickable {
-                                    onPopularItemClick()
+                                    onPopularItemClick(
+                                        popular.category.id,
+                                        popular.title
+                                    )
                                 },
                             popular = popular
                         )

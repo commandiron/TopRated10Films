@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="gun_metal_darkest">#FF171D23</color>
     <color name="gun_metal">#FF29333D</color>
+    <color name="gun_metal_lighter">#FF34424F</color>
 </resources>

@@ -67,8 +67,13 @@ fun NavGraphBuilder.topTenNavGraph(
                 onYearClick = {
                     navController.navigate(NavigationItem.YearScreen.route)
                 },
-                onPopularItemClick = {
-                    navController.navigate(NavigationItem.ShowResultScreen.route)
+                onPopularItemClick = { categoryId, query ->
+                    navController.navigate(
+                        NavigationItem.ShowResultScreen.addArgs(
+                            categoryIdArg = categoryId,
+                            queryArg = query
+                        )
+                    )
                 }
             )
         }
