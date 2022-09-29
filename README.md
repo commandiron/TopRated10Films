@@ -2,5 +2,5 @@
 
 * Screenshots 🖼️
 
-<img src="https://user-images.githubusercontent.com/50905347/188006059-7ad6b080-0de1-4b65-81e3-ff57bc30b8e7.png" width="250" height="530">&nbsp;&nbsp;
-<img src="https://user-images.githubusercontent.com/50905347/188006061-e9df62e5-660b-41e5-bd58-6b0b1a60b6e3.png" width="250" height="530">
+<img src="https://user-images.githubusercontent.com/50905347/192964332-9f6c541b-f1a3-49b3-aea9-9a1079685537.png" width="250" height="530">&nbsp;&nbsp;
+<img src="https://user-images.githubusercontent.com/50905347/192964337-73a3896c-e37b-494a-a567-411e330e1ca7.png" width="250" height="530">
