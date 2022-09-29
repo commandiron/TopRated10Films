@@ -45,7 +45,7 @@ fun BottomNavigation(
         NavigationItem.WatchListScreen
     )
     AnimatedVisibility(
-        visible = navigationItems.find { it.route == currentRoute }?.isBottomBarVisible ?: false,
+        visible = navigationItems.find { it.routeWithArgNames() == currentRoute }?.isBottomBarVisible ?: false,
         enter = if(shouldShowSplash) {
             fadeIn(
                 tween(
