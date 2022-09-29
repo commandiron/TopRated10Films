@@ -16,7 +16,7 @@ import com.commandiron.toprated10films.ui.theme.spacing
 @Composable
 fun SelectionBodyText(
     modifier: Modifier = Modifier,
-    textStyle: TextStyle =  LocalTextStyle.current
+    textStyle: TextStyle = LocalTextStyle.current
 ) {
     Column(
         modifier = modifier,

@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -50,15 +52,32 @@ fun ShowResultScreen(
                 contentDescription = null,
                 tint = Color.Unspecified
             )
-            Box(
+            Row(
                 modifier = Modifier
                     .weight(1f)
                     .height(56.dp),
-                contentAlignment = Alignment.BottomCenter
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.Bottom
             ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.headlineSmall
+                )
+                Spacer(Modifier.width(MaterialTheme.spacing.spaceSmall))
+                Text(
+                    text = "Top",
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontWeight = FontWeight.Bold
+                    ),
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = "10 ",
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontWeight = FontWeight.Bold
+                    ),
+                    color = MaterialTheme.colorScheme.primary,
+                    textAlign = TextAlign.Center
                 )
             }
         }
