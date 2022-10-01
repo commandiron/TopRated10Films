@@ -3,7 +3,7 @@ package com.commandiron.toprated10films.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.commandiron.toprated10films.data.DefaultPreferences
+import com.commandiron.toprated10films.data.local.DefaultPreferences
 import com.commandiron.toprated10films.domain.preferences.AppPreferences
 import dagger.Module
 import dagger.Provides

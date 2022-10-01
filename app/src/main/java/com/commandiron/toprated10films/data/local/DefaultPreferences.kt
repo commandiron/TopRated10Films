@@ -1,4 +1,4 @@
-package com.commandiron.toprated10films.data
+package com.commandiron.toprated10films.data.local
 
 import android.content.SharedPreferences
 import com.commandiron.toprated10films.domain.preferences.AppPreferences

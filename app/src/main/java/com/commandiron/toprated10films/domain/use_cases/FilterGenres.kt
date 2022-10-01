@@ -1,6 +1,6 @@
 package com.commandiron.toprated10films.domain.use_cases
 
-import com.commandiron.toprated10films.ui.model.Genre
+import com.commandiron.toprated10films.domain.model.Genre
 
 class FilterGenres {
     operator fun invoke(

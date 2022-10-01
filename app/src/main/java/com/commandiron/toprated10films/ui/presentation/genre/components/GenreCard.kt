@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,7 +14,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
-import com.commandiron.toprated10films.ui.model.Genre
+import com.commandiron.toprated10films.domain.model.Genre
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.presentation.components.TopTenSticker
 import com.commandiron.toprated10films.ui.theme.spacing
@@ -23,7 +22,7 @@ import com.commandiron.toprated10films.ui.theme.spacing
 @Composable
 fun GenreCard(
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = LocalTextStyle.current,
+    textStyle: TextStyle = MaterialTheme.typography.bodySmall,
     genre: Genre,
 ) {
     Box(
