@@ -1,10 +1,7 @@
 package com.commandiron.toprated10films.domain.di
 
 import com.commandiron.toprated10films.domain.repository.AppRepository
-import com.commandiron.toprated10films.domain.use_cases.FilterGenres
-import com.commandiron.toprated10films.domain.use_cases.FilterYears
-import com.commandiron.toprated10films.domain.use_cases.GetGenres
-import com.commandiron.toprated10films.domain.use_cases.UseCases
+import com.commandiron.toprated10films.domain.use_cases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +20,8 @@ object DomainModule {
         return UseCases(
             getGenres = GetGenres(repository),
             filterGenres = FilterGenres(),
-            filterYears = FilterYears()
+            filterYears = FilterYears(),
+            getActors = GetActors(repository)
         )
     }
 }

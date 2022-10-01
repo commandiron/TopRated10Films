@@ -104,7 +104,7 @@ fun ActorScreen(
                                     interactionSource = remember { MutableInteractionSource() },
                                     indication = null
                                 ) {
-                                    if(isImeVisible) {
+                                    if (isImeVisible) {
                                         focusManager.clearFocus()
                                         keyboardController?.hide()
                                     } else {
@@ -113,6 +113,9 @@ fun ActorScreen(
                                 },
                             actor = actor
                         )
+                    }
+                    item {
+                        Spacer(Modifier.height(MaterialTheme.spacing.spaceXXXLarge))
                     }
                 }
             }
