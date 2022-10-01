@@ -67,6 +67,9 @@ dependencies {
 
     implementation(Coil.coilCompose)
 
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.moshiConverter)
+
     kapt(DaggerHilt.hiltCompiler)
     implementation(DaggerHilt.hiltAndroid)
 }

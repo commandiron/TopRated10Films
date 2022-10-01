@@ -29,7 +29,7 @@ fun GenreScreen(
     onClick: (genreName: String) -> Unit
 ) {
     val searchText = viewModel.searchText.collectAsState().value
-    val genres = viewModel.genres.collectAsState().value
+    val genres = viewModel.filteredGenres.collectAsState().value
     val isLoading = viewModel.isLoading.collectAsState().value
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
@@ -101,7 +101,7 @@ fun GenreScreen(
                     )
                 }
                 item {
-                    Spacer(Modifier.height(MaterialTheme.spacing.spaceXXLarge))
+                    Spacer(Modifier.height(MaterialTheme.spacing.spaceXXXLarge))
                 }
             }
         }
