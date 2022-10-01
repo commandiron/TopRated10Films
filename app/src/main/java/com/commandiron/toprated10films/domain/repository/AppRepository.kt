@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
     suspend fun getGenres(): Flow<Response<List<Genre>>>
+    suspend fun saveGenres(genres: List<Genre>)
 }

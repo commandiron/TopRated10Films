@@ -70,6 +70,10 @@ dependencies {
     implementation(Retrofit.retrofit)
     implementation(Retrofit.moshiConverter)
 
+    implementation(Room.runtime)
+    kapt(Room.compiler)
+    implementation(Room.ktx)
+
     kapt(DaggerHilt.hiltCompiler)
     implementation(DaggerHilt.hiltAndroid)
 }

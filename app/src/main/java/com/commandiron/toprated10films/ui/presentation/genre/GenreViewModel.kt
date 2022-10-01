@@ -6,7 +6,6 @@ import com.commandiron.toprated10films.domain.model.Genre
 import com.commandiron.toprated10films.domain.use_cases.UseCases
 import com.commandiron.toprated10films.util.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -39,7 +38,6 @@ class GenreViewModel @Inject constructor(
                         _isLoading.value = true
                     }
                     is Response.Success -> {
-                        delay(2000)
                         _isLoading.value = false
                         _genres.value = response.data
                         _filteredGenres.value = response.data
