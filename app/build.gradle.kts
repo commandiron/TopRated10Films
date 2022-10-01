@@ -73,6 +73,9 @@ dependencies {
     implementation(Room.runtime)
     kapt(Room.compiler)
     implementation(Room.ktx)
+    implementation(Room.paging)
+
+    implementation(Paging.compose)
 
     kapt(DaggerHilt.hiltCompiler)
     implementation(DaggerHilt.hiltAndroid)
