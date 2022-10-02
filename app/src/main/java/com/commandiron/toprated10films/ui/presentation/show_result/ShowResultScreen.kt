@@ -102,10 +102,20 @@ fun ShowResultScreen(
             ) {
                 CircularProgressIndicator()
             }
+        }else if(topTenFilms.isEmpty()) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "No Data")
+            }
         }else {
             HorizontalPager(
                 count = topTenFilms.size,
                 contentPadding = PaddingValues(horizontal = 32.dp),
+                key = {
+                    topTenFilms[it].id
+                }
             ) { page ->
                 FilmCard(
                     modifier = Modifier

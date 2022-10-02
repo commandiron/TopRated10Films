@@ -33,8 +33,7 @@ class ShowResultViewModel @Inject constructor(
 
     init {
         val categoryId: Int? = savedStateHandle["categoryId"]
-        val category = Category.fromId(categoryId)
-        when(category) {
+        when(Category.fromId(categoryId)) {
             Category.AllTime -> TODO()
             Category.ByActor -> {
                 viewModelScope.launch {
@@ -57,7 +56,5 @@ class ShowResultViewModel @Inject constructor(
             Category.ByGenre -> TODO()
             Category.ByYear -> TODO()
         }
-
-
     }
 }

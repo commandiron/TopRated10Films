@@ -16,10 +16,17 @@ class GetTopTenFilmsByActor(
                 Response.Loading -> emit(Response.Loading)
                 is Response.Success -> {
                     val moviesByActor = response.data
-                    val result = moviesByActor
+                    var result = moviesByActor
                         .filter { it.vote_count > 100 }
                         .sortedByDescending { it.vote_average }
                         .take(10)
+
+                    if(result.isEmpty()) {
+                        result = moviesByActor
+                            .sortedByDescending { it.vote_average }
+                            .take(10)
+                    }
+
                     emit(Response.Success(result))
                 }
             }
