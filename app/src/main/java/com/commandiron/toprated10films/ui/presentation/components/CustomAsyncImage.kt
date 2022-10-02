@@ -16,7 +16,8 @@ import com.commandiron.toprated10films.R
 @Composable
 fun CustomAsyncImage(
     modifier: Modifier = Modifier,
-    imageUrl: String?
+    imageUrl: String?,
+    alpha: Float = 1.0f,
 ) {
     if(imageUrl.isNullOrEmpty()) {
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -33,6 +34,7 @@ fun CustomAsyncImage(
             placeholder = painterResource(R.drawable.app_logo_bobbin_placeholder),
             contentDescription = null,
             contentScale = ContentScale.Crop,
+            alpha = alpha
         )
     }
 }

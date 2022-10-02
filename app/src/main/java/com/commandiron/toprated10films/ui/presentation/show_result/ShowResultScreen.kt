@@ -1,7 +1,10 @@
 package com.commandiron.toprated10films.ui.presentation.show_result
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -15,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.R
+import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.presentation.show_result.components.FilmCard
 import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -27,9 +31,16 @@ import kotlin.math.absoluteValue
 fun ShowResultScreen(
     viewModel: ShowResultViewModel = hiltViewModel(),
 ) {
+    val imageUrl: String = viewModel.imageUrl.collectAsState().value
     val title = viewModel.title.collectAsState().value
     val topTenFilms = viewModel.topTenFilms.collectAsState().value
     val isLoading = viewModel.isLoading.collectAsState().value
+    CustomAsyncImage(
+        modifier = Modifier
+            .fillMaxSize(),
+        imageUrl = imageUrl,
+        alpha = 0.2f
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()

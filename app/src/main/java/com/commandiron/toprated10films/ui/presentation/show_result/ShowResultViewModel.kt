@@ -15,8 +15,9 @@ class ShowResultViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
-    private val _title = MutableStateFlow("")
-    val title = _title.asStateFlow()
+    val imageUrl = savedStateHandle.getStateFlow("imageUrl", "")
+
+    val title = savedStateHandle.getStateFlow("query", "")
 
     private val _topTenFilms = MutableStateFlow(defaultTopTenFilms)
     val topTenFilms = _topTenFilms.asStateFlow()
@@ -26,8 +27,5 @@ class ShowResultViewModel @Inject constructor(
 
     init {
         val categoryId: Int? = savedStateHandle["categoryId"]
-        val query: String? = savedStateHandle["query"]
-
-        _title.value = query ?: ""
     }
 }

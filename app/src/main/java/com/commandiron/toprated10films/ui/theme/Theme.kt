@@ -8,7 +8,10 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorScheme = darkColorScheme(
     background = Gunmetal,
@@ -34,8 +37,15 @@ fun TopRated10FilmsTheme(
     } else {
         LightColorScheme
     }
-    
-    CompositionLocalProvider(LocalSpacing provides Spacing()) {
+
+    val systemUiController = rememberSystemUiController()
+
+    CompositionLocalProvider(
+        values = arrayOf(
+            LocalSpacing provides Spacing(),
+            LocalSystemUiController provides systemUiController,
+        )
+    ) {
         MaterialTheme(
             colorScheme = colorScheme,
             typography = Typography,
@@ -56,4 +66,8 @@ object NoRippleTheme : RippleTheme {
         hoveredAlpha = 0.0f,
         pressedAlpha = 0.0f,
     )
+}
+
+val LocalSystemUiController = compositionLocalOf<SystemUiController> {
+    error("No System Ui Controller")
 }

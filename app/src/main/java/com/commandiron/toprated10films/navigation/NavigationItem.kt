@@ -2,7 +2,7 @@ package com.commandiron.toprated10films.navigation
 
 sealed class NavigationItem(
     val route: String,
-    val argNames: List<String> = listOf(),
+    val args: List<String> = listOf(),
     val isBottomBarVisible: Boolean
 ) {
     object SplashScreen: NavigationItem(
@@ -31,24 +31,29 @@ sealed class NavigationItem(
     )
     object ShowResultScreen: NavigationItem(
         route = "showResult",
-        argNames = listOf("categoryId", "query"),
+        args = listOf("categoryId", "query", "imageUrl"),
         isBottomBarVisible = true
     )
 
-    fun routeWithArgNames(): String {
+    fun routeWithArgs(): String {
         return buildString {
             append(route)
-            argNames.forEach { argName ->
-                append("?$argName={$argName}")
+            args.forEach { arg ->
+                append("?$arg={$arg}")
             }
         }
     }
 
-    fun addArgs(categoryIdArg: Int? = null, queryArg: String? = null): String {
+    fun addArgs(
+        categoryIdArg: Int? = null,
+        queryArg: String? = null,
+        imageUrl: String? = null
+    ): String {
         return buildString {
             append(route)
-            append("?${argNames[0]}=$categoryIdArg")
-            append("?${argNames[1]}=$queryArg")
+            append("?${args[0]}=$categoryIdArg")
+            append("?${args[1]}=$queryArg")
+            append("?${args[2]}=$imageUrl")
         }
     }
 }
