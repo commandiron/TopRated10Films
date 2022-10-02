@@ -40,10 +40,10 @@ class AppRepositoryImpl(
         dao.insertGenre(*genres.toTypedArray())
     }
 
-    override suspend fun getActors(): Flow<PagingData<Actor>> {
+    override suspend fun getActors(query: String): Flow<PagingData<Actor>> {
         return Pager(
             config = PagingConfig(pageSize = 20),
-            pagingSourceFactory = { ActorPagingSource(api) }
+            pagingSourceFactory = { ActorPagingSource(api = api, query = query) }
         ).flow
     }
 }

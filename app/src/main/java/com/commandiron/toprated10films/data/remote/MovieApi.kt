@@ -11,9 +11,17 @@ interface MovieApi {
     suspend fun getGenres(): MovieDbGenreDto
 
     @GET("person/popular?api_key=ccee772c336daab0b8542a7e371680db")
-    suspend fun getActors(
+    suspend fun getPopularActors(
         @Query("page")
         page: Int
+    ): MovieDbActorDto
+
+    @GET("search/person?api_key=ccee772c336daab0b8542a7e371680db")
+    suspend fun getActorsByQuery(
+        @Query("page")
+        page: Int,
+        @Query("query")
+        query: String
     ): MovieDbActorDto
 
     companion object {

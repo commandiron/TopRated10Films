@@ -78,17 +78,19 @@ fun ActorScreen(
             }
         }else {
             Column() {
-                Text(
-                    modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(
-                            horizontal = MaterialTheme.spacing.spaceLarge
-                        ),
-                    text = "Popular",
-                    style = MaterialTheme.typography.titleMedium,
-                    textAlign = TextAlign.Center
-                )
-                Spacer(Modifier.height(MaterialTheme.spacing.spaceSmall))
+                if(searchText.isEmpty()) {
+                    Text(
+                        modifier = Modifier
+                            .align(Alignment.Start)
+                            .padding(
+                                horizontal = MaterialTheme.spacing.spaceLarge
+                            ),
+                        text = "Popular",
+                        style = MaterialTheme.typography.titleMedium,
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(Modifier.height(MaterialTheme.spacing.spaceSmall))
+                }
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     contentPadding = PaddingValues(

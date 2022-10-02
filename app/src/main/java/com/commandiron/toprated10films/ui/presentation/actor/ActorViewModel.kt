@@ -27,14 +27,19 @@ class ActorViewModel @Inject constructor(
     val isLoading = _isLoading.asStateFlow()
 
     init {
-        viewModelScope.launch {
-            useCases.getActors().cachedIn(viewModelScope).collect { response ->
-                actors.value = response
-            }
-        }
+        getActors()
     }
 
     fun search(text: String) {
         _searchText.value = text
+        getActors()
+    }
+
+    private fun getActors() {
+        viewModelScope.launch {
+            useCases.getActors(_searchText.value).cachedIn(viewModelScope).collect { response ->
+                actors.value = response
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import com.commandiron.toprated10films.domain.model.Actor
 import com.commandiron.toprated10films.domain.model.Genre
+import com.commandiron.toprated10films.domain.model.Popular
 import com.commandiron.toprated10films.ui.model.*
 import com.commandiron.toprated10films.ui.presentation.actor.components.ActorCard
 import com.commandiron.toprated10films.ui.presentation.genre.components.GenreCard

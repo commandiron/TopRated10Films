@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
 class GetActors(
     private val repository: AppRepository
 ) {
-    suspend operator fun invoke(): Flow<PagingData<Actor>> = repository.getActors()
+    suspend operator fun invoke(query: String): Flow<PagingData<Actor>> = repository.getActors(query)
 }

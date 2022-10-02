@@ -9,5 +9,5 @@ import kotlinx.coroutines.flow.Flow
 interface AppRepository {
     suspend fun getGenres(): Flow<Response<List<Genre>>>
     suspend fun saveGenres(genres: List<Genre>)
-    suspend fun getActors(): Flow<PagingData<Actor>>
+    suspend fun getActors(query: String): Flow<PagingData<Actor>>
 }

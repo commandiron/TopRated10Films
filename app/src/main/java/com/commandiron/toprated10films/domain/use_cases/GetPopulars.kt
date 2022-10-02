@@ -1,15 +1,12 @@
-package com.commandiron.toprated10films.ui.model
+package com.commandiron.toprated10films.domain.use_cases
 
+import com.commandiron.toprated10films.ui.model.Category
+import com.commandiron.toprated10films.domain.model.Popular
 import kotlin.random.Random
 
-data class Popular(
-    val title: String,
-    val imageUrl: String? = null,
-    val color: Long? = null,
-    val category: Category
-) {
-    companion object {
-        val defaultPopularList = listOf(
+class GetPopulars {
+    operator fun invoke(): List<Popular> {
+        return listOf(
             Popular(
                 title = "Horror",
                 imageUrl = "https://sm.ign.com/t/ign_nl/gallery/t/the-25-bes/the-25-best-horror-movies_2smr.1080.jpg",

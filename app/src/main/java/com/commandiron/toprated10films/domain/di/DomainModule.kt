@@ -21,7 +21,8 @@ object DomainModule {
             getGenres = GetGenres(repository),
             filterGenres = FilterGenres(),
             filterYears = FilterYears(),
-            getActors = GetActors(repository)
+            getActors = GetActors(repository),
+            getPopulars = GetPopulars()
         )
     }
 }
