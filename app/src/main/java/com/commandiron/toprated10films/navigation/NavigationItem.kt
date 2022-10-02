@@ -31,7 +31,7 @@ sealed class NavigationItem(
     )
     object ShowResultScreen: NavigationItem(
         route = "showResult",
-        args = listOf("categoryId", "query", "imageUrl"),
+        args = listOf("categoryId", "query", "imageUrl", "actorId"),
         isBottomBarVisible = true
     )
 
@@ -47,13 +47,15 @@ sealed class NavigationItem(
     fun addArgs(
         categoryIdArg: Int? = null,
         queryArg: String? = null,
-        imageUrl: String? = null
+        imageUrl: String? = null,
+        actorId: Int? = null
     ): String {
         return buildString {
             append(route)
             append("?${args[0]}=$categoryIdArg")
             append("?${args[1]}=$queryArg")
             append("?${args[2]}=$imageUrl")
+            append("?${args[3]}=$actorId")
         }
     }
 }

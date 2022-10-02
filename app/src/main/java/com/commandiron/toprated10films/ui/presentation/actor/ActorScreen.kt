@@ -29,7 +29,7 @@ import com.commandiron.toprated10films.ui.theme.spacing
 @Composable
 fun ActorScreen(
     viewModel: ActorViewModel = hiltViewModel(),
-    onClick: (actorName: String, imageUrl: String?) -> Unit
+    onClick: (actorName: String, imageUrl: String?, actorId: Int) -> Unit
 ) {
     val searchText = viewModel.searchText.collectAsState().value
     val actors = viewModel.actors.collectAsLazyPagingItems()
@@ -117,7 +117,7 @@ fun ActorScreen(
                                             focusManager.clearFocus()
                                             keyboardController?.hide()
                                         } else {
-                                            onClick(it.name, it.imageUrl)
+                                            onClick(it.name, it.imageUrl, it.id)
                                         }
                                     },
                                 actor = it

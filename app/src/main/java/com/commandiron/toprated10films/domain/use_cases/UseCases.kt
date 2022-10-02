@@ -5,5 +5,6 @@ class UseCases(
     val filterGenres: FilterGenres,
     val filterYears: FilterYears,
     val getActors: GetActors,
-    val getPopulars: GetPopulars
+    val getPopulars: GetPopulars,
+    val getTopTenFilmsByActor: GetTopTenFilmsByActor
 )

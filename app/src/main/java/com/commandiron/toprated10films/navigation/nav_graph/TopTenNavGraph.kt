@@ -92,12 +92,13 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            ActorScreen { actorName, imageUrl ->
+            ActorScreen { actorName, imageUrl, actorId ->
                 navController.navigate(
                     NavigationItem.ShowResultScreen.addArgs(
                         categoryIdArg = Category.ByActor.id,
                         queryArg = actorName,
-                        imageUrl = imageUrl
+                        imageUrl = imageUrl,
+                        actorId = actorId
                     )
                 )
             }
@@ -163,6 +164,10 @@ fun NavGraphBuilder.topTenNavGraph(
                     type = NavType.StringType
                     defaultValue = ""
                     nullable = true
+                },
+                navArgument(NavigationItem.ShowResultScreen.args[3]) {
+                    type = NavType.IntType
+                    defaultValue = 0
                 }
             ),
             enterTransition = {

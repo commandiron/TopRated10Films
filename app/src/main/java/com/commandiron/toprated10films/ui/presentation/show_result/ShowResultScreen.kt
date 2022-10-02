@@ -127,7 +127,8 @@ fun ShowResultScreen(
                             )
                         }
                         .aspectRatio(0.75f),
-                    film = topTenFilms[page]
+                    film = topTenFilms[page],
+                    page = page
                 )
             }
         }

@@ -24,6 +24,7 @@ import com.commandiron.toprated10films.ui.theme.spacing
 fun FilmCard(
     modifier: Modifier = Modifier,
     film: Film,
+    page: Int
 ) {
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
         Card(
@@ -54,7 +55,7 @@ fun FilmCard(
                                 horizontal = MaterialTheme.spacing.spaceMedium,
                                 vertical = MaterialTheme.spacing.spaceSmall
                             ),
-                        text = film.placement.toString(),
+                        text = (page + 1).toString(),
                         style = MaterialTheme.typography.headlineSmall.copy(
                             fontWeight = FontWeight.Bold
                         ),
