@@ -19,4 +19,7 @@ class DefaultPreferences(
         )
     }
 
+    companion object {
+        const val PREF_NAME = "shared_pref"
+    }
 }
