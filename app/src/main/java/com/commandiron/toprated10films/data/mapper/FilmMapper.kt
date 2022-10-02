@@ -6,6 +6,8 @@ import com.commandiron.toprated10films.ui.model.Film
 fun MovieDbCast.toFilm(): Film {
     return Film(
         title = this.title,
-        imageUrl = if(poster_path == null) null else "https://image.tmdb.org/t/p/original/$poster_path"
+        imageUrl = if(poster_path == null) null else "https://image.tmdb.org/t/p/original/$poster_path",
+        vote_average = vote_average,
+        vote_count = vote_count
     )
 }

@@ -52,8 +52,7 @@ class AppRepositoryImpl(
     override suspend fun getMoviesByActor(actorId: Int): Flow<Response<List<Film>>> = flow {
         emit(Response.Loading)
         try {
-            println(api.getMoviesByActor(actorId))
-            val films = api.getMoviesByActor(actorId).movieDbCast.map { it.toFilm() }
+            val films = api.getMoviesByActor(actorId).cast.map { it.toFilm() }
             emit(Response.Success(films))
         } catch (e: Exception) {
             emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))

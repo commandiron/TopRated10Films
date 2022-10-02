@@ -26,6 +26,7 @@ interface MovieApi {
         query: String
     ): MovieDbActorDto
 
+    //Burda sonuç null geliyor.
     @GET("person/{id}/movie_credits?api_key=ccee772c336daab0b8542a7e371680db")
     suspend fun getMoviesByActor(
         @Path("id")

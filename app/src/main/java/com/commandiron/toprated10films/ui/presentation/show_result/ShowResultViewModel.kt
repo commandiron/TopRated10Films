@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.commandiron.toprated10films.domain.use_cases.UseCases
 import com.commandiron.toprated10films.ui.model.Category
-import com.commandiron.toprated10films.ui.model.Film.Companion.defaultTopTenFilms
+import com.commandiron.toprated10films.ui.model.Film
 import com.commandiron.toprated10films.util.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,7 +25,7 @@ class ShowResultViewModel @Inject constructor(
 
     private val actorId = savedStateHandle.getStateFlow("actorId", 0)
 
-    private val _topTenFilms = MutableStateFlow(defaultTopTenFilms)
+    private val _topTenFilms = MutableStateFlow<List<Film>>(emptyList())
     val topTenFilms = _topTenFilms.asStateFlow()
 
     private val _isLoading = MutableStateFlow(false)
