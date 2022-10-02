@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.commandiron.toprated10films.data.local.AppDao
 import com.commandiron.toprated10films.data.local.AppDatabase
+import com.commandiron.toprated10films.data.local.AppDatabase.Companion.DATABASE_NAME
 import com.commandiron.toprated10films.data.remote.MovieApi
+import com.commandiron.toprated10films.data.remote.MovieApi.Companion.BASE_URL
 import com.commandiron.toprated10films.data.repository.AppRepositoryImpl
 import com.commandiron.toprated10films.domain.repository.AppRepository
 import dagger.Module
@@ -25,7 +27,7 @@ object DataModule {
     @Singleton
     fun provideWeatherApi(): MovieApi {
         return Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()
@@ -39,7 +41,7 @@ object DataModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "app_db"
+            DATABASE_NAME
         ).build()
     }
 

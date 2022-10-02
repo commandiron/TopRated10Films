@@ -11,4 +11,8 @@ import com.commandiron.toprated10films.domain.model.Genre
 )
 abstract class AppDatabase: RoomDatabase(){
     abstract val dao: AppDao
+
+    companion object {
+        const val DATABASE_NAME = "app_db"
+    }
 }

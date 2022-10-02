@@ -1,4 +1,4 @@
-package com.commandiron.toprated10films.data.model
+package com.commandiron.toprated10films.data.model.movie_db_actor
 
 data class MovieDbActor(
     val adult: Boolean,

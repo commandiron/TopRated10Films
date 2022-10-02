@@ -1,6 +1,6 @@
 package com.commandiron.toprated10films.data.mapper
 
-import com.commandiron.toprated10films.data.model.MovieDbGenre
+import com.commandiron.toprated10films.data.model.movie_db_genre.MovieDbGenre
 import com.commandiron.toprated10films.domain.model.Genre
 
 fun MovieDbGenre.toGenre(): Genre {

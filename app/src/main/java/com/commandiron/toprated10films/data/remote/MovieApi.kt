@@ -1,7 +1,7 @@
 package com.commandiron.toprated10films.data.remote
 
-import com.commandiron.toprated10films.data.model.MovieDbActorDto
-import com.commandiron.toprated10films.data.model.MovieDbGenreDto
+import com.commandiron.toprated10films.data.model.movie_db_actor.MovieDbActorDto
+import com.commandiron.toprated10films.data.model.movie_db_genre.MovieDbGenreDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,4 +15,8 @@ interface MovieApi {
         @Query("page")
         page: Int
     ): MovieDbActorDto
+
+    companion object {
+        const val BASE_URL = "https://api.themoviedb.org/3/"
+    }
 }
