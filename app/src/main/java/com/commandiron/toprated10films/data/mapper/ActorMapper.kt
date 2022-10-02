@@ -7,6 +7,6 @@ fun MovieDbActor.toActor(): Actor {
     return Actor(
         id = id,
         name = name,
-        imageUrl = "https://image.tmdb.org/t/p/original/$profile_path"
+        imageUrl = if(profile_path == null) null else "https://image.tmdb.org/t/p/original/$profile_path"
     )
 }

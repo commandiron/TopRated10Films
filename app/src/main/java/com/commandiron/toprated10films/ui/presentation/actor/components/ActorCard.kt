@@ -26,7 +26,8 @@ fun ActorCard(
 ) {
     Box(modifier = modifier) {
         CustomAsyncImage(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize(),
             imageUrl = actor.imageUrl
         )
         TopTenSticker(
