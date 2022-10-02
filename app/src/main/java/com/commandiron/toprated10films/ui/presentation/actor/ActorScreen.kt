@@ -5,7 +5,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,7 +19,9 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.commandiron.toprated10films.ui.presentation.actor.components.ActorCard
+import com.commandiron.toprated10films.ui.presentation.actor.components.items
 import com.commandiron.toprated10films.ui.presentation.components.SearchTextField
 import com.commandiron.toprated10films.ui.theme.spacing
 
@@ -31,7 +32,7 @@ fun ActorScreen(
     onClick: (actorName: String) -> Unit
 ) {
     val searchText = viewModel.searchText.collectAsState().value
-    val actors = viewModel.actors.collectAsState().value
+    val actors = viewModel.actors.collectAsLazyPagingItems()
     val isLoading = viewModel.isLoading.collectAsState().value
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
@@ -94,28 +95,32 @@ fun ActorScreen(
                         horizontal = MaterialTheme.spacing.spaceMedium
                     )
                 ){
-                    items(actors) { actor ->
-                        ActorCard(
-                            modifier = Modifier
-                                .padding(MaterialTheme.spacing.spaceExtraSmall)
-                                .clip(MaterialTheme.shapes.medium)
-                                .aspectRatio(0.75f)
-                                .clickable(
-                                    interactionSource = remember { MutableInteractionSource() },
-                                    indication = null
-                                ) {
-                                    if (isImeVisible) {
-                                        focusManager.clearFocus()
-                                        keyboardController?.hide()
-                                    } else {
-                                        onClick(actor.name)
-                                    }
-                                },
-                            actor = actor
-                        )
-                    }
-                    item {
-                        Spacer(Modifier.height(MaterialTheme.spacing.spaceXXXLarge))
+                    items(
+                        items = actors,
+                        key = { actor ->
+                            actor.id
+                        }
+                    ) { actor ->
+                        actor?.let {
+                            ActorCard(
+                                modifier = Modifier
+                                    .padding(MaterialTheme.spacing.spaceExtraSmall)
+                                    .clip(MaterialTheme.shapes.medium)
+                                    .aspectRatio(0.75f)
+                                    .clickable(
+                                        interactionSource = remember { MutableInteractionSource() },
+                                        indication = null
+                                    ) {
+                                        if (isImeVisible) {
+                                            focusManager.clearFocus()
+                                            keyboardController?.hide()
+                                        } else {
+                                            onClick(it.name)
+                                        }
+                                    },
+                                actor = it
+                            )
+                        }
                     }
                 }
             }

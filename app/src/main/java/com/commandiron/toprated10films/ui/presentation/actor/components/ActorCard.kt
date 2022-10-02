@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
-import com.commandiron.toprated10films.ui.model.Actor
+import com.commandiron.toprated10films.domain.model.Actor
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.presentation.components.TopTenSticker
 import com.commandiron.toprated10films.ui.theme.spacing
