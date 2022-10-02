@@ -1,12 +1,15 @@
 package com.commandiron.toprated10films.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.commandiron.toprated10films.data.local.AppDao
-import com.commandiron.toprated10films.data.mapper.toActor
 import com.commandiron.toprated10films.data.mapper.toGenre
+import com.commandiron.toprated10films.data.paging.ActorPagingSource
 import com.commandiron.toprated10films.data.remote.MovieApi
 import com.commandiron.toprated10films.domain.model.Genre
 import com.commandiron.toprated10films.domain.repository.AppRepository
-import com.commandiron.toprated10films.ui.model.Actor
+import com.commandiron.toprated10films.domain.model.Actor
 import com.commandiron.toprated10films.util.Response
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -37,14 +40,10 @@ class AppRepositoryImpl(
         dao.insertGenre(*genres.toTypedArray())
     }
 
-    override suspend fun getActors(page: Int): Flow<Response<List<Actor>>> = flow {
-        emit(Response.Loading)
-        try {
-            val actors: List<Actor> = api.getActors(page).movieDbActors.map { it.toActor() }
-            emit(Response.Success(actors))
-        }catch (e: Exception) {
-            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
-            e.printStackTrace()
-        }
+    override suspend fun getActors(): Flow<PagingData<Actor>> {
+        return Pager(
+            config = PagingConfig(pageSize = 20),
+            pagingSourceFactory = { ActorPagingSource(api) }
+        ).flow
     }
 }

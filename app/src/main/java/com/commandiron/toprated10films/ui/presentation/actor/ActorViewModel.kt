@@ -2,9 +2,10 @@ package com.commandiron.toprated10films.ui.presentation.actor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.commandiron.toprated10films.domain.use_cases.UseCases
-import com.commandiron.toprated10films.ui.model.Actor.Companion.defaultActorList
-import com.commandiron.toprated10films.util.Response
+import com.commandiron.toprated10films.domain.model.Actor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,8 +17,8 @@ class ActorViewModel @Inject constructor(
     private val useCases: UseCases
 ): ViewModel() {
 
-    private val _actors = MutableStateFlow(defaultActorList)
-    val actors = _actors.asStateFlow()
+    private val _actors = MutableStateFlow<PagingData<Actor>>(PagingData.empty())
+    val actors = _actors
 
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
@@ -27,19 +28,8 @@ class ActorViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            useCases.getActors(2).collect { response ->
-                when(response) {
-                    is Response.Error -> {
-
-                    }
-                    Response.Loading -> {
-
-                    }
-                    is Response.Success -> {
-                        println(response.data)
-                        _actors.value = response.data
-                    }
-                }
+            useCases.getActors().cachedIn(viewModelScope).collect { response ->
+                actors.value = response
             }
         }
     }

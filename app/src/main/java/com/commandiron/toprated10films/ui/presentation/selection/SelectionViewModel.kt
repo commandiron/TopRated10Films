@@ -15,4 +15,5 @@ class SelectionViewModel @Inject constructor(
 
     private val _populars = MutableStateFlow(defaultPopularList)
     val populars = _populars.asStateFlow()
+
 }
