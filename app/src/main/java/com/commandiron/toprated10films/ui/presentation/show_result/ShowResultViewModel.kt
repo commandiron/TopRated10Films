@@ -50,7 +50,6 @@ class ShowResultViewModel @Inject constructor(
                                 _isLoading.value = false
                                 _topTenFilms.value = response.data
                             }
-
                         }
                     }
                 }
