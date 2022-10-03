@@ -26,7 +26,7 @@ fun PopularCard(
                 Category.ByActor -> {
                     ActorCard(
                         actor = Actor(
-                            id = 0,
+                            id = popular.id,
                             name = popular.title,
                             imageUrl = popular.imageUrl ?: ""
                         ),
@@ -36,6 +36,7 @@ fun PopularCard(
                 Category.ByGenre -> {
                     GenreCard(
                         genre = Genre(
+                            id = popular.id,
                             name = popular.title,
                             imageUrl = popular.imageUrl
                         ),

@@ -68,12 +68,15 @@ fun NavGraphBuilder.topTenNavGraph(
                 onYearClick = {
                     navController.navigate(NavigationItem.YearScreen.route)
                 },
-                onPopularItemClick = { categoryId, query, imageUrl ->
+                onPopularItemClick = { categoryId, query, imageUrl, id, year ->
                     navController.navigate(
                         NavigationItem.ShowResultScreen.addArgs(
                             categoryIdArg = categoryId,
                             queryArg = query,
-                            imageUrl = imageUrl
+                            imageUrl = imageUrl,
+                            actorId = id ?: 0,
+                            genreId = id ?: 0,
+                            year = year ?: 0
                         )
                     )
                 }
@@ -116,12 +119,13 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            GenreScreen { genreName, imageUrl ->
+            GenreScreen { genreName, imageUrl, genreId ->
                 navController.navigate(
                     NavigationItem.ShowResultScreen.addArgs(
                         categoryIdArg = Category.ByGenre.id,
                         queryArg = genreName,
-                        imageUrl = imageUrl
+                        imageUrl = imageUrl,
+                        genreId = genreId
                     )
                 )
             }
@@ -139,11 +143,12 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            YearScreen { yearName ->
+            YearScreen { year ->
                 navController.navigate(
                     NavigationItem.ShowResultScreen.addArgs(
                         categoryIdArg = Category.ByYear.id,
-                        queryArg = yearName
+                        queryArg = year,
+                        year = year.toInt()
                     )
                 )
             }
@@ -166,6 +171,14 @@ fun NavGraphBuilder.topTenNavGraph(
                     nullable = true
                 },
                 navArgument(NavigationItem.ShowResultScreen.args[3]) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(NavigationItem.ShowResultScreen.args[4]) {
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(NavigationItem.ShowResultScreen.args[5]) {
                     type = NavType.IntType
                     defaultValue = 0
                 }

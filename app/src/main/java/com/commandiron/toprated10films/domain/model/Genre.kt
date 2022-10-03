@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Genre(
     @PrimaryKey
-    val id: Int? = null,
+    val id: Int,
     val name: String,
     val imageUrl: String? = null
 )

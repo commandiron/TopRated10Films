@@ -38,7 +38,13 @@ fun SelectionScreen(
     onActorClick: () -> Unit,
     onGenreClick: () -> Unit,
     onYearClick: () -> Unit,
-    onPopularItemClick: (categoryId: Int, query: String, imageUrl: String?) -> Unit
+    onPopularItemClick: (
+        categoryId: Int,
+        query: String,
+        imageUrl: String?,
+        id: Int?,
+        year: Int?
+    ) -> Unit
 ) {
     val populars = viewModel.populars.collectAsState().value
     LazyColumn(
@@ -131,11 +137,44 @@ fun SelectionScreen(
                                 .heightIn(max = 86.dp)
                                 .aspectRatio(1f)
                                 .clickable {
-                                    onPopularItemClick(
-                                        popular.category.id,
-                                        popular.title,
-                                        popular.imageUrl
-                                    )
+                                    when(popular.category) {
+                                        Category.AllTime -> {
+                                            onPopularItemClick(
+                                                popular.category.id,
+                                                popular.title,
+                                                popular.imageUrl,
+                                                null,
+                                                null
+                                            )
+                                        }
+                                        Category.ByActor -> {
+                                            onPopularItemClick(
+                                                popular.category.id,
+                                                popular.title,
+                                                popular.imageUrl,
+                                                popular.id,
+                                                null
+                                            )
+                                        }
+                                        Category.ByGenre -> {
+                                            onPopularItemClick(
+                                                popular.category.id,
+                                                popular.title,
+                                                popular.imageUrl,
+                                                popular.id,
+                                                null
+                                            )
+                                        }
+                                        Category.ByYear -> {
+                                            onPopularItemClick(
+                                                popular.category.id,
+                                                popular.title,
+                                                popular.imageUrl,
+                                                null,
+                                                popular.title.toInt()
+                                            )
+                                        }
+                                    }
                                 },
                             popular = popular
                         )

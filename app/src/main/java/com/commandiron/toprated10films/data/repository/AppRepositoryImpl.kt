@@ -70,4 +70,32 @@ class AppRepositoryImpl(
             e.printStackTrace()
         }
     }
+
+    override suspend fun getMoviesByGenre(
+        voteCountGte: Int,
+        genreId: Int
+    ): Flow<Response<List<Film>>> = flow {
+        emit(Response.Loading)
+        try {
+            val films = api.getMoviesByGenre(voteCountGte = voteCountGte, genreId = genreId).results.map { it.toFilm() }
+            emit(Response.Success(films))
+        } catch (e: Exception) {
+            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            e.printStackTrace()
+        }
+    }
+
+    override suspend fun getMoviesByYear(
+        voteCountGte: Int,
+        year: Int,
+    ): Flow<Response<List<Film>>> = flow {
+        emit(Response.Loading)
+        try {
+            val films = api.getMoviesByYear(voteCountGte = voteCountGte, year = year).results.map { it.toFilm() }
+            emit(Response.Success(films))
+        } catch (e: Exception) {
+            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            e.printStackTrace()
+        }
+    }
 }

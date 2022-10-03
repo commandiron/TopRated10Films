@@ -7,5 +7,7 @@ class UseCases(
     val getActors: GetActors,
     val getPopulars: GetPopulars,
     val getTopTenFilmsByActor: GetTopTenFilmsByActor,
-    val getTopTenFilmsByAllTime: GetTopTenFilmsByAllTime
+    val getTopTenFilmsByAllTime: GetTopTenFilmsByAllTime,
+    val getTopTenFilmsByGenre: GetTopTenFilmsByGenre,
+    val getTopTenFilmsByYear: GetTopTenFilmsByYear
 )

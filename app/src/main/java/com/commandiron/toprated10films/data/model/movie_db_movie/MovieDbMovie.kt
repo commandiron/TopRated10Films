@@ -1,6 +1,6 @@
-package com.commandiron.toprated10films.data.model.movie_db_top_rated
+package com.commandiron.toprated10films.data.model.movie_db_movie
 
-data class MovieDbFilm(
+data class MovieDbMovie(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,

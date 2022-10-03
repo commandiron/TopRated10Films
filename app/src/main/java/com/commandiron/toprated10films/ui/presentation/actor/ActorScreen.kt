@@ -117,6 +117,7 @@ fun ActorScreen(
                                             focusManager.clearFocus()
                                             keyboardController?.hide()
                                         } else {
+                                            println(it.id)
                                             onClick(it.name, it.imageUrl, it.id)
                                         }
                                     },

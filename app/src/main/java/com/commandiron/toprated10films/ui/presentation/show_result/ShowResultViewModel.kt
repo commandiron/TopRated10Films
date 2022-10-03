@@ -25,6 +25,10 @@ class ShowResultViewModel @Inject constructor(
 
     private val actorId = savedStateHandle.getStateFlow("actorId", 0)
 
+    private val genreId = savedStateHandle.getStateFlow("genreId", 0)
+
+    private val year = savedStateHandle.getStateFlow("year", 0)
+
     private val _topTenFilms = MutableStateFlow<List<Film>>(emptyList())
     val topTenFilms = _topTenFilms.asStateFlow()
 
@@ -70,8 +74,42 @@ class ShowResultViewModel @Inject constructor(
                     }
                 }
             }
-            Category.ByGenre -> TODO()
-            Category.ByYear -> TODO()
+            Category.ByGenre -> {
+                viewModelScope.launch {
+                    useCases.getTopTenFilmsByGenre(genreId.value).collect { response ->
+                        when(response) {
+                            is Response.Error -> {
+                                _isLoading.value = false
+                            }
+                            Response.Loading -> {
+                                _isLoading.value = true
+                            }
+                            is Response.Success -> {
+                                _isLoading.value = false
+                                _topTenFilms.value = response.data
+                            }
+                        }
+                    }
+                }
+            }
+            Category.ByYear -> {
+                viewModelScope.launch {
+                    useCases.getTopTenFilmsByYear(year.value).collect { response ->
+                        when(response) {
+                            is Response.Error -> {
+                                _isLoading.value = false
+                            }
+                            Response.Loading -> {
+                                _isLoading.value = true
+                            }
+                            is Response.Success -> {
+                                _isLoading.value = false
+                                _topTenFilms.value = response.data
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
