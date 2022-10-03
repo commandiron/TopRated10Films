@@ -34,7 +34,24 @@ class ShowResultViewModel @Inject constructor(
     init {
         val categoryId: Int? = savedStateHandle["categoryId"]
         when(Category.fromId(categoryId)) {
-            Category.AllTime -> TODO()
+            Category.AllTime -> {
+                viewModelScope.launch {
+                    useCases.getTopTenFilmsByAllTime().collect { response ->
+                        when(response) {
+                            is Response.Error -> {
+                                _isLoading.value = false
+                            }
+                            Response.Loading -> {
+                                _isLoading.value = true
+                            }
+                            is Response.Success -> {
+                                _isLoading.value = false
+                                _topTenFilms.value = response.data
+                            }
+                        }
+                    }
+                }
+            }
             Category.ByActor -> {
                 viewModelScope.launch {
                     useCases.getTopTenFilmsByActor(actorId.value).collect { response ->

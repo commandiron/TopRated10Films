@@ -12,4 +12,5 @@ interface AppRepository {
     suspend fun saveGenres(genres: List<Genre>)
     suspend fun getActors(query: String): Flow<PagingData<Actor>>
     suspend fun getMoviesByActor(actorId: Int): Flow<Response<List<Film>>>
+    suspend fun getTopRatedMovies(): Flow<Response<List<Film>>>
 }

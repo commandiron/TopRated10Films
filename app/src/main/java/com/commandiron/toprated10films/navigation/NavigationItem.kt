@@ -45,10 +45,10 @@ sealed class NavigationItem(
     }
 
     fun addArgs(
-        categoryIdArg: Int? = null,
+        categoryIdArg: Int = 0,
         queryArg: String? = null,
         imageUrl: String? = null,
-        actorId: Int? = null
+        actorId: Int = 0
     ): String {
         return buildString {
             append(route)

@@ -59,4 +59,15 @@ class AppRepositoryImpl(
             e.printStackTrace()
         }
     }
+
+    override suspend fun getTopRatedMovies(): Flow<Response<List<Film>>> = flow {
+        emit(Response.Loading)
+        try {
+            val films = api.getTopRatedMovies().results.map { it.toFilm() }
+            emit(Response.Success(films))
+        } catch (e: Exception) {
+            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            e.printStackTrace()
+        }
+    }
 }
