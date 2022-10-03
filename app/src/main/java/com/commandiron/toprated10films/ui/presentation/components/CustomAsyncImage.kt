@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.commandiron.toprated10films.R
@@ -18,10 +19,14 @@ fun CustomAsyncImage(
     modifier: Modifier = Modifier,
     imageUrl: String?,
     alpha: Float = 1.0f,
+    noImageTitle: String = "Image not available"
 ) {
     if(imageUrl.isNullOrEmpty()) {
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text(text = "No Photo")
+            Text(
+                text = noImageTitle,
+                textAlign = TextAlign.Center
+            )
         }
 
     }else {

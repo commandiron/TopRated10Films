@@ -27,7 +27,7 @@ import com.commandiron.toprated10films.ui.theme.spacing
 @Composable
 fun YearScreen(
     viewModel: YearViewModel = hiltViewModel(),
-    onClick: (year: String) -> Unit
+    onClick: (yearName: String) -> Unit
 ) {
     val searchText = viewModel.searchText.collectAsState().value
     val years = viewModel.years.collectAsState().value

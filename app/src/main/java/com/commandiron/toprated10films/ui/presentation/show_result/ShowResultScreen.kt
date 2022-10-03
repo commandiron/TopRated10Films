@@ -1,14 +1,21 @@
 package com.commandiron.toprated10films.ui.presentation.show_result
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
@@ -24,6 +31,8 @@ import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
+import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalPagerApi::class)
@@ -39,7 +48,8 @@ fun ShowResultScreen(
         modifier = Modifier
             .fillMaxSize(),
         imageUrl = imageUrl,
-        alpha = 0.2f
+        alpha = 0.2f,
+        noImageTitle = ""
     )
     Column(
         modifier = Modifier
@@ -110,36 +120,65 @@ fun ShowResultScreen(
                 Text(text = "No Data")
             }
         }else {
+            val pagerState = rememberPagerState()
+            val scope = rememberCoroutineScope()
             HorizontalPager(
+                state = pagerState,
                 count = topTenFilms.size,
                 contentPadding = PaddingValues(horizontal = 32.dp),
                 key = {
                     topTenFilms[it].id
                 }
             ) { page ->
-                FilmCard(
-                    modifier = Modifier
-                        .graphicsLayer {
-                            val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
-                            lerp(
-                                start = 0.85f,
-                                stop = 1f,
-                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                            ).also { scale ->
-                                scaleX = scale
-                                scaleY = scale
-                            }
+                Column() {
+                    FilmCard(
+                        modifier = Modifier
+                            .graphicsLayer {
+                                val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
+                                lerp(
+                                    start = 0.85f,
+                                    stop = 1f,
+                                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                                ).also { scale ->
+                                    scaleX = scale
+                                    scaleY = scale
+                                }
 
-                            alpha = lerp(
-                                start = 0.5f,
-                                stop = 1f,
-                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                            )
-                        }
-                        .aspectRatio(0.75f),
-                    film = topTenFilms[page],
-                    page = page
-                )
+                                alpha = lerp(
+                                    start = 0.5f,
+                                    stop = 1f,
+                                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                                )
+                            }
+                            .aspectRatio(0.67f),
+                        film = topTenFilms[page],
+                        page = page
+                    )
+                    Spacer(modifier = Modifier.height(MaterialTheme.spacing.spaceMedium))
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable(
+                                enabled = page + 1 == topTenFilms.size,
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) {
+                                scope.launch {
+                                    pagerState.animateScrollToPage(
+                                        page = 0
+                                    )
+                                }
+                            }
+                            .alpha(if(page + 1 == topTenFilms.size) 1f else 0f),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = null
+                        )
+                        Text(text = "Back to Start")
+                    }
+                }
             }
         }
     }

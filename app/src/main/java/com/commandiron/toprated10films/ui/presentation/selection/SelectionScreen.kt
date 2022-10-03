@@ -40,10 +40,9 @@ fun SelectionScreen(
     onYearClick: () -> Unit,
     onPopularItemClick: (
         categoryId: Int,
+        itemId: Int,
         title: String,
-        imageUrl: String?,
-        id: Int?,
-        year: Int?
+        imageUrl: String?
     ) -> Unit
 ) {
     val populars = viewModel.populars.collectAsState().value
@@ -137,44 +136,12 @@ fun SelectionScreen(
                                 .heightIn(max = 86.dp)
                                 .aspectRatio(1f)
                                 .clickable {
-                                    when(popular.category) {
-                                        Category.AllTime -> {
-                                            onPopularItemClick(
-                                                popular.category.id,
-                                                popular.title,
-                                                popular.imageUrl,
-                                                null,
-                                                null
-                                            )
-                                        }
-                                        Category.ByActor -> {
-                                            onPopularItemClick(
-                                                popular.category.id,
-                                                popular.title,
-                                                popular.imageUrl,
-                                                popular.id,
-                                                null
-                                            )
-                                        }
-                                        Category.ByGenre -> {
-                                            onPopularItemClick(
-                                                popular.category.id,
-                                                popular.title,
-                                                popular.imageUrl,
-                                                popular.id,
-                                                null
-                                            )
-                                        }
-                                        Category.ByYear -> {
-                                            onPopularItemClick(
-                                                popular.category.id,
-                                                popular.title,
-                                                popular.imageUrl,
-                                                null,
-                                                popular.title.toInt()
-                                            )
-                                        }
-                                    }
+                                    onPopularItemClick(
+                                        popular.category.id,
+                                        popular.id,
+                                        popular.title,
+                                        popular.imageUrl
+                                    )
                                 },
                             popular = popular
                         )

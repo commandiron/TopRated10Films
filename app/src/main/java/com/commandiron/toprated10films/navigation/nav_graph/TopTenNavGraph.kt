@@ -68,15 +68,13 @@ fun NavGraphBuilder.topTenNavGraph(
                 onYearClick = {
                     navController.navigate(NavigationItem.YearScreen.route)
                 },
-                onPopularItemClick = { categoryId, title, imageUrl, id, year ->
+                onPopularItemClick = { categoryId, itemId, title, imageUrl ->
                     navController.navigate(
                         NavigationItem.ShowResultScreen.addArgs(
                             categoryId = categoryId,
+                            itemId = itemId,
                             title = title,
-                            imageUrl = imageUrl,
-                            actorId = id ?: 0,
-                            genreId = id ?: 0,
-                            year = year ?: 0
+                            imageUrl = imageUrl
                         )
                     )
                 }
@@ -95,13 +93,13 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            ActorScreen { actorName, imageUrl, actorId ->
+            ActorScreen { actorId, actorName, imageUrl ->
                 navController.navigate(
                     NavigationItem.ShowResultScreen.addArgs(
                         categoryId = Category.ByActor.id,
+                        itemId = actorId,
                         title = actorName,
-                        imageUrl = imageUrl,
-                        actorId = actorId
+                        imageUrl = imageUrl
                     )
                 )
             }
@@ -119,13 +117,13 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            GenreScreen { genreName, imageUrl, genreId ->
+            GenreScreen { genreId, genreName, imageUrl ->
                 navController.navigate(
                     NavigationItem.ShowResultScreen.addArgs(
                         categoryId = Category.ByGenre.id,
+                        itemId = genreId,
                         title = genreName,
-                        imageUrl = imageUrl,
-                        genreId = genreId
+                        imageUrl = imageUrl
                     )
                 )
             }
@@ -143,12 +141,11 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            YearScreen { year ->
+            YearScreen { yearName ->
                 navController.navigate(
                     NavigationItem.ShowResultScreen.addArgs(
                         categoryId = Category.ByYear.id,
-                        title = year,
-                        year = year.toInt()
+                        title = yearName
                     )
                 )
             }
@@ -161,9 +158,8 @@ fun NavGraphBuilder.topTenNavGraph(
                     defaultValue = 0
                 },
                 navArgument(NavigationItem.ShowResultScreen.args[1]) {
-                    type = NavType.StringType
-                    defaultValue = ""
-                    nullable = true
+                    type = NavType.IntType
+                    defaultValue = 0
                 },
                 navArgument(NavigationItem.ShowResultScreen.args[2]) {
                     type = NavType.StringType
@@ -171,16 +167,9 @@ fun NavGraphBuilder.topTenNavGraph(
                     nullable = true
                 },
                 navArgument(NavigationItem.ShowResultScreen.args[3]) {
-                    type = NavType.IntType
-                    defaultValue = 0
-                },
-                navArgument(NavigationItem.ShowResultScreen.args[4]) {
-                    type = NavType.IntType
-                    defaultValue = 0
-                },
-                navArgument(NavigationItem.ShowResultScreen.args[5]) {
-                    type = NavType.IntType
-                    defaultValue = 0
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = true
                 }
             ),
             enterTransition = {

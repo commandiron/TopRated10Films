@@ -19,15 +19,10 @@ class ShowResultViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ): ViewModel() {
 
-    val imageUrl = savedStateHandle.getStateFlow("imageUrl", "")
-
+    private val categoryId = savedStateHandle.getStateFlow("categoryId", 0)
+    private val itemId = savedStateHandle.getStateFlow("itemId", 0)
     val title = savedStateHandle.getStateFlow("title", "")
-
-    private val actorId = savedStateHandle.getStateFlow("actorId", 0)
-
-    private val genreId = savedStateHandle.getStateFlow("genreId", 0)
-
-    private val year = savedStateHandle.getStateFlow("year", 0)
+    val imageUrl = savedStateHandle.getStateFlow("imageUrl", "")
 
     private val _topTenFilms = MutableStateFlow<List<Film>>(emptyList())
     val topTenFilms = _topTenFilms.asStateFlow()
@@ -36,8 +31,7 @@ class ShowResultViewModel @Inject constructor(
     val isLoading = _isLoading.asStateFlow()
 
     init {
-        val categoryId: Int? = savedStateHandle["categoryId"]
-        when(Category.fromId(categoryId)) {
+        when(Category.fromId(categoryId.value)) {
             Category.AllTime -> {
                 viewModelScope.launch {
                     useCases.getTopTenFilmsByAllTime().collect { response ->
@@ -58,7 +52,7 @@ class ShowResultViewModel @Inject constructor(
             }
             Category.ByActor -> {
                 viewModelScope.launch {
-                    useCases.getTopTenFilmsByActor(actorId.value).collect { response ->
+                    useCases.getTopTenFilmsByActor(itemId.value).collect { response ->
                         when(response) {
                             is Response.Error -> {
                                 _isLoading.value = false
@@ -76,7 +70,7 @@ class ShowResultViewModel @Inject constructor(
             }
             Category.ByGenre -> {
                 viewModelScope.launch {
-                    useCases.getTopTenFilmsByGenre(genreId.value).collect { response ->
+                    useCases.getTopTenFilmsByGenre(itemId.value).collect { response ->
                         when(response) {
                             is Response.Error -> {
                                 _isLoading.value = false
@@ -94,7 +88,7 @@ class ShowResultViewModel @Inject constructor(
             }
             Category.ByYear -> {
                 viewModelScope.launch {
-                    useCases.getTopTenFilmsByYear(year.value).collect { response ->
+                    useCases.getTopTenFilmsByYear(title.value.toInt()).collect { response ->
                         when(response) {
                             is Response.Error -> {
                                 _isLoading.value = false

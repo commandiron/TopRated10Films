@@ -1,9 +1,7 @@
 package com.commandiron.toprated10films.ui.presentation.show_result.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.*
@@ -35,9 +33,8 @@ fun FilmCard(
         ) {
             Box() {
                 CustomAsyncImage(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    imageUrl = film.imageUrl
+                    imageUrl = film.imageUrl,
+                    noImageTitle = "Poster not available"
                 )
                 Box(
                     modifier = Modifier

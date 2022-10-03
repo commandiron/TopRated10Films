@@ -22,7 +22,7 @@ class GetTopTenFilmsByYear(
                             emit(Response.Success(response.data.take(10)))
                             flagForSufficientListSize = true
                         }else {
-                            voteCountGte -= 2000
+                            voteCountGte -= 500
                         }
                     }
                 }
