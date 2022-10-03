@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.commandiron.toprated10films.domain.use_cases.UseCases
 import com.commandiron.toprated10films.ui.model.Category
-import com.commandiron.toprated10films.ui.model.Film
+import com.commandiron.toprated10films.domain.model.Film
 import com.commandiron.toprated10films.util.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +21,7 @@ class ShowResultViewModel @Inject constructor(
 
     val imageUrl = savedStateHandle.getStateFlow("imageUrl", "")
 
-    val title = savedStateHandle.getStateFlow("query", "")
+    val title = savedStateHandle.getStateFlow("title", "")
 
     private val actorId = savedStateHandle.getStateFlow("actorId", 0)
 

@@ -39,7 +39,7 @@ class GetPopulars {
             ),
             Popular(
                 id = 0,
-                title = "1970",
+                title = "1976",
                 color = Random.nextLong(0xFFFFFFFF),
                 category = Category.ByYear
             ),

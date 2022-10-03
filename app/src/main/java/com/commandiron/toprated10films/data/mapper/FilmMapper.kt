@@ -2,7 +2,7 @@ package com.commandiron.toprated10films.data.mapper
 
 import com.commandiron.toprated10films.data.model.movie_db_movie_credits.MovieDbCast
 import com.commandiron.toprated10films.data.model.movie_db_movie.MovieDbMovie
-import com.commandiron.toprated10films.ui.model.Film
+import com.commandiron.toprated10films.domain.model.Film
 
 fun MovieDbCast.toFilm(): Film {
     return Film(

@@ -53,8 +53,8 @@ fun NavGraphBuilder.topTenNavGraph(
                 onAllTimeClick = {
                     navController.navigate(
                         NavigationItem.ShowResultScreen.addArgs(
-                            categoryIdArg = Category.AllTime.id,
-                            queryArg = Category.AllTime.title,
+                            categoryId = Category.AllTime.id,
+                            title = Category.AllTime.title,
                             imageUrl = Category.AllTime.imageUrl
                         )
                     )
@@ -68,11 +68,11 @@ fun NavGraphBuilder.topTenNavGraph(
                 onYearClick = {
                     navController.navigate(NavigationItem.YearScreen.route)
                 },
-                onPopularItemClick = { categoryId, query, imageUrl, id, year ->
+                onPopularItemClick = { categoryId, title, imageUrl, id, year ->
                     navController.navigate(
                         NavigationItem.ShowResultScreen.addArgs(
-                            categoryIdArg = categoryId,
-                            queryArg = query,
+                            categoryId = categoryId,
+                            title = title,
                             imageUrl = imageUrl,
                             actorId = id ?: 0,
                             genreId = id ?: 0,
@@ -98,8 +98,8 @@ fun NavGraphBuilder.topTenNavGraph(
             ActorScreen { actorName, imageUrl, actorId ->
                 navController.navigate(
                     NavigationItem.ShowResultScreen.addArgs(
-                        categoryIdArg = Category.ByActor.id,
-                        queryArg = actorName,
+                        categoryId = Category.ByActor.id,
+                        title = actorName,
                         imageUrl = imageUrl,
                         actorId = actorId
                     )
@@ -122,8 +122,8 @@ fun NavGraphBuilder.topTenNavGraph(
             GenreScreen { genreName, imageUrl, genreId ->
                 navController.navigate(
                     NavigationItem.ShowResultScreen.addArgs(
-                        categoryIdArg = Category.ByGenre.id,
-                        queryArg = genreName,
+                        categoryId = Category.ByGenre.id,
+                        title = genreName,
                         imageUrl = imageUrl,
                         genreId = genreId
                     )
@@ -146,8 +146,8 @@ fun NavGraphBuilder.topTenNavGraph(
             YearScreen { year ->
                 navController.navigate(
                     NavigationItem.ShowResultScreen.addArgs(
-                        categoryIdArg = Category.ByYear.id,
-                        queryArg = year,
+                        categoryId = Category.ByYear.id,
+                        title = year,
                         year = year.toInt()
                     )
                 )

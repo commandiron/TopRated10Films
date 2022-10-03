@@ -1,4 +1,4 @@
-package com.commandiron.toprated10films.ui.model
+package com.commandiron.toprated10films.domain.model
 
 data class Film(
     val id: Int,

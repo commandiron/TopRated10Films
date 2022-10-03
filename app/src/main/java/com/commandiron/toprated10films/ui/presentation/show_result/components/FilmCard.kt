@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import com.commandiron.toprated10films.ui.model.Film
+import com.commandiron.toprated10films.domain.model.Film
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.theme.NoRippleTheme
 import com.commandiron.toprated10films.ui.theme.spacing

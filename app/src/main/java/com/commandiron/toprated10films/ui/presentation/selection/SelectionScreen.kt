@@ -40,7 +40,7 @@ fun SelectionScreen(
     onYearClick: () -> Unit,
     onPopularItemClick: (
         categoryId: Int,
-        query: String,
+        title: String,
         imageUrl: String?,
         id: Int?,
         year: Int?
