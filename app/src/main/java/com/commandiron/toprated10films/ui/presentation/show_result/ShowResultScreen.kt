@@ -42,7 +42,7 @@ fun ShowResultScreen(
 ) {
     val imageUrl: String = viewModel.imageUrl.collectAsState().value
     val title = viewModel.title.collectAsState().value
-    val topTenFilms = viewModel.topTenFilms.collectAsState().value
+    val topTen = viewModel.topTen.collectAsState().value
     val isLoading = viewModel.isLoading.collectAsState().value
     CustomAsyncImage(
         modifier = Modifier
@@ -112,7 +112,7 @@ fun ShowResultScreen(
             ) {
                 CircularProgressIndicator()
             }
-        }else if(topTenFilms.isEmpty()) {
+        }else if(topTen.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -122,12 +122,13 @@ fun ShowResultScreen(
         }else {
             val pagerState = rememberPagerState()
             val scope = rememberCoroutineScope()
+
             HorizontalPager(
                 state = pagerState,
-                count = topTenFilms.size,
+                count = topTen.size,
                 contentPadding = PaddingValues(horizontal = 32.dp),
                 key = {
-                    topTenFilms[it].id
+                    topTen[it].id
                 }
             ) { page ->
                 Column() {
@@ -151,15 +152,22 @@ fun ShowResultScreen(
                                 )
                             }
                             .aspectRatio(0.67f),
-                        film = topTenFilms[page],
-                        page = page
+                        film = topTen[page],
+                        page = page,
+                        onWatchListClick = {
+                            if(topTen[page].isInWatchList) {
+                                viewModel.removeFromWatchList(it)
+                            }else {
+                                viewModel.addToWatchList(it)
+                            }
+                        }
                     )
                     Spacer(modifier = Modifier.height(MaterialTheme.spacing.spaceMedium))
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable(
-                                enabled = page + 1 == topTenFilms.size,
+                                enabled = page + 1 == topTen.size,
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
                             ) {
@@ -169,7 +177,7 @@ fun ShowResultScreen(
                                     )
                                 }
                             }
-                            .alpha(if(page + 1 == topTenFilms.size) 1f else 0f),
+                            .alpha(if(page + 1 == topTen.size) 1f else 0f),
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Icon(
@@ -180,6 +188,7 @@ fun ShowResultScreen(
                     }
                 }
             }
+
         }
     }
 }

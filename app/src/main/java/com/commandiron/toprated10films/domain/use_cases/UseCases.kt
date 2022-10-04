@@ -9,5 +9,8 @@ class UseCases(
     val getTopTenFilmsByActor: GetTopTenFilmsByActor,
     val getTopTenFilmsByAllTime: GetTopTenFilmsByAllTime,
     val getTopTenFilmsByGenre: GetTopTenFilmsByGenre,
-    val getTopTenFilmsByYear: GetTopTenFilmsByYear
+    val getTopTenFilmsByYear: GetTopTenFilmsByYear,
+    val addToWatchList: AddToWatchList,
+    val removeFromWatchList: RemoveFromWatchList,
+    val getAllWatchListFilms: GetAllWatchListFilms
 )
