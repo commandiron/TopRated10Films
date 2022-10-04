@@ -5,7 +5,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +21,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.commandiron.toprated10films.ui.presentation.actor.components.ActorCard
 import com.commandiron.toprated10films.ui.presentation.actor.components.items
+import com.commandiron.toprated10films.ui.presentation.components.AppProgressIndicator
 import com.commandiron.toprated10films.ui.presentation.components.SearchTextField
 import com.commandiron.toprated10films.ui.theme.spacing
 
@@ -74,7 +74,7 @@ fun ActorScreen(
                     .padding(bottom = MaterialTheme.spacing.bottomNavHeight),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator()
+                AppProgressIndicator()
             }
         }else {
             Column() {

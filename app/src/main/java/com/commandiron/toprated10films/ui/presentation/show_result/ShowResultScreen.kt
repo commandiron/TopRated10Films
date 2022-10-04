@@ -5,7 +5,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.R
+import com.commandiron.toprated10films.ui.presentation.components.AppProgressIndicator
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.presentation.components.FilmCard
 import com.commandiron.toprated10films.ui.theme.spacing
@@ -110,7 +110,7 @@ fun ShowResultScreen(
                     .padding(bottom = MaterialTheme.spacing.bottomNavHeight),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator()
+                AppProgressIndicator()
             }
         }else if(topTen.isEmpty()) {
             Box(

@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -18,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.commandiron.toprated10films.ui.presentation.components.AppProgressIndicator
 import com.commandiron.toprated10films.ui.presentation.components.SearchTextField
 import com.commandiron.toprated10films.ui.presentation.genre.components.GenreCard
 import com.commandiron.toprated10films.ui.theme.spacing
@@ -71,7 +71,7 @@ fun GenreScreen(
                     .padding(bottom = MaterialTheme.spacing.bottomNavHeight),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator()
+                AppProgressIndicator()
             }
         }else {
             LazyVerticalGrid(
