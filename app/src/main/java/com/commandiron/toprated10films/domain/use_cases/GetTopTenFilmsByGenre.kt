@@ -11,7 +11,7 @@ class GetTopTenFilmsByGenre(
 ) {
     suspend operator fun invoke(genreId: Int): Flow<Response<List<Film>>> = flow {
         var flagForSufficientListSize = false
-        var voteCountGte = 20000
+        var voteCountGte = 10000
         while (!flagForSufficientListSize) {
             repository.getMoviesByGenre(voteCountGte = voteCountGte, genreId = genreId).collect { response ->
                 when(response) {
@@ -22,7 +22,7 @@ class GetTopTenFilmsByGenre(
                             emit(Response.Success(response.data.take(10)))
                             flagForSufficientListSize = true
                         }else {
-                            voteCountGte -= 2000
+                            voteCountGte -= 500
                         }
                     }
                 }

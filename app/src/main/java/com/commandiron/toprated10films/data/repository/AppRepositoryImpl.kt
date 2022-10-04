@@ -12,10 +12,11 @@ import com.commandiron.toprated10films.domain.model.Genre
 import com.commandiron.toprated10films.domain.repository.AppRepository
 import com.commandiron.toprated10films.domain.model.Actor
 import com.commandiron.toprated10films.domain.model.Film
-import com.commandiron.toprated10films.domain.model.WatchListFilm
+import com.commandiron.toprated10films.domain.model.WatchListId
 import com.commandiron.toprated10films.util.Response
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
 
 
 class AppRepositoryImpl(
@@ -100,15 +101,32 @@ class AppRepositoryImpl(
         }
     }
 
-    override suspend fun insertWatchListFilm(watchListFilm: WatchListFilm) {
-        dao.insertWatchListFilm(watchListFilm)
+    override suspend fun getMoviesByIds(ids: List<Int>): Flow<Response<List<Film>>> = flow {
+        emit(Response.Loading)
+        val films: MutableList<Film> = mutableListOf()
+        runBlocking {
+            ids.forEach { id ->
+                try {
+                    val film = api.getMoviesById(id).toFilm()
+                    films.add(film)
+                } catch (e: Exception) {
+                    emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+                    e.printStackTrace()
+                }
+            }
+        }
+        emit(Response.Success(films))
     }
 
-    override suspend fun deleteWatchListFilm(watchListFilm: WatchListFilm) {
-        dao.deleteWatchListFilm(watchListFilm)
+    override suspend fun insertWatchListFilm(watchListId: WatchListId) {
+        dao.insertWatchListFilm(watchListId)
     }
 
-    override suspend fun getAllWatchListFilms(): Flow<List<WatchListFilm>> = flow {
+    override suspend fun deleteWatchListFilm(watchListId: WatchListId) {
+        dao.deleteWatchListFilm(watchListId)
+    }
+
+    override suspend fun getAllWatchListIds(): Flow<List<WatchListId>> = flow {
         emit(dao.getAllWatchListFilms())
     }
 }

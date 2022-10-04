@@ -11,7 +11,7 @@ class GetTopTenFilmsByYear(
 ) {
     suspend operator fun invoke(year: Int): Flow<Response<List<Film>>> = flow {
         var flagForSufficientListSize = false
-        var voteCountGte = 20000
+        var voteCountGte = 10000
         while (!flagForSufficientListSize) {
             repository.getMoviesByYear(voteCountGte = voteCountGte, year = year).collect { response ->
                 when(response) {
