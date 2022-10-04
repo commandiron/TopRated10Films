@@ -26,7 +26,10 @@ object DomainModule {
             getTopTenFilmsByActor = GetTopTenFilmsByActor(repository),
             getTopTenFilmsByAllTime = GetTopTenFilmsByAllTime(repository),
             getTopTenFilmsByGenre = GetTopTenFilmsByGenre(repository),
-            getTopTenFilmsByYear = GetTopTenFilmsByYear(repository)
+            getTopTenFilmsByYear = GetTopTenFilmsByYear(repository),
+            addToWatchList = AddToWatchList(repository),
+            removeFromWatchList = RemoveFromWatchList(repository),
+            getAllWatchListFilms = GetAllWatchListFilms(repository)
         )
     }
 }

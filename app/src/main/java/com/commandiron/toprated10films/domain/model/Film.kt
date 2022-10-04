@@ -5,5 +5,6 @@ data class Film(
     val title: String,
     val imageUrl: String?,
     val vote_average: Double,
-    val vote_count: Int
+    val vote_count: Int,
+    var isInWatchList: Boolean = false
 )

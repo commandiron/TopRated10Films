@@ -12,6 +12,7 @@ import com.commandiron.toprated10films.domain.model.Genre
 import com.commandiron.toprated10films.domain.repository.AppRepository
 import com.commandiron.toprated10films.domain.model.Actor
 import com.commandiron.toprated10films.domain.model.Film
+import com.commandiron.toprated10films.domain.model.WatchListFilm
 import com.commandiron.toprated10films.util.Response
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -97,5 +98,17 @@ class AppRepositoryImpl(
             emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
             e.printStackTrace()
         }
+    }
+
+    override suspend fun insertWatchListFilm(watchListFilm: WatchListFilm) {
+        dao.insertWatchListFilm(watchListFilm)
+    }
+
+    override suspend fun deleteWatchListFilm(watchListFilm: WatchListFilm) {
+        dao.deleteWatchListFilm(watchListFilm)
+    }
+
+    override suspend fun getAllWatchListFilms(): Flow<List<WatchListFilm>> = flow {
+        emit(dao.getAllWatchListFilms())
     }
 }

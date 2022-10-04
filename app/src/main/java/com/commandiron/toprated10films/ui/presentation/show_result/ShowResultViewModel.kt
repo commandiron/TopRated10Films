@@ -3,13 +3,13 @@ package com.commandiron.toprated10films.ui.presentation.show_result
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.commandiron.toprated10films.domain.model.Film
 import com.commandiron.toprated10films.domain.use_cases.UseCases
 import com.commandiron.toprated10films.ui.model.Category
-import com.commandiron.toprated10films.domain.model.Film
+import com.commandiron.toprated10films.domain.model.WatchListFilm
 import com.commandiron.toprated10films.util.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,8 +24,10 @@ class ShowResultViewModel @Inject constructor(
     val title = savedStateHandle.getStateFlow("title", "")
     val imageUrl = savedStateHandle.getStateFlow("imageUrl", "")
 
-    private val _topTenFilms = MutableStateFlow<List<Film>>(emptyList())
-    val topTenFilms = _topTenFilms.asStateFlow()
+    private val _topTen = MutableStateFlow<List<Film>>(emptyList())
+    val topTen = _topTen.asStateFlow()
+
+    private val _watchListFilms = MutableStateFlow<List<WatchListFilm>>(emptyList())
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
@@ -44,7 +46,10 @@ class ShowResultViewModel @Inject constructor(
                             }
                             is Response.Success -> {
                                 _isLoading.value = false
-                                _topTenFilms.value = response.data
+                                _topTen.update {
+                                    it + response.data
+                                }
+                                updateWatchListFilms()
                             }
                         }
                     }
@@ -62,7 +67,10 @@ class ShowResultViewModel @Inject constructor(
                             }
                             is Response.Success -> {
                                 _isLoading.value = false
-                                _topTenFilms.value = response.data
+                                _topTen.update {
+                                    it + response.data
+                                }
+                                updateWatchListFilms()
                             }
                         }
                     }
@@ -80,7 +88,10 @@ class ShowResultViewModel @Inject constructor(
                             }
                             is Response.Success -> {
                                 _isLoading.value = false
-                                _topTenFilms.value = response.data
+                                _topTen.update {
+                                    it + response.data
+                                }
+                                updateWatchListFilms()
                             }
                         }
                     }
@@ -98,9 +109,73 @@ class ShowResultViewModel @Inject constructor(
                             }
                             is Response.Success -> {
                                 _isLoading.value = false
-                                _topTenFilms.value = response.data
+                                _topTen.update {
+                                    it + response.data
+                                }
+                                updateWatchListFilms()
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    fun addToWatchList(id: Int) {
+        viewModelScope.launch {
+            useCases.addToWatchList(WatchListFilm(id))
+        }
+        updateWatchListFilms()
+    }
+
+    fun removeFromWatchList(id: Int) {
+        viewModelScope.launch {
+            useCases.removeFromWatchList(WatchListFilm(id))
+        }
+        updateWatchListFilms()
+    }
+
+    private fun updateWatchListFilms() {
+        viewModelScope.launch {
+            useCases.getAllWatchListFilms().collect { watchListFilms ->
+                _watchListFilms.update {
+                    watchListFilms
+                }
+                updateTopTenFilms(watchListFilms)
+            }
+        }
+    }
+
+    private fun updateTopTenFilms(
+        watchListFilms: List<WatchListFilm>
+    ) {
+        val inWatchListIndexes: MutableList<Int> = mutableListOf()
+
+        _topTen.update { topTen ->
+
+            topTen.toMutableList().also { mutableTopTen ->
+
+                watchListFilms.forEach { watchListFilm ->
+
+                    val watchListFilmInTopTen = mutableTopTen
+                        .find { watchListFilm.id == it.id }
+
+                    watchListFilmInTopTen?.let {
+                        val index = mutableTopTen.indexOf(it)
+
+                        inWatchListIndexes.add(index)
+
+                        mutableTopTen[index] = mutableTopTen[index].copy(
+                            isInWatchList = true
+                        )
+                    }
+                }
+
+                mutableTopTen.forEachIndexed { index, film ->
+                    if(!inWatchListIndexes.contains(index)) {
+                        mutableTopTen[index] = mutableTopTen[index].copy(
+                            isInWatchList = false
+                        )
                     }
                 }
             }

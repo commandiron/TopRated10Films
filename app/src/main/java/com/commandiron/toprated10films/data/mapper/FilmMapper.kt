@@ -10,7 +10,7 @@ fun MovieDbCast.toFilm(): Film {
         title = title,
         imageUrl = if(poster_path == null) null else "https://image.tmdb.org/t/p/original/$poster_path",
         vote_average = vote_average,
-        vote_count = vote_count
+        vote_count = vote_count,
     )
 }
 
