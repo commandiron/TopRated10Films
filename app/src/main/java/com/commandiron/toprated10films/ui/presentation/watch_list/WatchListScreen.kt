@@ -17,7 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.R
-import com.commandiron.toprated10films.ui.presentation.show_result.components.FilmCard
+import com.commandiron.toprated10films.ui.presentation.components.FilmCard
 import com.commandiron.toprated10films.ui.theme.spacing
 
 @Composable
@@ -66,23 +66,32 @@ fun WatchListScreen(
                 CircularProgressIndicator()
             }
         }else {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2)
-            ) {
-                items(films) { film ->
-                    FilmCard(
-                        modifier = Modifier
-                            .padding(
-                                MaterialTheme.spacing.spaceSmall
-                            )
-                            .aspectRatio(0.67f),
-                        film = film,
-                        page = 0,
-                        iconPaddings = MaterialTheme.spacing.spaceSmall,
-                        iconSizes = 36.dp,
-                        queueIconEnabled = false,
-                        onWatchListClick = { viewModel.removeFromWatchList(it) }
-                    )
+            if(films.isNotEmpty()) {
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2)
+                ) {
+                    items(films) { film ->
+                        FilmCard(
+                            modifier = Modifier
+                                .padding(
+                                    MaterialTheme.spacing.spaceSmall
+                                )
+                                .aspectRatio(0.67f),
+                            film = film,
+                            page = 0,
+                            iconPaddings = MaterialTheme.spacing.spaceSmall,
+                            iconSizes = 36.dp,
+                            queueIconEnabled = false,
+                            onWatchListClick = { viewModel.removeFromWatchList(it) }
+                        )
+                    }
+                }
+            } else {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(text = "No Movie Added")
                 }
             }
         }

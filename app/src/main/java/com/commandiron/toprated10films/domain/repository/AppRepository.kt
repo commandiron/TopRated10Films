@@ -17,7 +17,7 @@ interface AppRepository {
     suspend fun getMoviesByGenre(voteCountGte: Int, genreId: Int): Flow<Response<List<Film>>>
     suspend fun getMoviesByYear(voteCountGte: Int, year: Int): Flow<Response<List<Film>>>
     suspend fun getMoviesByIds(ids: List<Int>): Flow<Response<List<Film>>>
-    suspend fun insertWatchListFilm(watchListId: WatchListId)
-    suspend fun deleteWatchListFilm(watchListId: WatchListId)
+    suspend fun insertWatchListFilm(watchListId: WatchListId): Flow<Response<Unit>>
+    suspend fun deleteWatchListFilm(watchListId: WatchListId): Flow<Response<Unit>>
     suspend fun getAllWatchListIds(): Flow<List<WatchListId>>
 }

@@ -124,16 +124,30 @@ class ShowResultViewModel @Inject constructor(
 
     fun addToWatchList(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            useCases.addToWatchList(WatchListId(id))
+            useCases.addToWatchList(WatchListId(id)).collect { response ->
+                when(response) {
+                    is Response.Error -> {}
+                    Response.Loading -> {}
+                    is Response.Success -> {
+                        updateWatchListIds()
+                    }
+                }
+            }
         }
-        updateWatchListIds()
     }
 
     fun removeFromWatchList(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            useCases.removeFromWatchList(WatchListId(id))
+            useCases.removeFromWatchList(WatchListId(id)).collect { response ->
+                when(response) {
+                    is Response.Error -> {}
+                    Response.Loading -> {}
+                    is Response.Success -> {
+                        updateWatchListIds()
+                    }
+                }
+            }
         }
-        updateWatchListIds()
     }
 
     private fun updateWatchListIds() {
@@ -150,30 +164,19 @@ class ShowResultViewModel @Inject constructor(
     private fun updateTopTenFilms(
         watchListIds: List<WatchListId>
     ) {
-        val inWatchListIndexes: MutableList<Int> = mutableListOf()
-
         _topTen.update { topTen ->
 
             topTen.toMutableList().also { mutableTopTen ->
 
-                watchListIds.forEach { watchListId ->
+                mutableTopTen.forEach { film ->
 
-                    val watchListFilmInTopTen = mutableTopTen
-                        .find { watchListId.id == it.id }
+                    val index = mutableTopTen.indexOf(film)
 
-                    watchListFilmInTopTen?.let {
-                        val index = mutableTopTen.indexOf(it)
-
-                        inWatchListIndexes.add(index)
-
+                    if(watchListIds.contains(WatchListId(id = film.id))){
                         mutableTopTen[index] = mutableTopTen[index].copy(
                             isInWatchList = true
                         )
-                    }
-                }
-
-                mutableTopTen.forEachIndexed { index, film ->
-                    if(!inWatchListIndexes.contains(index)) {
+                    }else {
                         mutableTopTen[index] = mutableTopTen[index].copy(
                             isInWatchList = false
                         )

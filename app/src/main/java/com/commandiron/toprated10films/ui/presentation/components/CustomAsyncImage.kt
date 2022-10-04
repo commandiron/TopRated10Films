@@ -11,6 +11,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
 import coil.request.ImageRequest
 import com.commandiron.toprated10films.R
 
@@ -19,7 +20,10 @@ fun CustomAsyncImage(
     modifier: Modifier = Modifier,
     imageUrl: String?,
     alpha: Float = 1.0f,
-    noImageTitle: String = "Image not available"
+    noImageTitle: String = "Image not available",
+    onLoading: ((AsyncImagePainter.State.Loading) -> Unit)? = null,
+    onSuccess: ((AsyncImagePainter.State.Success) -> Unit)? = null,
+    onError: ((AsyncImagePainter.State.Error) -> Unit)? = null,
 ) {
     if(imageUrl.isNullOrEmpty()) {
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -28,7 +32,6 @@ fun CustomAsyncImage(
                 textAlign = TextAlign.Center
             )
         }
-
     }else {
         AsyncImage(
             modifier = modifier,
@@ -39,7 +42,10 @@ fun CustomAsyncImage(
             placeholder = painterResource(R.drawable.app_logo_bobbin_placeholder),
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            alpha = alpha
+            alpha = alpha,
+            onLoading = onLoading,
+            onSuccess = onSuccess,
+            onError = onError
         )
     }
 }

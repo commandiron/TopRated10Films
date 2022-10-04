@@ -26,7 +26,7 @@ import androidx.compose.ui.util.lerp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
-import com.commandiron.toprated10films.ui.presentation.show_result.components.FilmCard
+import com.commandiron.toprated10films.ui.presentation.components.FilmCard
 import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager

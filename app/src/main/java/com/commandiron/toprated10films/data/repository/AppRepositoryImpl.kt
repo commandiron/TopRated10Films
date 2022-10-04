@@ -118,12 +118,27 @@ class AppRepositoryImpl(
         emit(Response.Success(films))
     }
 
-    override suspend fun insertWatchListFilm(watchListId: WatchListId) {
-        dao.insertWatchListFilm(watchListId)
+    override suspend fun insertWatchListFilm(watchListId: WatchListId): Flow<Response<Unit>> = flow {
+        emit(Response.Loading)
+        try {
+            dao.insertWatchListFilm(watchListId)
+            emit(Response.Success(Unit))
+        } catch (e: Exception) {
+            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            e.printStackTrace()
+        }
+
     }
 
-    override suspend fun deleteWatchListFilm(watchListId: WatchListId) {
-        dao.deleteWatchListFilm(watchListId)
+    override suspend fun deleteWatchListFilm(watchListId: WatchListId): Flow<Response<Unit>> = flow {
+        emit(Response.Loading)
+        try {
+            dao.deleteWatchListFilm(watchListId)
+            emit(Response.Success(Unit))
+        } catch (e: Exception) {
+            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            e.printStackTrace()
+        }
     }
 
     override suspend fun getAllWatchListIds(): Flow<List<WatchListId>> = flow {
