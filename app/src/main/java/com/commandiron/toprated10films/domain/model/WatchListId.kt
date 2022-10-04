@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class WatchListFilm(
+data class WatchListId(
     @PrimaryKey
     val id: Int
 )

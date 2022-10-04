@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.commandiron.toprated10films.domain.model.Film
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
@@ -30,6 +31,9 @@ fun FilmCard(
     modifier: Modifier = Modifier,
     film: Film,
     page: Int,
+    iconPaddings: Dp = MaterialTheme.spacing.spaceMedium,
+    iconSizes: Dp = 42.dp,
+    queueIconEnabled: Boolean = true,
     onWatchListClick: (id: Int) -> Unit
 ) {
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
@@ -45,30 +49,32 @@ fun FilmCard(
                     imageUrl = film.imageUrl,
                     noImageTitle = "Poster not available"
                 )
-                Box(
-                    modifier = Modifier
-                        .padding(MaterialTheme.spacing.spaceMedium)
-                        .align(Alignment.TopStart)
-                        .size(42.dp)
-                        .clip(CircleShape)
-                        .background(
-                            color = Color.Black.copy(alpha = 0.75f),
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = (page + 1).toString(),
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            fontWeight = FontWeight.Bold
-                        ),
-                        color = MaterialTheme.colorScheme.primary
-                    )
+                if(queueIconEnabled) {
+                    Box(
+                        modifier = Modifier
+                            .padding(iconPaddings)
+                            .align(Alignment.TopStart)
+                            .size(iconSizes)
+                            .clip(CircleShape)
+                            .background(
+                                color = Color.Black.copy(alpha = 0.75f),
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = (page + 1).toString(),
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                fontWeight = FontWeight.Bold
+                            ),
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
                 }
                 Row(
                     modifier = Modifier
-                        .padding(MaterialTheme.spacing.spaceMedium)
+                        .padding(iconPaddings)
                         .align(Alignment.TopEnd)
-                        .size(42.dp)
+                        .size(iconSizes)
                         .clip(CircleShape)
                         .background(
                             color = Color.Black.copy(alpha = 0.75f),

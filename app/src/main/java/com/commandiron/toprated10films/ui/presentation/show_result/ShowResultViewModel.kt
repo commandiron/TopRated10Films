@@ -6,9 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.commandiron.toprated10films.domain.model.Film
 import com.commandiron.toprated10films.domain.use_cases.UseCases
 import com.commandiron.toprated10films.ui.model.Category
-import com.commandiron.toprated10films.domain.model.WatchListFilm
+import com.commandiron.toprated10films.domain.model.WatchListId
 import com.commandiron.toprated10films.util.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,7 +28,7 @@ class ShowResultViewModel @Inject constructor(
     private val _topTen = MutableStateFlow<List<Film>>(emptyList())
     val topTen = _topTen.asStateFlow()
 
-    private val _watchListFilms = MutableStateFlow<List<WatchListFilm>>(emptyList())
+    private val _watchListIds = MutableStateFlow<List<WatchListId>>(emptyList())
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
@@ -35,7 +36,7 @@ class ShowResultViewModel @Inject constructor(
     init {
         when(Category.fromId(categoryId.value)) {
             Category.AllTime -> {
-                viewModelScope.launch {
+                viewModelScope.launch(Dispatchers.IO) {
                     useCases.getTopTenFilmsByAllTime().collect { response ->
                         when(response) {
                             is Response.Error -> {
@@ -49,14 +50,14 @@ class ShowResultViewModel @Inject constructor(
                                 _topTen.update {
                                     it + response.data
                                 }
-                                updateWatchListFilms()
+                                updateWatchListIds()
                             }
                         }
                     }
                 }
             }
             Category.ByActor -> {
-                viewModelScope.launch {
+                viewModelScope.launch(Dispatchers.IO) {
                     useCases.getTopTenFilmsByActor(itemId.value).collect { response ->
                         when(response) {
                             is Response.Error -> {
@@ -70,14 +71,14 @@ class ShowResultViewModel @Inject constructor(
                                 _topTen.update {
                                     it + response.data
                                 }
-                                updateWatchListFilms()
+                                updateWatchListIds()
                             }
                         }
                     }
                 }
             }
             Category.ByGenre -> {
-                viewModelScope.launch {
+                viewModelScope.launch(Dispatchers.IO) {
                     useCases.getTopTenFilmsByGenre(itemId.value).collect { response ->
                         when(response) {
                             is Response.Error -> {
@@ -91,14 +92,14 @@ class ShowResultViewModel @Inject constructor(
                                 _topTen.update {
                                     it + response.data
                                 }
-                                updateWatchListFilms()
+                                updateWatchListIds()
                             }
                         }
                     }
                 }
             }
             Category.ByYear -> {
-                viewModelScope.launch {
+                viewModelScope.launch(Dispatchers.IO) {
                     useCases.getTopTenFilmsByYear(title.value.toInt()).collect { response ->
                         when(response) {
                             is Response.Error -> {
@@ -112,7 +113,7 @@ class ShowResultViewModel @Inject constructor(
                                 _topTen.update {
                                     it + response.data
                                 }
-                                updateWatchListFilms()
+                                updateWatchListIds()
                             }
                         }
                     }
@@ -122,32 +123,32 @@ class ShowResultViewModel @Inject constructor(
     }
 
     fun addToWatchList(id: Int) {
-        viewModelScope.launch {
-            useCases.addToWatchList(WatchListFilm(id))
+        viewModelScope.launch(Dispatchers.IO) {
+            useCases.addToWatchList(WatchListId(id))
         }
-        updateWatchListFilms()
+        updateWatchListIds()
     }
 
     fun removeFromWatchList(id: Int) {
-        viewModelScope.launch {
-            useCases.removeFromWatchList(WatchListFilm(id))
+        viewModelScope.launch(Dispatchers.IO) {
+            useCases.removeFromWatchList(WatchListId(id))
         }
-        updateWatchListFilms()
+        updateWatchListIds()
     }
 
-    private fun updateWatchListFilms() {
-        viewModelScope.launch {
-            useCases.getAllWatchListFilms().collect { watchListFilms ->
-                _watchListFilms.update {
-                    watchListFilms
+    private fun updateWatchListIds() {
+        viewModelScope.launch(Dispatchers.IO) {
+            useCases.getAllWatchListIds().collect { watchListIds ->
+                _watchListIds.update {
+                    watchListIds
                 }
-                updateTopTenFilms(watchListFilms)
+                updateTopTenFilms(watchListIds)
             }
         }
     }
 
     private fun updateTopTenFilms(
-        watchListFilms: List<WatchListFilm>
+        watchListIds: List<WatchListId>
     ) {
         val inWatchListIndexes: MutableList<Int> = mutableListOf()
 
@@ -155,10 +156,10 @@ class ShowResultViewModel @Inject constructor(
 
             topTen.toMutableList().also { mutableTopTen ->
 
-                watchListFilms.forEach { watchListFilm ->
+                watchListIds.forEach { watchListId ->
 
                     val watchListFilmInTopTen = mutableTopTen
-                        .find { watchListFilm.id == it.id }
+                        .find { watchListId.id == it.id }
 
                     watchListFilmInTopTen?.let {
                         val index = mutableTopTen.indexOf(it)

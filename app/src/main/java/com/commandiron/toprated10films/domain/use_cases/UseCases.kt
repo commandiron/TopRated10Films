@@ -12,5 +12,6 @@ class UseCases(
     val getTopTenFilmsByYear: GetTopTenFilmsByYear,
     val addToWatchList: AddToWatchList,
     val removeFromWatchList: RemoveFromWatchList,
+    val getAllWatchListIds: GetAllWatchListIds,
     val getAllWatchListFilms: GetAllWatchListFilms
 )

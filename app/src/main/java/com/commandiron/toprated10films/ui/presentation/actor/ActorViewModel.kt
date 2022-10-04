@@ -7,6 +7,7 @@ import androidx.paging.cachedIn
 import com.commandiron.toprated10films.domain.use_cases.UseCases
 import com.commandiron.toprated10films.domain.model.Actor
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -36,7 +37,7 @@ class ActorViewModel @Inject constructor(
     }
 
     private fun getActors() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             useCases.getActors(_searchText.value).cachedIn(viewModelScope).collect { response ->
                 actors.value = response
             }

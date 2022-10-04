@@ -29,6 +29,7 @@ object DomainModule {
             getTopTenFilmsByYear = GetTopTenFilmsByYear(repository),
             addToWatchList = AddToWatchList(repository),
             removeFromWatchList = RemoveFromWatchList(repository),
+            getAllWatchListIds = GetAllWatchListIds(repository),
             getAllWatchListFilms = GetAllWatchListFilms(repository)
         )
     }
