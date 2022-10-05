@@ -77,7 +77,7 @@ fun ActorScreen(
                 AppProgressIndicator()
             }
         }else {
-            Column() {
+            Column(Modifier.fillMaxWidth()) {
                 if(searchText.isEmpty()) {
                     Text(
                         modifier = Modifier
