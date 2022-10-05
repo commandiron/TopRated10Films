@@ -52,7 +52,7 @@ fun WatchListScreen(
                 verticalAlignment = Alignment.Bottom
             ) {
                 Text(
-                    text = "Watchlist",
+                    text = "Watchlist" + if(films.isNotEmpty()) "(${films.size})" else "",
                     style = MaterialTheme.typography.titleLarge
                 )
             }
