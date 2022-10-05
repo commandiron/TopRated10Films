@@ -25,12 +25,10 @@
 <img src="https://user-images.githubusercontent.com/50905347/194056430-53913a62-d0e4-4765-9091-eefee13587a2.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/194056447-68d60d97-300c-443f-b87b-4556324471d7.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/194056461-2b96721a-4c35-40c4-8b22-caf5ec680111.png" width="250" height="530">
 
 * Application - Features ☕
-   * Set alarm
    * One time splash screen
-   * Multiple view mode for checklist
-   * View scale for checklist
-   * Settings
-   * Language - English, Turkish
+   * Nested navigation
+   * Watchlist
+   * Language - English
 * Tech-stack ⚛️
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
     * [Jetpack](https://developer.android.com/jetpack)
