@@ -37,10 +37,10 @@
         * [Compose](https://developer.android.com/jetpack/compose) - toolkit for building native UI
         * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) - deal with whole in-app navigation      
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way
-    * [Room](https://developer.android.com/jetpack/androidx/releases/room) - database object mapping
     * [Retrofit](https://square.github.io/retrofit/) - HTTP client
     * [Coil](https://coil-kt.github.io/coil/compose/) - image loading library
     * [Paging](https://developer.android.com/jetpack/androidx/releases/paging) -  load and display pages from a remote server.
+    * [Room](https://developer.android.com/jetpack/androidx/releases/room) - database object mapping
     * [Accompanist](https://github.com/google/accompanist)
         * navigationAnimation
         * pager
