@@ -2,7 +2,8 @@ package com.commandiron.toprated10films.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val GunmetalDarkest = Color(0xFF171D23)
+val GunmetalDarker = Color(0xFF202830)
+val Gunmetal = Color(0xFF29333D)
+val GunmetalLighter = Color(0xFF34424F)
+val RedSalsa = Color(0xFFF93A44)

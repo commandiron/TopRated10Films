@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.TopRated10Films" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/gun_metal_darkest</item>
+        <item name="android:navigationBarColor">@color/gun_metal_lighter</item>
+        <item name="windowSplashScreenBackground">@color/gun_metal</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.TopRated10Films</item>
     </style>
+
+    <style name="Theme.TopRated10Films" parent="android:Theme.Material.Light.NoActionBar"/>
 </resources>

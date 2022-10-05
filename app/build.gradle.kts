@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -45,12 +47,37 @@ android {
 
 dependencies {
     implementation(AndroidX.coreKtx)
+    implementation(AndroidX.appCompat)
     implementation(AndroidX.activityCompose)
+    implementation(AndroidX.materialIconsCore)
+    implementation(AndroidX.materialIconsExtended)
+    implementation(AndroidX.coreSplashScreen)
 
     implementation(Compose.ui)
+    implementation(Compose.uiUtil)
     implementation(Compose.uiToolingPreview)
+    implementation(Compose.navigation)
+    implementation(Compose.material3)
+    implementation(Compose.hiltNavigation)
     debugImplementation(Compose.uiTooling)
     debugImplementation(Compose.uiTestManifest)
 
-    implementation(Compose.material3)
+    implementation(Accompanist.navigationAnimation)
+    implementation(Accompanist.pager)
+    implementation(Accompanist.systemUi)
+
+    implementation(Coil.coilCompose)
+
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.moshiConverter)
+
+    implementation(Room.runtime)
+    kapt(Room.compiler)
+    implementation(Room.ktx)
+    implementation(Room.paging)
+
+    implementation(Paging.compose)
+
+    kapt(DaggerHilt.hiltCompiler)
+    implementation(DaggerHilt.hiltAndroid)
 }
