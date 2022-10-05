@@ -11,16 +11,16 @@ import retrofit2.http.Query
 
 interface MovieApi {
 
-    @GET("genre/movie/list?api_key=ccee772c336daab0b8542a7e371680db")
+    @GET("genre/movie/list?api_key=$API_KEY")
     suspend fun getGenres(): MovieDbGenreDto
 
-    @GET("person/popular?api_key=ccee772c336daab0b8542a7e371680db")
+    @GET("person/popular?api_key=$API_KEY")
     suspend fun getPopularActors(
         @Query("page")
         page: Int
     ): MovieDbActorDto
 
-    @GET("search/person?api_key=ccee772c336daab0b8542a7e371680db")
+    @GET("search/person?api_key=$API_KEY")
     suspend fun getActorsByQuery(
         @Query("page")
         page: Int,
@@ -28,16 +28,16 @@ interface MovieApi {
         query: String
     ): MovieDbActorDto
 
-    @GET("person/{id}/movie_credits?api_key=ccee772c336daab0b8542a7e371680db")
+    @GET("person/{id}/movie_credits?api_key=$API_KEY")
     suspend fun getMoviesByActor(
         @Path("id")
         actorId: Int,
     ): MovieDbCreditsDto
 
-    @GET("movie/top_rated?api_key=ccee772c336daab0b8542a7e371680db")
+    @GET("movie/top_rated?api_key=$API_KEY")
     suspend fun getTopRatedMovies(): MovieDbMovieDto
 
-    @GET("discover/movie?api_key=ccee772c336daab0b8542a7e371680db")
+    @GET("discover/movie?api_key=$API_KEY")
     suspend fun getMoviesByGenre(
         @Query("sort_by")
         sortBy: String = "vote_average.desc",
@@ -47,7 +47,7 @@ interface MovieApi {
         genreId: Int
     ): MovieDbMovieDto
 
-    @GET("discover/movie?api_key=ccee772c336daab0b8542a7e371680db")
+    @GET("discover/movie?api_key=$API_KEY")
     suspend fun getMoviesByYear(
         @Query("sort_by")
         sortBy: String = "vote_average.desc",
@@ -57,7 +57,7 @@ interface MovieApi {
         year: Int
     ): MovieDbMovieDto
 
-    @GET("movie/{id}?api_key=ccee772c336daab0b8542a7e371680db")
+    @GET("movie/{id}?api_key=$API_KEY")
     suspend fun getMoviesById(
         @Path("id")
         id: Int
@@ -65,5 +65,6 @@ interface MovieApi {
 
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/"
+        const val API_KEY = "ccee772c336daab0b8542a7e371680db"
     }
 }
