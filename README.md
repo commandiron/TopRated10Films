@@ -52,6 +52,7 @@
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
  
  * Todo ✔️
+   * Movie Details ❌
    * Light Theme ❌
    * Turkish Language ❌
 
