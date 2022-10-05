@@ -154,6 +154,7 @@ fun ShowResultScreen(
                             .aspectRatio(0.67f),
                         film = topTen[page],
                         page = page,
+                        bottomTitle = topTen[page].title,
                         onWatchListClick = {
                             if(topTen[page].isInWatchList) {
                                 viewModel.removeFromWatchList(it)

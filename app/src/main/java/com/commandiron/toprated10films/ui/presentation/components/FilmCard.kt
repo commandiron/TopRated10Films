@@ -34,6 +34,7 @@ fun FilmCard(
     iconPaddings: Dp = MaterialTheme.spacing.spaceMedium,
     iconSizes: Dp = 42.dp,
     queueIconEnabled: Boolean = true,
+    bottomTitle: String? = null,
     onWatchListClick: (id: Int) -> Unit
 ) {
 
@@ -83,7 +84,7 @@ fun FilmCard(
                             )
                         }
                     }
-                    Row(
+                    Box(
                         modifier = Modifier
                             .padding(iconPaddings)
                             .align(Alignment.TopEnd)
@@ -96,8 +97,7 @@ fun FilmCard(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
                             ) { onWatchListClick(film.id) },
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
+                        contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             modifier = Modifier.padding(MaterialTheme.spacing.spaceSmall),
@@ -109,6 +109,26 @@ fun FilmCard(
                                 MaterialTheme.colorScheme.primary
                             } else Color.White
                         )
+                    }
+                    bottomTitle?.let {
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter)
+                                .fillMaxWidth()
+                                .background(
+                                    color = Color.Black.copy(alpha = 0.75f),
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .padding(vertical = MaterialTheme.spacing.spaceSmall),
+                                text = it,
+                                style = MaterialTheme.typography.titleSmall.copy(
+                                    fontWeight = FontWeight.Bold
+                                )
+                            )
+                        }
                     }
                 }
             }
