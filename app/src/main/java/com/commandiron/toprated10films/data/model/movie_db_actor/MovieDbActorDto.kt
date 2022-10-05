@@ -1,7 +1,9 @@
 package com.commandiron.toprated10films.data.model.movie_db_actor
 
+import androidx.annotation.Keep
 import com.squareup.moshi.Json
 
+@Keep
 data class MovieDbActorDto(
     @field:Json(name = "page")
     val page: Int,

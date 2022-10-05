@@ -1,14 +1,16 @@
 package com.commandiron.toprated10films.data.remote
 
+import androidx.annotation.Keep
 import com.commandiron.toprated10films.data.model.movie_db_actor.MovieDbActorDto
-import com.commandiron.toprated10films.data.model.movie_db_genre.MovieDbGenreDto
 import com.commandiron.toprated10films.data.model.movie_db_credits.MovieDbCreditsDto
 import com.commandiron.toprated10films.data.model.movie_db_detail.MovieDbDetailDto
+import com.commandiron.toprated10films.data.model.movie_db_genre.MovieDbGenreDto
 import com.commandiron.toprated10films.data.model.movie_db_movie.MovieDbMovieDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+@Keep
 interface MovieApi {
 
     @GET("genre/movie/list?api_key=$API_KEY")

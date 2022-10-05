@@ -1,5 +1,8 @@
 package com.commandiron.toprated10films.data.model.movie_db_actor
 
+import androidx.annotation.Keep
+
+@Keep
 data class MovieDbActor(
     val adult: Boolean,
     val gender: Int,

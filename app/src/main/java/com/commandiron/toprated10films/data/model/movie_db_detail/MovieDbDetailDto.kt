@@ -1,5 +1,8 @@
 package com.commandiron.toprated10films.data.model.movie_db_detail
 
+import androidx.annotation.Keep
+
+@Keep
 data class MovieDbDetailDto(
     val adult: Boolean,
     val backdrop_path: String,
