@@ -40,6 +40,7 @@
     * [Room](https://developer.android.com/jetpack/androidx/releases/room) - database object mapping
     * [Retrofit](https://square.github.io/retrofit/) - HTTP client
     * [Coil](https://coil-kt.github.io/coil/compose/) - image loading library
+    * [Paging](https://developer.android.com/jetpack/androidx/releases/paging) -  load and display pages from a remote server.
     * [Accompanist](https://github.com/google/accompanist)
         * navigationAnimation
         * pager
