@@ -38,8 +38,11 @@
         * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) - deal with whole in-app navigation      
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way
     * [Room](https://developer.android.com/jetpack/androidx/releases/room) - database object mapping
-    * [Gson](https://github.com/google/gson) - serialization/deserialization library
+    * [Retrofit](https://square.github.io/retrofit/) - http client
+    * [Coil](https://coil-kt.github.io/coil/compose/) - image loading library
     * [Accompanist](https://github.com/google/accompanist)
+        * navigationAnimation
+        * pager
         * systemUi
     * [Hilt](https://dagger.dev/hilt/) - DI
     * [Material 3](https://m3.material.io) - design
