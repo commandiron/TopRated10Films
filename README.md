@@ -12,7 +12,7 @@
   <h4>
     <br>
     <p align="center">
-      CheckPack is a native android checklist app for those going on vacation, written in Kotlin using Jetpack Compose.
+      TopRated10Films is a native android films app for create Top 10 movies in desired category, written in Kotlin using Jetpack Compose with themoviedb api.
     </p>
     <br>
   </h4>
