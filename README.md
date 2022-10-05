@@ -46,7 +46,7 @@
     * [Google Firebase](https://firebase.google.com)
         * crashlytics
 * Architecture 🏗️
-    * Model-View-Intent
+    * Model-View-ViewModel
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
  
  * Todo ✔️
