@@ -19,7 +19,7 @@
   </h4>
 </h1>
 
-<img src="https://user-images.githubusercontent.com/50905347/194295438-c68f87b1-a9e4-4133-a4c8-a66a6eabd5fb.png#gh-dark-mode-only" width="1000" height="488">
+<img src="https://user-images.githubusercontent.com/50905347/194296306-f0787e66-358d-4825-ae69-d9b4a372a1c4.png#gh-dark-mode-only" width="1000" height="488">
 <img src="https://user-images.githubusercontent.com/50905347/194295959-fef7cad5-b096-49c5-9dea-ed8cb63675df.png#gh-light-mode-only" width="1000" height="488">
 
 * Screenshots 🖼️
