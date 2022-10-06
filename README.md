@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/50905347/194053379-9e859c3c-57a3-4978-be13-a5236cdcbc15.png#gh-dark-mode-only" width="164" height="105">
-  <img src="https://user-images.githubusercontent.com/50905347/194266674-64479e47-96c5-4e98-be1f-367aa685d2a9.png#gh-light-mode-only" width="164" height="105">
+  <img src="https://user-images.githubusercontent.com/50905347/194296306-f0787e66-358d-4825-ae69-d9b4a372a1c4.png#gh-dark-mode-only" width="1000" height="488">
+  <img src="https://user-images.githubusercontent.com/50905347/194295959-fef7cad5-b096-49c5-9dea-ed8cb63675df.png#gh-light-mode-only" width="1000" height="488">
 </p>
 <h1>
   <p align="center">
@@ -18,15 +18,6 @@
     <br>
   </h4>
 </h1>
-
-<img src="https://user-images.githubusercontent.com/50905347/194296306-f0787e66-358d-4825-ae69-d9b4a372a1c4.png#gh-dark-mode-only" width="1000" height="488">
-<img src="https://user-images.githubusercontent.com/50905347/194295959-fef7cad5-b096-49c5-9dea-ed8cb63675df.png#gh-light-mode-only" width="1000" height="488">
-
-* Screenshots 🖼️
-
-<img src="https://user-images.githubusercontent.com/50905347/194056396-ed23675a-8b9d-4948-8543-54dd8712af8f.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/194056400-c2fe0091-da8f-495e-ba16-dbe4260dd9d1.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/194056410-72db3010-695b-461d-aad3-379792051df3.png" width="250" height="530">
-
-<img src="https://user-images.githubusercontent.com/50905347/194056430-53913a62-d0e4-4765-9091-eefee13587a2.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/194056447-68d60d97-300c-443f-b87b-4556324471d7.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/194056461-2b96721a-4c35-40c4-8b22-caf5ec680111.png" width="250" height="530">
 
 * Application - Features ☕
    * One time splash screen
