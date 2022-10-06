@@ -39,8 +39,6 @@ TopRated10Films is a native android films app for create Top 10 movies in desire
         * systemUi
     * [Hilt](https://dagger.dev/hilt/) - DI
     * [Material 3](https://m3.material.io) - design
-    * [Google Firebase](https://firebase.google.com)
-        * crashlytics
 * Architecture 🏗️
     * Model-View-ViewModel
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
