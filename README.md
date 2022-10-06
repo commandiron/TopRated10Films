@@ -18,9 +18,10 @@ TopRated10Films is a native android films app for create Top 10 movies in desire
 </p>
 
 * Application - Features ☕
-   * One time splash screen
+   * One time animated splash screen
+   * Search people with paging.
    * Nested navigation
-   * Watchlist
+   * Watchlist db
    * Language - English
 * Tech-stack ⚛️
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
