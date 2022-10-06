@@ -76,9 +76,10 @@ fun CustomAsyncImage(
                             .fillMaxSize()
                             .placeholder(
                                 visible = true,
-                                color = Color.Gray,
+                                color = Color.Gray.copy(0.5f),
                                 shape = RoundedCornerShape(4.dp),
-                                highlight = PlaceholderHighlight.shimmer(highlightColor = Color.White)
+                                highlight = PlaceholderHighlight
+                                    .shimmer(highlightColor = Color.White)
                             ),
                         contentAlignment = Alignment.Center
                     ) {}
