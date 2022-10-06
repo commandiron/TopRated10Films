@@ -65,6 +65,7 @@ dependencies {
     implementation(Accompanist.navigationAnimation)
     implementation(Accompanist.pager)
     implementation(Accompanist.systemUi)
+    implementation(Accompanist.placeholderMaterial)
 
     implementation(Coil.coilCompose)
 
