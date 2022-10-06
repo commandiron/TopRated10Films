@@ -21,7 +21,7 @@
 
 * Screenshots 🖼️
 
-<img src="https://user-images.githubusercontent.com/50905347/194295438-c68f87b1-a9e4-4133-a4c8-a66a6eabd5fb.png" width="4267" height="2084">
+<img src="https://user-images.githubusercontent.com/50905347/194295438-c68f87b1-a9e4-4133-a4c8-a66a6eabd5fb.png" width="1000" height="488">
 
 <img src="https://user-images.githubusercontent.com/50905347/194056396-ed23675a-8b9d-4948-8543-54dd8712af8f.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/194056400-c2fe0091-da8f-495e-ba16-dbe4260dd9d1.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/194056410-72db3010-695b-461d-aad3-379792051df3.png" width="250" height="530">
 
