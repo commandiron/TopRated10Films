@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" width="80" height="20"> 
   <img src="https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white" width="80" height="20">
   <a href="https://android-arsenal.com/api?level=23"><img alt="API" src="https://img.shields.io/badge/API-23%2B-brightgreen.svg?style=flat"/></a>
-  <a href="https://github.com/skydoves/MarvelHeroes/actions"><img alt="Build Status" src="https://github.com/skydoves/MarvelHeroes/workflows/Android%20CI/badge.svg"/></a> 
+  </a> 
 </p>
 
 <p align="center">  
