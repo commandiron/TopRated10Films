@@ -7,6 +7,12 @@
   </a> 
 </p>
 
+<p align="center">
+    <a href='https://play.google.com/store/apps/details?id=com.commandiron.toprated10films'>
+      <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="206.72" height="80">
+    </a>
+  </p>
+
 <p align="center">  
 TopRated10Films is a native android films app for create Top 10 movies in desired category, written in Kotlin using Jetpack Compose with themoviedb api.
 </p>
