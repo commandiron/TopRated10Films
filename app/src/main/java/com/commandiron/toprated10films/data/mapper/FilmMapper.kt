@@ -9,7 +9,7 @@ fun MovieDbCast.toFilm(): Film {
     return Film(
         id = this.id,
         title = title,
-        imageUrl = if(poster_path == null) null else "https://image.tmdb.org/t/p/original/$poster_path",
+        imageUrl = if(poster_path == null) null else "$URL$poster_path",
         releaseYear = if(release_date.length >= 4) release_date.take(4) else "",
         vote_average = vote_average,
         vote_count = vote_count,
@@ -20,7 +20,7 @@ fun MovieDbMovie.toFilm(): Film {
     return Film(
         id = id,
         title = title,
-        imageUrl = if(poster_path == null) null else "https://image.tmdb.org/t/p/original/$poster_path",
+        imageUrl = if(poster_path == null) null else "$URL$poster_path",
         releaseYear = if(release_date.length >= 4) release_date.take(4) else "",
         vote_average = vote_average,
         vote_count = vote_count
@@ -31,9 +31,11 @@ fun MovieDbDetailDto.toFilm(): Film {
     return Film(
         id = id,
         title = title,
-        imageUrl = if(poster_path == null) null else "https://image.tmdb.org/t/p/original/$poster_path",
+        imageUrl = if(poster_path == null) null else "$URL$poster_path",
         releaseYear = if(release_date.length >= 4) release_date.take(4) else "",
         vote_average = vote_average,
         vote_count = vote_count
     )
 }
+
+private const val URL = "https://image.tmdb.org/t/p/original/"

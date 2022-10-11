@@ -34,7 +34,7 @@ class AppRepositoryImpl(
                 emit(Response.Success(genres))
                 saveGenres(genres)
             }catch (e: Exception) {
-                emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+                emit(Response.Error(e.message ?: ERROR_MESSAGE))
                 e.printStackTrace()
             }
         }
@@ -57,7 +57,7 @@ class AppRepositoryImpl(
             val films = api.getMoviesByActor(actorId).cast.map { it.toFilm() }
             emit(Response.Success(films))
         } catch (e: Exception) {
-            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            emit(Response.Error(e.message ?: ERROR_MESSAGE))
             e.printStackTrace()
         }
     }
@@ -68,7 +68,7 @@ class AppRepositoryImpl(
             val films = api.getTopRatedMovies().results.map { it.toFilm() }
             emit(Response.Success(films))
         } catch (e: Exception) {
-            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            emit(Response.Error(e.message ?: ERROR_MESSAGE))
             e.printStackTrace()
         }
     }
@@ -79,10 +79,13 @@ class AppRepositoryImpl(
     ): Flow<Response<List<Film>>> = flow {
         emit(Response.Loading)
         try {
-            val films = api.getMoviesByGenre(voteCountGte = voteCountGte, genreId = genreId).results.map { it.toFilm() }
+            val films = api.getMoviesByGenre(
+                voteCountGte = voteCountGte,
+                genreId = genreId
+            ).results.map { it.toFilm() }
             emit(Response.Success(films))
         } catch (e: Exception) {
-            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            emit(Response.Error(e.message ?: ERROR_MESSAGE))
             e.printStackTrace()
         }
     }
@@ -93,10 +96,13 @@ class AppRepositoryImpl(
     ): Flow<Response<List<Film>>> = flow {
         emit(Response.Loading)
         try {
-            val films = api.getMoviesByYear(voteCountGte = voteCountGte, year = year).results.map { it.toFilm() }
+            val films = api.getMoviesByYear(
+                voteCountGte = voteCountGte,
+                year = year
+            ).results.map { it.toFilm() }
             emit(Response.Success(films))
         } catch (e: Exception) {
-            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            emit(Response.Error(e.message ?: ERROR_MESSAGE))
             e.printStackTrace()
         }
     }
@@ -110,7 +116,7 @@ class AppRepositoryImpl(
                     val film = api.getMoviesById(id).toFilm()
                     films.add(film)
                 } catch (e: Exception) {
-                    emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+                    emit(Response.Error(e.message ?: ERROR_MESSAGE))
                     e.printStackTrace()
                 }
             }
@@ -124,10 +130,9 @@ class AppRepositoryImpl(
             dao.insertWatchListFilm(watchListId)
             emit(Response.Success(Unit))
         } catch (e: Exception) {
-            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            emit(Response.Error(e.message ?: ERROR_MESSAGE))
             e.printStackTrace()
         }
-
     }
 
     override suspend fun deleteWatchListFilm(watchListId: WatchListId): Flow<Response<Unit>> = flow {
@@ -136,7 +141,7 @@ class AppRepositoryImpl(
             dao.deleteWatchListFilm(watchListId)
             emit(Response.Success(Unit))
         } catch (e: Exception) {
-            emit(Response.Error(e.message ?: "AN_ERROR_OCCURRED"))
+            emit(Response.Error(e.message ?: ERROR_MESSAGE))
             e.printStackTrace()
         }
     }
@@ -145,3 +150,5 @@ class AppRepositoryImpl(
         emit(dao.getAllWatchListFilms())
     }
 }
+
+private const val ERROR_MESSAGE = "AN_ERROR_OCCURRED"
