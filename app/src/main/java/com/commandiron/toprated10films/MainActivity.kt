@@ -10,8 +10,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.core.view.WindowCompat
 import com.commandiron.toprated10films.domain.preferences.AppPreferences
 import com.commandiron.toprated10films.navigation.BottomNavigation
 import com.commandiron.toprated10films.navigation.bottomNavigate
@@ -32,13 +35,16 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         val shouldShowSplash = preferences.loadShouldShowSplash()
         setContent {
             TopRated10FilmsTheme {
                 val navController = rememberAnimatedNavController()
+                val isBottomNavigationVisible = remember { mutableStateOf(true) }
                 Scaffold(
                     bottomBar = {
                         BottomNavigation(
+                            visible = isBottomNavigationVisible.value,
                             currentRoute = navController.currentRoute(),
                             shouldShowSplash = shouldShowSplash,
                             onNavItemClick = { route -> navController.bottomNavigate(route) }
@@ -61,7 +67,10 @@ class MainActivity : ComponentActivity() {
                     )
                     RootNavGraph(
                         navController = navController,
-                        shouldShowSplash = shouldShowSplash
+                        shouldShowSplash = shouldShowSplash,
+                        onImageClick = { expanded ->
+                            isBottomNavigationVisible.value = !expanded
+                        }
                     )
                 }
             }

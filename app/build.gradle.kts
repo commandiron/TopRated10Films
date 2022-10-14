@@ -79,6 +79,8 @@ dependencies {
 
     implementation(Paging.compose)
 
+    implementation(CommandIron.expandableHorizontalPager)
+
     kapt(DaggerHilt.hiltCompiler)
     implementation(DaggerHilt.hiltAndroid)
 }

@@ -30,6 +30,7 @@ import com.commandiron.toprated10films.ui.theme.*
 
 @Composable
 fun BottomNavigation(
+    visible: Boolean = true,
     currentRoute: String?,
     shouldShowSplash: Boolean,
     onNavItemClick:(String) -> Unit
@@ -44,7 +45,11 @@ fun BottomNavigation(
         NavigationItem.WatchListScreen
     )
     AnimatedVisibility(
-        visible = navigationItems.find { it.routeWithArgs() == currentRoute }?.isBottomBarVisible ?: false,
+        visible = if(!visible) {
+            false
+        } else {
+            navigationItems.find { it.routeWithArgs() == currentRoute }?.isBottomBarVisible ?: false
+        },
         enter = if(shouldShowSplash) {
             fadeIn(
                 tween(
@@ -57,7 +62,7 @@ fun BottomNavigation(
     ) {
         Row(
             modifier = Modifier
-                .padding(MaterialTheme.spacing.spaceSmall)
+                .padding(20.dp)
                 .fillMaxWidth()
                 .height(MaterialTheme.spacing.bottomNavHeight)
                 .clip(MaterialTheme.shapes.large)

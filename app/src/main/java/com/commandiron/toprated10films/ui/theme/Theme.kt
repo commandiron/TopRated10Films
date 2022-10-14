@@ -43,7 +43,7 @@ fun TopRated10FilmsTheme(
     CompositionLocalProvider(
         values = arrayOf(
             LocalSpacing provides Spacing(),
-            LocalSystemUiController provides systemUiController,
+            LocalSystemUiController provides systemUiController
         )
     ) {
         MaterialTheme(

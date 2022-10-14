@@ -15,7 +15,8 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 @Composable
 fun RootNavGraph(
     navController: NavHostController,
-    shouldShowSplash: Boolean
+    shouldShowSplash: Boolean,
+    onImageClick:(expanded: Boolean) -> Unit
 ) {
     AnimatedNavHost(
         navController = navController,
@@ -44,7 +45,10 @@ fun RootNavGraph(
                 navController.navigate(GraphItem.TopTenGraph.route)
             }
         }
-        topTenNavGraph(navController)
+        topTenNavGraph(
+            navController = navController,
+            onImageClick = onImageClick
+        )
         composable(
             route = NavigationItem.WatchListScreen.route,
             enterTransition = {

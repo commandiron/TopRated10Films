@@ -25,7 +25,6 @@ import com.commandiron.toprated10films.domain.model.Film
 import com.commandiron.toprated10films.ui.theme.NoRippleTheme
 import com.commandiron.toprated10films.ui.theme.spacing
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilmCard(
     modifier: Modifier = Modifier,
@@ -34,102 +33,74 @@ fun FilmCard(
     iconPaddings: Dp = MaterialTheme.spacing.spaceMedium,
     iconSizes: Dp = 42.dp,
     queueIconEnabled: Boolean = true,
-    bottomTitle: String? = null,
     onWatchListClick: (id: Int) -> Unit
 ) {
 
     val isAsyncImageLoading = remember { mutableStateOf(false) }
 
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
-        Card(
-            modifier = modifier,
-            colors = CardDefaults.cardColors(
-                containerColor = Color.Transparent
+        Box(modifier) {
+            CustomAsyncImage(
+                modifier = Modifier.fillMaxSize(),
+                imageUrl = film.imageUrl,
+                noImageTitle = "Poster not available",
+                onLoading = {
+                    isAsyncImageLoading.value = true
+                },
+                onSuccess = {
+                    isAsyncImageLoading.value = false
+                },
+                onError = {
+                    isAsyncImageLoading.value = false
+                }
             )
-        ) {
-            Box() {
-                CustomAsyncImage(
-                    modifier = Modifier.fillMaxSize(),
-                    imageUrl = film.imageUrl,
-                    noImageTitle = "Poster not available",
-                    onLoading = {
-                        isAsyncImageLoading.value = true
-                    },
-                    onSuccess = {
-                        isAsyncImageLoading.value = false
-                    },
-                    onError = {
-                        isAsyncImageLoading.value = false
-                    }
-                )
-                if(!isAsyncImageLoading.value) {
-                    if(queueIconEnabled) {
-                        Box(
-                            modifier = Modifier
-                                .padding(iconPaddings)
-                                .align(Alignment.TopStart)
-                                .size(iconSizes)
-                                .clip(CircleShape)
-                                .background(
-                                    color = Color.Black.copy(alpha = 0.75f),
-                                ),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                text = (page + 1).toString(),
-                                style = MaterialTheme.typography.titleLarge.copy(
-                                    fontWeight = FontWeight.Bold
-                                ),
-                                color = MaterialTheme.colorScheme.primary
-                            )
-                        }
-                    }
+            if(!isAsyncImageLoading.value) {
+                if(queueIconEnabled) {
                     Box(
                         modifier = Modifier
                             .padding(iconPaddings)
-                            .align(Alignment.TopEnd)
+                            .align(Alignment.TopStart)
                             .size(iconSizes)
                             .clip(CircleShape)
                             .background(
                                 color = Color.Black.copy(alpha = 0.75f),
-                            )
-                            .clickable(
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = null
-                            ) { onWatchListClick(film.id) },
+                            ),
                         contentAlignment = Alignment.Center
                     ) {
-                        Icon(
-                            modifier = Modifier.padding(MaterialTheme.spacing.spaceSmall),
-                            imageVector = if(film.isInWatchList) {
-                                Icons.Default.Tv
-                            } else Icons.Default.AddToQueue,
-                            contentDescription = null,
-                            tint = if(film.isInWatchList) {
-                                MaterialTheme.colorScheme.primary
-                            } else Color.White
+                        Text(
+                            text = (page + 1).toString(),
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                fontWeight = FontWeight.Bold
+                            ),
+                            color = MaterialTheme.colorScheme.primary
                         )
                     }
-                    bottomTitle?.let {
-                        Box(
-                            modifier = Modifier
-                                .align(Alignment.BottomCenter)
-                                .fillMaxWidth()
-                                .background(
-                                    color = Color.Black.copy(alpha = 0.75f),
-                                ),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                modifier = Modifier
-                                    .padding(vertical = MaterialTheme.spacing.spaceSmall),
-                                text = it,
-                                style = MaterialTheme.typography.titleSmall.copy(
-                                    fontWeight = FontWeight.Bold
-                                )
-                            )
-                        }
-                    }
+                }
+                Box(
+                    modifier = Modifier
+                        .padding(iconPaddings)
+                        .align(Alignment.TopEnd)
+                        .size(iconSizes)
+                        .clip(CircleShape)
+                        .background(
+                            color = Color.Black.copy(alpha = 0.75f),
+                        )
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) { onWatchListClick(film.id) },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        modifier = Modifier.padding(MaterialTheme.spacing.spaceSmall),
+                        imageVector = if(film.isInWatchList) {
+                            Icons.Default.Tv
+                        } else Icons.Default.AddToQueue,
+                        contentDescription = null,
+                        tint = if(film.isInWatchList) {
+                            MaterialTheme.colorScheme.primary
+                        } else Color.White
+                    )
                 }
             }
         }
