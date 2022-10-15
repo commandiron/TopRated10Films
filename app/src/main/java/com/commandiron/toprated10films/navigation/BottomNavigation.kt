@@ -35,8 +35,6 @@ fun BottomNavigation(
     shouldShowSplash: Boolean = false,
     onNavItemClick:(String) -> Unit
 ) {
-
-    val splashEnterAnimationOnceFlag = remember { mutableStateOf(false) }
     val navigationItems = listOf(
         NavigationItem.SplashScreen,
         NavigationItem.SelectionScreen,
@@ -53,17 +51,14 @@ fun BottomNavigation(
             navigationItems.find { it.routeWithArgs() == currentRoute }?.isBottomBarVisible ?: false
         },
         enter = if(shouldShowSplash) {
-            if(!splashEnterAnimationOnceFlag.value) {
-
-                splashEnterAnimationOnceFlag.value = true
-
+            if(currentRoute == NavigationItem.SelectionScreen.route) {
                 fadeIn(
                     tween(
                         durationMillis = 1000,
                         delayMillis = 3000
                     )
                 )
-            }else {
+            } else {
                 slideInVertically(initialOffsetY = { fullHeight -> fullHeight })
             }
         } else slideInVertically(initialOffsetY = { fullHeight -> fullHeight }),
