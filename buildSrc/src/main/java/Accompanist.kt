@@ -6,4 +6,6 @@ object Accompanist {
     const val pager = "com.google.accompanist:accompanist-pager:$version"
     const val systemUi =
         "com.google.accompanist:accompanist-systemuicontroller:$version"
+    const val placeholderMaterial =
+        "com.google.accompanist:accompanist-placeholder-material:$version"
 }

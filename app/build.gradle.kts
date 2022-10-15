@@ -52,6 +52,7 @@ dependencies {
     implementation(AndroidX.materialIconsCore)
     implementation(AndroidX.materialIconsExtended)
     implementation(AndroidX.coreSplashScreen)
+    implementation (AndroidX.palette)
 
     implementation(Compose.ui)
     implementation(Compose.uiUtil)
@@ -65,11 +66,14 @@ dependencies {
     implementation(Accompanist.navigationAnimation)
     implementation(Accompanist.pager)
     implementation(Accompanist.systemUi)
+    implementation(Accompanist.placeholderMaterial)
 
     implementation(Coil.coilCompose)
 
     implementation(Retrofit.retrofit)
     implementation(Retrofit.moshiConverter)
+
+    implementation(OkHttp.okHttp)
 
     implementation(Room.runtime)
     kapt(Room.compiler)
@@ -77,6 +81,8 @@ dependencies {
     implementation(Room.paging)
 
     implementation(Paging.compose)
+
+    implementation(CommandIron.expandableHorizontalPager)
 
     kapt(DaggerHilt.hiltCompiler)
     implementation(DaggerHilt.hiltAndroid)

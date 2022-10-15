@@ -1,9 +1,7 @@
 package com.commandiron.toprated10films.navigation
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,6 +15,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,8 +30,9 @@ import com.commandiron.toprated10films.ui.theme.*
 
 @Composable
 fun BottomNavigation(
+    visible: Boolean = true,
     currentRoute: String?,
-    shouldShowSplash: Boolean,
+    shouldShowSplash: Boolean = false,
     onNavItemClick:(String) -> Unit
 ) {
     val navigationItems = listOf(
@@ -44,20 +45,29 @@ fun BottomNavigation(
         NavigationItem.WatchListScreen
     )
     AnimatedVisibility(
-        visible = navigationItems.find { it.routeWithArgs() == currentRoute }?.isBottomBarVisible ?: false,
+        visible = if(!visible) {
+            false
+        } else {
+            navigationItems.find { it.routeWithArgs() == currentRoute }?.isBottomBarVisible ?: false
+        },
         enter = if(shouldShowSplash) {
-            fadeIn(
-                tween(
-                    durationMillis = 1000,
-                    delayMillis = 3000
+            if(currentRoute == NavigationItem.SelectionScreen.route) {
+                fadeIn(
+                    tween(
+                        durationMillis = 1000,
+                        delayMillis = 3000
+                    )
                 )
-            )
-        } else fadeIn(),
-        exit = fadeOut()
+            } else {
+                slideInVertically(initialOffsetY = { fullHeight -> fullHeight })
+            }
+        } else slideInVertically(initialOffsetY = { fullHeight -> fullHeight }),
+        exit = slideOutVertically(targetOffsetY = { fullHeight -> fullHeight })
     ) {
         Row(
             modifier = Modifier
-                .padding(MaterialTheme.spacing.spaceSmall)
+                .navigationBarsPadding()
+                .padding(MaterialTheme.spacing.spaceMedium)
                 .fillMaxWidth()
                 .height(MaterialTheme.spacing.bottomNavHeight)
                 .clip(MaterialTheme.shapes.large)

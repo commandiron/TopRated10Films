@@ -1,5 +1,5 @@
 object Compose {
-    const val compilerVersion = "1.3.1"
+    const val compilerVersion = "1.2.0"
     
     private const val uiVersion = "1.2.1"
     const val ui = "androidx.compose.ui:ui:$uiVersion"

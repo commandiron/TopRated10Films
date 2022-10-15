@@ -9,6 +9,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +25,9 @@ import com.commandiron.toprated10films.ui.model.Category
 import com.commandiron.toprated10films.ui.presentation.selection.components.CategoryCard
 import com.commandiron.toprated10films.ui.presentation.selection.components.PopularCard
 import com.commandiron.toprated10films.ui.presentation.selection.components.SelectionBodyText
+import com.commandiron.toprated10films.ui.theme.GunmetalDarkest
+import com.commandiron.toprated10films.ui.theme.GunmetalLighter
+import com.commandiron.toprated10films.ui.theme.LocalSystemUiController
 import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -45,13 +49,21 @@ fun SelectionScreen(
         imageUrl: String?
     ) -> Unit
 ) {
+    val systemUiController = LocalSystemUiController.current
+    DisposableEffect(systemUiController) {
+        systemUiController.setStatusBarColor(
+            color = GunmetalDarkest
+        )
+        systemUiController.setNavigationBarColor(
+            color = GunmetalLighter
+        )
+        onDispose {}
+    }
     val populars = viewModel.populars.collectAsState().value
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(
-                bottom = MaterialTheme.spacing.bottomNavHeight + MaterialTheme.spacing.spaceExtraSmall
-            ),
+            .systemBarsPadding(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -148,6 +160,9 @@ fun SelectionScreen(
                     }
                 }
             }
+        }
+        item {
+            Spacer(Modifier.height(MaterialTheme.spacing.spaceXXLarge))
         }
     }
 }

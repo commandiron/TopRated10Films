@@ -19,7 +19,8 @@ import com.google.accompanist.navigation.animation.navigation
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.topTenNavGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    onImageTransform:(expanded: Boolean) -> Unit
 ) {
     navigation(
         route = GraphItem.TopTenGraph.route,
@@ -183,7 +184,7 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            ShowResultScreen()
+            ShowResultScreen(onImageTransform = onImageTransform)
         }
     }
 }

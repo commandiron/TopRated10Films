@@ -37,6 +37,7 @@ fun GenreScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .systemBarsPadding()
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null
