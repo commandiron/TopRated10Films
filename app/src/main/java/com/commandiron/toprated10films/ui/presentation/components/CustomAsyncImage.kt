@@ -42,6 +42,7 @@ fun CustomAsyncImage(
         SubcomposeAsyncImage(
             modifier = modifier,
             model = ImageRequest.Builder(LocalContext.current)
+                .allowHardware(false)
                 .data(imageUrl)
                 .crossfade(true)
                 .build(),

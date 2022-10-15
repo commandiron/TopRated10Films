@@ -63,9 +63,6 @@ fun SelectionScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(
-                bottom = MaterialTheme.spacing.bottomNavHeight + MaterialTheme.spacing.spaceExtraSmall
-            )
             .systemBarsPadding(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -163,6 +160,9 @@ fun SelectionScreen(
                     }
                 }
             }
+        }
+        item {
+            Spacer(Modifier.height(MaterialTheme.spacing.spaceXXLarge))
         }
     }
 }

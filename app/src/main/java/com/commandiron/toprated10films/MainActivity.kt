@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
                     RootNavGraph(
                         navController = navController,
                         shouldShowSplash = shouldShowSplash,
-                        onImageClick = { expanded ->
+                        onImageTransform = { expanded ->
                             isBottomNavigationVisible.value = !expanded
                         }
                     )

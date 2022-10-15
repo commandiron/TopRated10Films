@@ -1,15 +1,21 @@
 package com.commandiron.toprated10films.ui.presentation.components
 
+import android.graphics.drawable.BitmapDrawable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddToQueue
 import androidx.compose.material.icons.filled.Tv
 import androidx.compose.material.ripple.LocalRippleTheme
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
@@ -21,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.palette.graphics.Palette
 import com.commandiron.toprated10films.domain.model.Film
 import com.commandiron.toprated10films.ui.theme.NoRippleTheme
 import com.commandiron.toprated10films.ui.theme.spacing
@@ -33,7 +40,8 @@ fun FilmCard(
     iconPaddings: Dp = MaterialTheme.spacing.spaceMedium,
     iconSizes: Dp = 42.dp,
     queueIconEnabled: Boolean = true,
-    onWatchListClick: (id: Int) -> Unit
+    onWatchListClick: (id: Int) -> Unit,
+    onSuccess: (dominantColor: Color) -> Unit = {}
 ) {
 
     val isAsyncImageLoading = remember { mutableStateOf(false) }
@@ -48,6 +56,14 @@ fun FilmCard(
                     isAsyncImageLoading.value = true
                 },
                 onSuccess = {
+                    val result  = it.result.drawable
+                    val bitmap = (result as BitmapDrawable).bitmap
+                    val dominantColor = Palette.from(bitmap)
+                        .generate()
+                        .getDominantColor(android.graphics.Color.WHITE)
+
+                    onSuccess(Color(dominantColor))
+
                     isAsyncImageLoading.value = false
                 },
                 onError = {

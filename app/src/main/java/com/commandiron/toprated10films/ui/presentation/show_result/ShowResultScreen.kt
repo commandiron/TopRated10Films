@@ -2,6 +2,7 @@ package com.commandiron.toprated10films.ui.presentation.show_result
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Icon
@@ -10,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,6 +24,7 @@ import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.presentation.components.AppProgressIndicator
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.presentation.components.FilmCard
+import com.commandiron.toprated10films.ui.theme.Gunmetal
 import com.commandiron.toprated10films.ui.theme.LocalSystemUiController
 import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -33,7 +34,7 @@ import com.google.accompanist.pager.rememberPagerState
 @Composable
 fun ShowResultScreen(
     viewModel: ShowResultViewModel = hiltViewModel(),
-    onImageClick:(expanded: Boolean) -> Unit //Navigation saklamak için
+    onImageTransform:(expanded: Boolean) -> Unit
 ) {
     val imageUrl: String = viewModel.imageUrl.collectAsState().value
     val title = viewModel.title.collectAsState().value
@@ -62,10 +63,6 @@ fun ShowResultScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(
-                bottom = MaterialTheme.spacing.bottomNavHeight
-                        + MaterialTheme.spacing.spaceExtraSmall
-            )
             .systemBarsPadding(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -206,8 +203,26 @@ fun ShowResultScreen(
                     }
                 }
             },
-            hiddenContentContainerColor = Color.Red,
-            hiddenContent = {}
+            hiddenContentContainerColor = Gunmetal,
+            hiddenContent = { page ->
+                LazyColumn{
+                    item {
+                        Text(
+                            modifier = Modifier.padding(
+                                start = MaterialTheme.spacing.spaceMedium,
+                                end = MaterialTheme.spacing.spaceMedium,
+                                top = MaterialTheme.spacing.spaceMedium,
+                                bottom = MaterialTheme.spacing.spaceLarge
+                            ),
+                            text = topTen[page].overview
+                        )
+                    }
+                    item {
+                        Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
+                    }
+                }
+            },
+            onTransform = { onImageTransform(it) }
         )
     }
 }

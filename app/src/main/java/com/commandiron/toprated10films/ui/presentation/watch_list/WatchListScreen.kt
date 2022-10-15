@@ -9,23 +9,29 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.presentation.components.AppProgressIndicator
+import com.commandiron.toprated10films.ui.presentation.components.CustomAlertDialog
 import com.commandiron.toprated10films.ui.presentation.components.FilmCard
 import com.commandiron.toprated10films.ui.theme.spacing
 
 @Composable
 fun WatchListScreen(
-    viewModel: WatchListViewModel = hiltViewModel(),
+    viewModel: WatchListViewModel = hiltViewModel()
 ) {
     val films = viewModel.films.collectAsState().value
     val isLoading = viewModel.isLoading.collectAsState().value
+    val showAlertDialog = remember { mutableStateOf(false) }
+    val removedId = remember { mutableStateOf<Int?>(null) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -58,7 +64,9 @@ fun WatchListScreen(
         Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
         if(isLoading) {
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = MaterialTheme.spacing.bottomNavHeight),
                 contentAlignment = Alignment.Center
             ) {
                 AppProgressIndicator()
@@ -74,14 +82,24 @@ fun WatchListScreen(
                                 .padding(
                                     MaterialTheme.spacing.spaceSmall
                                 )
-                                .aspectRatio(0.67f),
+                                .aspectRatio(0.67f)
+                                .clip(MaterialTheme.shapes.medium),
                             film = film,
                             page = 0,
                             iconPaddings = MaterialTheme.spacing.spaceSmall,
                             iconSizes = 36.dp,
                             queueIconEnabled = false,
-                            onWatchListClick = { viewModel.removeFromWatchList(it) }
+                            onWatchListClick = {
+                                showAlertDialog.value = true
+                                removedId.value = it
+                            }
                         )
+                    }
+                    item {
+                        Spacer(Modifier.height(MaterialTheme.spacing.spaceXXLarge))
+                    }
+                    item {
+                        Spacer(Modifier.height(MaterialTheme.spacing.spaceXXLarge))
                     }
                 }
             } else {
@@ -93,5 +111,20 @@ fun WatchListScreen(
                 }
             }
         }
+    }
+    if(showAlertDialog.value) {
+        CustomAlertDialog(
+            title = "Are you sure you want to remove it?",
+            firstButtonText = "Yes",
+            secondButtonText = "No",
+            onDismiss = { showAlertDialog.value = false },
+            onConfirm = {
+                showAlertDialog.value = false
+                removedId.value?.let {
+                    viewModel.removeFromWatchList(it)
+                    removedId.value = null
+                }
+            }
+        )
     }
 }

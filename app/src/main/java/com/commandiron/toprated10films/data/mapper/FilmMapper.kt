@@ -10,6 +10,7 @@ fun MovieDbCast.toFilm(): Film {
         id = this.id,
         title = title,
         imageUrl = if(poster_path == null) null else "$URL$poster_path",
+        overview = overview,
         releaseYear = if(release_date.length >= 4) release_date.take(4) else "",
         vote_average = vote_average,
         vote_count = vote_count,
@@ -21,6 +22,7 @@ fun MovieDbMovie.toFilm(): Film {
         id = id,
         title = title,
         imageUrl = if(poster_path == null) null else "$URL$poster_path",
+        overview = overview,
         releaseYear = if(release_date.length >= 4) release_date.take(4) else "",
         vote_average = vote_average,
         vote_count = vote_count
@@ -32,6 +34,7 @@ fun MovieDbDetailDto.toFilm(): Film {
         id = id,
         title = title,
         imageUrl = if(poster_path == null) null else "$URL$poster_path",
+        overview = overview,
         releaseYear = if(release_date.length >= 4) release_date.take(4) else "",
         vote_average = vote_average,
         vote_count = vote_count

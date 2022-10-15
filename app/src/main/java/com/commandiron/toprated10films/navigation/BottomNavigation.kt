@@ -1,9 +1,7 @@
 package com.commandiron.toprated10films.navigation
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -57,12 +55,13 @@ fun BottomNavigation(
                     delayMillis = 3000
                 )
             )
-        } else fadeIn(),
-        exit = fadeOut()
+        } else slideInVertically(initialOffsetY = { fullHeight -> fullHeight }),
+        exit = slideOutVertically(targetOffsetY = { fullHeight -> fullHeight })
     ) {
         Row(
             modifier = Modifier
-                .padding(20.dp)
+                .navigationBarsPadding()
+                .padding(MaterialTheme.spacing.spaceMedium)
                 .fillMaxWidth()
                 .height(MaterialTheme.spacing.bottomNavHeight)
                 .clip(MaterialTheme.shapes.large)
