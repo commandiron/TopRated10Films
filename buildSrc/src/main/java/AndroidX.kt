@@ -16,4 +16,7 @@ object AndroidX {
 
     private const val coreSplashScreenVersion = "1.0.0-beta01"
     const val coreSplashScreen = "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+
+    private const val paletteVersion = "1.0.0"
+    const val palette = "androidx.palette:palette:$paletteVersion"
 }
