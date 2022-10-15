@@ -86,7 +86,7 @@ fun WatchListScreen(
                                 .clip(MaterialTheme.shapes.medium),
                             film = film,
                             page = 0,
-                            iconPaddings = MaterialTheme.spacing.spaceSmall,
+                            iconPaddings = PaddingValues(MaterialTheme.spacing.spaceSmall),
                             iconSizes = 36.dp,
                             queueIconEnabled = false,
                             onWatchListClick = {

@@ -140,10 +140,14 @@ fun ShowResultScreen(
             },
             initialWidth = 360.dp,
             targetWidth = maxWidth,
-            mainContent = { page ->
+            mainContent = { page, isExpanded ->
                 FilmCard(
                     film = topTen[page],
                     page = page,
+                    iconPaddings = PaddingValues(
+                        horizontal = MaterialTheme.spacing.spaceMedium,
+                        vertical = MaterialTheme.spacing.spaceLarge
+                    ),
                     onWatchListClick = {
                         if(topTen[page].isInWatchList) {
                             viewModel.removeFromWatchList(it)
