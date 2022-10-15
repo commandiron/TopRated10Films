@@ -15,6 +15,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,9 +32,11 @@ import com.commandiron.toprated10films.ui.theme.*
 fun BottomNavigation(
     visible: Boolean = true,
     currentRoute: String?,
-    shouldShowSplash: Boolean,
+    shouldShowSplash: Boolean = false,
     onNavItemClick:(String) -> Unit
 ) {
+
+    val splashEnterAnimationOnceFlag = remember { mutableStateOf(false) }
     val navigationItems = listOf(
         NavigationItem.SplashScreen,
         NavigationItem.SelectionScreen,
@@ -49,12 +53,19 @@ fun BottomNavigation(
             navigationItems.find { it.routeWithArgs() == currentRoute }?.isBottomBarVisible ?: false
         },
         enter = if(shouldShowSplash) {
-            fadeIn(
-                tween(
-                    durationMillis = 1000,
-                    delayMillis = 3000
+            if(!splashEnterAnimationOnceFlag.value) {
+
+                splashEnterAnimationOnceFlag.value = true
+
+                fadeIn(
+                    tween(
+                        durationMillis = 1000,
+                        delayMillis = 3000
+                    )
                 )
-            )
+            }else {
+                slideInVertically(initialOffsetY = { fullHeight -> fullHeight })
+            }
         } else slideInVertically(initialOffsetY = { fullHeight -> fullHeight }),
         exit = slideOutVertically(targetOffsetY = { fullHeight -> fullHeight })
     ) {

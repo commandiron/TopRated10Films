@@ -57,6 +57,7 @@ fun ShowResultScreen(
             .fillMaxSize(),
         imageUrl = imageUrl,
         alpha = 0.2f,
+        placeHolderEnabled = false,
         noImageTitle = "",
         errorMessage = ""
     )

@@ -25,6 +25,7 @@ fun CustomAsyncImage(
     modifier: Modifier = Modifier,
     imageUrl: String?,
     alpha: Float = 1.0f,
+    placeHolderEnabled: Boolean = true,
     noImageTitle: String = "Image not available",
     errorMessage: String = "Image loading failed",
     onLoading: ((AsyncImagePainter.State.Loading) -> Unit)? = null,
@@ -72,18 +73,20 @@ fun CustomAsyncImage(
         ) {
             when (painter.state) {
                 is AsyncImagePainter.State.Loading -> {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .placeholder(
-                                visible = true,
-                                color = Color.Gray.copy(0.5f),
-                                shape = RoundedCornerShape(4.dp),
-                                highlight = PlaceholderHighlight
-                                    .shimmer(highlightColor = Color.White)
-                            ),
-                        contentAlignment = Alignment.Center
-                    ) {}
+                    if(placeHolderEnabled) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .placeholder(
+                                    visible = true,
+                                    color = Color.Gray.copy(0.5f),
+                                    shape = RoundedCornerShape(4.dp),
+                                    highlight = PlaceholderHighlight
+                                        .shimmer(highlightColor = Color.White)
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {}
+                    }
                 }
                 is AsyncImagePainter.State.Error -> {
                     Box(
