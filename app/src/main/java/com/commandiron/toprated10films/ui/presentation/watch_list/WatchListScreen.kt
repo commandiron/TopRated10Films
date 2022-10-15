@@ -1,6 +1,5 @@
 package com.commandiron.toprated10films.ui.presentation.watch_list
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -111,8 +110,7 @@ fun WatchListScreen(
                         .padding(
                             bottom = MaterialTheme.spacing.bottomNavHeight
                                     + MaterialTheme.spacing.spaceMedium
-                        )
-                        .border(1.dp, Color.Red),
+                        ),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(text = "No Movie Added")
