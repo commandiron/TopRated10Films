@@ -22,6 +22,7 @@ import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.presentation.components.AppProgressIndicator
 import com.commandiron.toprated10films.ui.presentation.components.CustomAlertDialog
 import com.commandiron.toprated10films.ui.presentation.components.FilmCard
+import com.commandiron.toprated10films.ui.presentation.components.bottomNavPadding
 import com.commandiron.toprated10films.ui.theme.spacing
 
 @Composable
@@ -107,10 +108,7 @@ fun WatchListScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .systemBarsPadding()
-                        .padding(
-                            bottom = MaterialTheme.spacing.bottomNavHeight
-                                    + MaterialTheme.spacing.spaceMedium
-                        ),
+                        .bottomNavPadding(),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(text = "No Movie Added")

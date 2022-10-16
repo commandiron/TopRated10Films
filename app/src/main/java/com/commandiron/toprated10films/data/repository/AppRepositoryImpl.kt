@@ -8,15 +8,14 @@ import com.commandiron.toprated10films.data.mapper.toFilm
 import com.commandiron.toprated10films.data.mapper.toGenre
 import com.commandiron.toprated10films.data.paging.ActorPagingSource
 import com.commandiron.toprated10films.data.remote.MovieApi
-import com.commandiron.toprated10films.domain.model.Genre
-import com.commandiron.toprated10films.domain.repository.AppRepository
 import com.commandiron.toprated10films.domain.model.Actor
 import com.commandiron.toprated10films.domain.model.Film
+import com.commandiron.toprated10films.domain.model.Genre
 import com.commandiron.toprated10films.domain.model.WatchListId
+import com.commandiron.toprated10films.domain.repository.AppRepository
 import com.commandiron.toprated10films.util.Response
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.runBlocking
 
 
 class AppRepositoryImpl(
@@ -110,15 +109,13 @@ class AppRepositoryImpl(
     override suspend fun getMoviesByIds(ids: List<Int>): Flow<Response<List<Film>>> = flow {
         emit(Response.Loading)
         val films: MutableList<Film> = mutableListOf()
-        runBlocking {
-            ids.forEach { id ->
-                try {
-                    val film = api.getMoviesById(id).toFilm()
-                    films.add(film)
-                } catch (e: Exception) {
-                    emit(Response.Error(e.message ?: ERROR_MESSAGE))
-                    e.printStackTrace()
-                }
+        ids.forEach { id ->
+            try {
+                val film = api.getMoviesById(id).toFilm()
+                films.add(film)
+            } catch (e: Exception) {
+                emit(Response.Error(e.message ?: ERROR_MESSAGE))
+                e.printStackTrace()
             }
         }
         emit(Response.Success(films))

@@ -24,6 +24,7 @@ import com.commandiron.toprated10films.R
 import com.commandiron.toprated10films.ui.presentation.components.AppProgressIndicator
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.presentation.components.FilmCard
+import com.commandiron.toprated10films.ui.presentation.components.bottomNavPadding
 import com.commandiron.toprated10films.ui.theme.Gunmetal
 import com.commandiron.toprated10films.ui.theme.LocalSystemUiController
 import com.commandiron.toprated10films.ui.theme.spacing
@@ -64,7 +65,8 @@ fun ShowResultScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .systemBarsPadding(),
+            .systemBarsPadding()
+            .bottomNavPadding(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -119,7 +121,8 @@ fun ShowResultScreen(
             ) {
                 AppProgressIndicator()
             }
-        }else if(topTen.isEmpty()) {
+        }
+        if(topTen.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -141,7 +144,7 @@ fun ShowResultScreen(
             },
             initialWidth = 360.dp,
             targetWidth = maxWidth,
-            mainContent = { page, isExpanded ->
+            mainContent = { page, _ ->
                 FilmCard(
                     film = topTen[page],
                     page = page,
