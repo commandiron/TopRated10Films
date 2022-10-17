@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.toprated10films.R
+import com.commandiron.toprated10films.ui.LocalSystemUiController
 import com.commandiron.toprated10films.ui.model.Category
 import com.commandiron.toprated10films.ui.presentation.components.bottomNavPadding
 import com.commandiron.toprated10films.ui.presentation.selection.components.CategoryCard
@@ -27,7 +28,6 @@ import com.commandiron.toprated10films.ui.presentation.selection.components.Popu
 import com.commandiron.toprated10films.ui.presentation.selection.components.SelectionBodyText
 import com.commandiron.toprated10films.ui.theme.GunmetalDarkest
 import com.commandiron.toprated10films.ui.theme.GunmetalLighter
-import com.commandiron.toprated10films.ui.theme.LocalSystemUiController
 import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
