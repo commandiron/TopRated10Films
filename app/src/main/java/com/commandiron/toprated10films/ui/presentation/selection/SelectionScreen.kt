@@ -128,7 +128,7 @@ fun SelectionScreen(
             textStyle = MaterialTheme.typography.titleLarge
         )
         Column(Modifier.fillMaxWidth()) {
-            Spacer(Modifier.height(MaterialTheme.spacing.spaceLarge))
+            Spacer(Modifier.height(MaterialTheme.spacing.spaceMedium))
             Row {
                 Spacer(Modifier.width(MaterialTheme.spacing.spaceMedium))
                 Text(
