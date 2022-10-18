@@ -11,6 +11,8 @@ object Compose {
     private const val material3Version = "1.0.0-alpha13"
     const val material3 = "androidx.compose.material3:material3:$material3Version"
 
+    const val material3WindowSize = "androidx.compose.material3:material3-window-size-class:$material3Version"
+
     private const val navigationVersion = "2.5.0-rc01"
     const val navigation = "androidx.navigation:navigation-compose:$navigationVersion"
 

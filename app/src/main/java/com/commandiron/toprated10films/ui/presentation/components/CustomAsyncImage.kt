@@ -3,6 +3,7 @@ package com.commandiron.toprated10films.ui.presentation.components
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,6 +17,7 @@ import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import coil.request.ImageRequest
+import com.commandiron.compose_loading.InstaSpinner
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.placeholder
 import com.google.accompanist.placeholder.shimmer
@@ -83,9 +85,17 @@ fun CustomAsyncImage(
                                     shape = RoundedCornerShape(4.dp),
                                     highlight = PlaceholderHighlight
                                         .shimmer(highlightColor = Color.White)
-                                ),
-                            contentAlignment = Alignment.Center
+                                )
                         ) {}
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            InstaSpinner(
+                                size = 20.dp,
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
+                        }
                     }
                 }
                 is AsyncImagePainter.State.Error -> {

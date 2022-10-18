@@ -59,6 +59,7 @@ dependencies {
     implementation(Compose.uiToolingPreview)
     implementation(Compose.navigation)
     implementation(Compose.material3)
+    implementation(Compose.material3WindowSize)
     implementation(Compose.hiltNavigation)
     debugImplementation(Compose.uiTooling)
     debugImplementation(Compose.uiTestManifest)
@@ -83,6 +84,7 @@ dependencies {
     implementation(Paging.compose)
 
     implementation(CommandIron.expandableHorizontalPager)
+    implementation(CommandIron.composeLoading)
 
     kapt(DaggerHilt.hiltCompiler)
     implementation(DaggerHilt.hiltAndroid)

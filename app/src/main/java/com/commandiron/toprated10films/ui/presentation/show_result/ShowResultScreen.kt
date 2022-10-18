@@ -21,11 +21,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.expandable_horizontal_pager.ExpandableHorizontalPager
 import com.commandiron.toprated10films.R
+import com.commandiron.toprated10films.ui.LocalAppState
+import com.commandiron.toprated10films.ui.LocalSystemUiController
 import com.commandiron.toprated10films.ui.presentation.components.AppProgressIndicator
 import com.commandiron.toprated10films.ui.presentation.components.CustomAsyncImage
 import com.commandiron.toprated10films.ui.presentation.components.FilmCard
+import com.commandiron.toprated10films.ui.presentation.components.bottomNavPadding
 import com.commandiron.toprated10films.ui.theme.Gunmetal
-import com.commandiron.toprated10films.ui.theme.LocalSystemUiController
 import com.commandiron.toprated10films.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
@@ -33,9 +35,10 @@ import com.google.accompanist.pager.rememberPagerState
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ShowResultScreen(
-    viewModel: ShowResultViewModel = hiltViewModel(),
-    onImageTransform:(expanded: Boolean) -> Unit
+    viewModel: ShowResultViewModel = hiltViewModel()
 ) {
+    val appState = LocalAppState.current
+
     val imageUrl: String = viewModel.imageUrl.collectAsState().value
     val title = viewModel.title.collectAsState().value
     val topTen = viewModel.topTen.collectAsState().value
@@ -64,7 +67,8 @@ fun ShowResultScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .systemBarsPadding(),
+            .systemBarsPadding()
+            .bottomNavPadding(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -119,7 +123,8 @@ fun ShowResultScreen(
             ) {
                 AppProgressIndicator()
             }
-        }else if(topTen.isEmpty()) {
+        }
+        if(topTen.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -141,7 +146,7 @@ fun ShowResultScreen(
             },
             initialWidth = 360.dp,
             targetWidth = maxWidth,
-            mainContent = { page, isExpanded ->
+            mainContent = { page, _ ->
                 FilmCard(
                     film = topTen[page],
                     page = page,
@@ -227,7 +232,7 @@ fun ShowResultScreen(
                     }
                 }
             },
-            onTransform = { onImageTransform(it) }
+            onTransform = { appState.setBottomBarVisibility(!it) }
         )
     }
 }
