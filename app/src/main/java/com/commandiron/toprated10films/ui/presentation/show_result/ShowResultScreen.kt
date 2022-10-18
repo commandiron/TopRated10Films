@@ -144,8 +144,10 @@ fun ShowResultScreen(
             key = {
                 topTen[it].id
             },
-            initialWidth = 360.dp,
+            initialWidth = 400.dp,
             targetWidth = maxWidth,
+            initialAspectRatio = 1f,
+            targetAspectRatio = 2/3f,
             mainContent = { page, _ ->
                 FilmCard(
                     film = topTen[page],
