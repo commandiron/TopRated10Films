@@ -117,18 +117,23 @@ fun WatchListScreen(
         }
     }
     if(showAlertDialog.value) {
-        CustomAlertDialog(
-            title = "Are you sure you want to remove it?",
-            firstButtonText = "Yes",
-            secondButtonText = "No",
-            onDismiss = { showAlertDialog.value = false },
-            onConfirm = {
-                showAlertDialog.value = false
-                removedId.value?.let {
-                    viewModel.removeFromWatchList(it)
-                    removedId.value = null
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CustomAlertDialog(
+                title = "Are you sure you want to remove it?",
+                firstButtonText = "Yes",
+                secondButtonText = "No",
+                onDismiss = { showAlertDialog.value = false },
+                onConfirm = {
+                    showAlertDialog.value = false
+                    removedId.value?.let {
+                        viewModel.removeFromWatchList(it)
+                        removedId.value = null
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 }
