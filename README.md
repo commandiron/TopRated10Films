@@ -60,4 +60,3 @@ TopRated10Films is a native android films app for create Top 10 movies in desire
    * Different Screen Sizes and Orientation❌
    * Light Theme ❌
    * Turkish Language ❌
-
