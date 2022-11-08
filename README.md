@@ -14,7 +14,7 @@
   </p>
 
 <p align="center">  
-TopRated10Films is a native android films app for create Top 10 movies in desired category, written in Kotlin using Jetpack Compose with themoviedb api.
+TopRated10Films is a native android movie app for create Top 10 movies in desired category, written in Kotlin using Jetpack Compose with themoviedb api.
 </p>
 </br>
 
