@@ -183,7 +183,9 @@ fun NavGraphBuilder.topTenNavGraph(
                 }
             }
         ) {
-            ShowResultScreen()
+            ShowResultScreen{
+                navController.popBackStack()
+            }
         }
     }
 }

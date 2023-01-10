@@ -38,7 +38,7 @@ fun FilmCard(
     iconSizes: Dp = 42.dp,
     queueIconEnabled: Boolean = true,
     onWatchListClick: (id: Int) -> Unit,
-    onSuccess: (dominantColor: Color) -> Unit = {}
+    onSuccess: (dominantColor: Color, id: Int) -> Unit = {_,_ ->}
 ) {
 
     val isAsyncImageLoading = remember { mutableStateOf(false) }
@@ -59,7 +59,7 @@ fun FilmCard(
                         .generate()
                         .getDominantColor(android.graphics.Color.WHITE)
 
-                    onSuccess(Color(dominantColor))
+                    onSuccess(Color(dominantColor), film.id)
 
                     isAsyncImageLoading.value = false
                 },

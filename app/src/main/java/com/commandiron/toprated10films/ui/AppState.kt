@@ -44,7 +44,7 @@ class AppState(
     }
 
     var isBottomNavBarVisible by mutableStateOf(true)
-        private set
+            private set
 
     var shouldShowSplash by mutableStateOf(preferences.loadShouldShowSplash())
         private set
