@@ -244,7 +244,7 @@ fun ShowResultScreen(
         )
     }
     BackHandler {
-        onBackClick()
         appState.setBottomBarVisibility(true)
+        onBackClick()
     }
 }
