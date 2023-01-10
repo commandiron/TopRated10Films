@@ -1,5 +1,6 @@
 package com.commandiron.toprated10films.ui.presentation.show_result
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -35,7 +36,8 @@ import com.google.accompanist.pager.rememberPagerState
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ShowResultScreen(
-    viewModel: ShowResultViewModel = hiltViewModel()
+    viewModel: ShowResultViewModel = hiltViewModel(),
+    onBackClick: () -> Unit
 ) {
     val appState = LocalAppState.current
 
@@ -144,8 +146,10 @@ fun ShowResultScreen(
             key = {
                 topTen[it].id
             },
-            initialWidth = 360.dp,
+            initialWidth = 400.dp,
             targetWidth = maxWidth,
+            initialAspectRatio = 1f,
+            targetAspectRatio = 2/3f,
             mainContent = { page, _ ->
                 FilmCard(
                     film = topTen[page],
@@ -160,6 +164,10 @@ fun ShowResultScreen(
                         }else {
                             viewModel.addToWatchList(it)
                         }
+                    },
+                    onSuccess = { dominantColor, id ->
+                        println(dominantColor)
+                        println(id)
                     }
                 )
             },
@@ -234,5 +242,9 @@ fun ShowResultScreen(
             },
             onTransform = { appState.setBottomBarVisibility(!it) }
         )
+    }
+    BackHandler {
+        onBackClick()
+        appState.setBottomBarVisibility(true)
     }
 }

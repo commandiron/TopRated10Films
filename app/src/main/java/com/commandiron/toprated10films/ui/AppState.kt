@@ -1,5 +1,6 @@
 package com.commandiron.toprated10films.ui
 
+import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.*
@@ -31,12 +32,19 @@ class AppState(
     val currentWindowWidthSizeClass : WindowWidthSizeClass
         get() = getWindowWidthSizeClass()
 
+    val currentWindowHeightSizeClass : WindowHeightSizeClass
+        get() = getWindowHeightSizeClass()
+
     private fun getWindowWidthSizeClass(): WindowWidthSizeClass {
         return windowSizeClass.widthSizeClass
     }
 
+    private fun getWindowHeightSizeClass(): WindowHeightSizeClass {
+        return windowSizeClass.heightSizeClass
+    }
+
     var isBottomNavBarVisible by mutableStateOf(true)
-        private set
+            private set
 
     var shouldShowSplash by mutableStateOf(preferences.loadShouldShowSplash())
         private set
