@@ -19,8 +19,7 @@ TopRated10Films is a native android movie app for create Top 10 movies in desire
 </br>
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/50905347/194304178-16ac8e1c-16ae-40ff-b767-c0a725303c0a.png#gh-dark-mode-only" width="750" height="366">
-<img src="https://user-images.githubusercontent.com/50905347/194304140-0cb14446-521b-4016-b939-55b8aa67bac1.png#gh-light-mode-only" width="750" height="366">
+<img src="https://user-images.githubusercontent.com/50905347/194304140-0cb14446-521b-4016-b939-55b8aa67bac1.png" width="750" height="366">
 </p>
 
 * Ux 🧪
