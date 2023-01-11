@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/50905347/211493525-65dac823-5be0-4e57-ab73-94704fe2a804.png" width="117" height="125">
+  <img src="https://user-images.githubusercontent.com/50905347/211789281-b4126158-c605-4c50-81ee-dd75e6f03ff4.png" width="125" height="125">
 </p>
 
 <h1 align="center">TopRated10Films</h1>
